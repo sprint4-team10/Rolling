@@ -6,7 +6,7 @@ import { CreateButton } from './CreateButton';
 
 const Navbar = () => {
   return (
-    <nav>
+    <Nav>
       <Container>
         <Ul>
           <li>
@@ -17,19 +17,31 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <CreateButton widthOption="auto" updownMargin="medium" fontColor="gray900" fontSize="medium" bgColor="white" border="gray300">롤링 페이퍼 만들기</CreateButton>
+            <CreateButton
+              widthOption="auto"
+              updownMargin="medium"
+              fontColor="gray900"
+              fontSize="medium"
+              bgColor="white"
+              border="gray300"
+            >
+              롤링 페이퍼 만들기
+            </CreateButton>
           </li>
         </Ul>
       </Container>
-    </nav>
+    </Nav>
   );
 };
+
+const Nav = styled.nav`
+  border-bottom: 1px solid ${COLORS.gray200};
+`;
 
 const Container = styled.div`
   max-width: 1248px;
   margin: 0 auto;
   padding: 0 24px;
-  border-bottom: 1px solid ${COLORS.gray200};
   height: 64px;
 `;
 
