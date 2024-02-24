@@ -3,33 +3,36 @@ import COLORS from '../utils/colors';
 import { Link } from 'react-router-dom';
 import logoImg from '../assets/rolling_Logo.svg';
 import { CreateButton } from './CreateButton';
+import Layout from '../layout/Layout';
 
 const Navbar = () => {
   return (
     <Nav>
-      <Container>
-        <Ul>
-          <li>
-            <Link to="/">
-              <h1>
-                <img src={logoImg} alt="logoImg" />
-              </h1>
-            </Link>
-          </li>
-          <li>
-            <CreateButton
-              widthOption="auto"
-              updownMargin="medium"
-              fontColor="gray900"
-              fontSize="medium"
-              bgColor="white"
-              border="gray300"
-            >
-              롤링 페이퍼 만들기
-            </CreateButton>
-          </li>
-        </Ul>
-      </Container>
+      <Layout>
+        <Container>
+          <Ul>
+            <li>
+              <Link to="/">
+                <h1>
+                  <img src={logoImg} alt="logoImg" />
+                </h1>
+              </Link>
+            </li>
+            <li>
+              <CreateButton
+                widthOption="auto"
+                updownMargin="medium"
+                fontColor="gray900"
+                fontSize="medium"
+                bgColor="white"
+                border="gray300"
+              >
+                롤링 페이퍼 만들기
+              </CreateButton>
+            </li>
+          </Ul>
+        </Container>
+      </Layout>
     </Nav>
   );
 };
@@ -39,9 +42,6 @@ const Nav = styled.nav`
 `;
 
 const Container = styled.div`
-  max-width: 1248px;
-  margin: 0 auto;
-  padding: 0 24px;
   height: 64px;
 `;
 

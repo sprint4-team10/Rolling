@@ -5,13 +5,14 @@ import Post from './pages/Post';
 import Edit from './pages/Edit';
 import Paper from './pages/Paper';
 import Message from './pages/Message';
-import Layout from './layout/Layout';
+// import Layout from './layout/Layout';
+import NavLayout from './layout/NavLayout';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<NavLayout />}>
           <Route index element={<Main />} />
           <Route path="/list" element={<List />} />
           <Route path="/post" element={<Post />} />
