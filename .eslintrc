@@ -1,28 +1,23 @@
 {
   "extends": ["react-app", "plugin:prettier/recommended"],
   "rules": {
-    "no-var": "warn",
-    "no-multiple-empty-lines": "warn",
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "eqeqeq": "warn",
-    "dot-notation": "warn",
-    "no-unused-vars": "warn",
-    "react/destructuring-assignment": "warn",
-    "react/jsx-pascal-case": "warn",
-    "react/no-direct-mutation-state": "warn",
-    "react/jsx-no-useless-fragment": "warn",
-    "react/no-unused-state": "warn",
-    "react/jsx-key": "warn",
-    "react/self-closing-comp": "warn",
-    "react/jsx-curly-brace-presence": "warn",
+    "no-var": "error",
+    "no-unused-vars": "error",
+    "react/destructuring-assignment": "error",
+    "react/jsx-pascal-case": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "react/no-unused-state": "error",
+    "react/jsx-key": "error",
+    "react/self-closing-comp": "error",
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto"
-      }
-    ]
+        "endOfLine": "auto",
+      },
+    ],
   },
   "env": {
-    "browser": true
-  }
+    "browser": true,
+  },
 }
