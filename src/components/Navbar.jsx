@@ -17,7 +17,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <CreateButton marginSize="medium" fontColor="basic" fontSize="basic" bgColor="basic" border="basic">롤링 페이퍼 만들기</CreateButton>
+            <CreateButton widthOption="auto" updownMargin="medium" fontColor="gray900" fontSize="medium" bgColor="white" border="gray300">롤링 페이퍼 만들기</CreateButton>
           </li>
         </Ul>
       </Container>
