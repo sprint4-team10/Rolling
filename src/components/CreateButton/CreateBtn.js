@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import COLORS from "../../utils/colors";
+import COLORS from "../../utils/colors"
 
 const { purple600, white, gray300, gray900 } = COLORS;
 
@@ -38,7 +38,7 @@ export const CreateBtn = styled.button `
     color: ${({fontColor}) => FONT_COLOR[fontColor] ?? FONT_COLOR['basic']};
     text-align: center;
     font-family: Pretendard;
-    font-size: ${({fontSize}) => FONT_SIZE[fontSize] ?? FONT_SIZE['medium']}1.6rem;
+    font-size: ${({fontSize}) => FONT_SIZE[fontSize] ?? FONT_SIZE['medium']}rem;
     font-style: normal;
     font-weight: 700;
     line-height: 2.6rem;
