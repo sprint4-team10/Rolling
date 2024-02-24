@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ColorBox } from './component/ColorBox';
+import { ColorBoxBtn } from './component/ColorBox';
 import COLORS from '../../utils/colors';
 
 export const Post = () => {
@@ -18,10 +18,10 @@ export const Post = () => {
         <SelectButton type="button">이미지</SelectButton>
       </div>
       <ColorBoxContainer>
-        <ColorBox bgcolor="yellow" />
-        <ColorBox bgcolor="purple" />
-        <ColorBox bgcolor="blue" />
-        <ColorBox bgcolor="green" />
+        <ColorBoxBtn type="button" bgcolor="yellow" />
+        <ColorBoxBtn type="button" bgcolor="purple" />
+        <ColorBoxBtn type="button" bgcolor="blue" />
+        <ColorBoxBtn type="button" bgcolor="green" />
       </ColorBoxContainer>
       <button>생성하기</button>
     </PostLayout>
@@ -29,11 +29,15 @@ export const Post = () => {
 };
 
 const PostLayout = styled.div`
-  display: flex;
+  padding-top: 6rem;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 4rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 `;
 
 const InputBox = styled.input`
@@ -75,7 +79,8 @@ const ColorBoxContainer = styled.div`
 `;
 
 const SelectButton = styled.button`
-  width: 9rem;
+  display: inline-block;
+  width: 12rem;
   padding: 0.7rem 1.6rem;
   color: ${COLORS.gray900};
   text-align: cetner;
@@ -84,6 +89,8 @@ const SelectButton = styled.button`
   line-height: 2.6rem;
   letter-spacing: -0.016rem;
   border-radius: 0.8rem;
+  background-color: ${COLORS.gray100};
+  border: 0.2rem solid ${COLORS.gray100};
 
   &:hover,
   &:active {

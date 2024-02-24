@@ -10,9 +10,10 @@ const BOX_COLOR = {
   green: green200,
 };
 
-export const ColorBox = styled.div`
+export const ColorBoxBtn = styled.div`
   width: 16.8rem;
   height: 16.8rem;
   border-radius: 1.6rem;
   background-color: ${({ bgcolor }) => BOX_COLOR[bgcolor] ?? BOX_COLOR['yellow']};
+  cursor: pointer;
 `;
