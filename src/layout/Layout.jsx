@@ -1,16 +1,7 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import styled from 'styled-components';
 
-const Layout = () => {
-  return (
-    <>
-      <Navbar />
-      <Container>
-        <Outlet />
-      </Container>
-    </>
-  );
+const Layout = ({ children }) => {
+  return <Container>{children}</Container>;
 };
 
 const Container = styled.div`
