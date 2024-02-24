@@ -8,7 +8,6 @@ import Message from './pages/Message';
 import NavLayout from './layout/NavLayout';
 import { Post } from './pages/PostPage';
 
-
 const App = () => {
   return (
     <BrowserRouter>

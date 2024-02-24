@@ -2,37 +2,40 @@ import styled from 'styled-components';
 import landing01 from '../assets/covers/landing01.png';
 import landing02 from '../assets/covers/landing02.png';
 import COLORS from '../utils/colors';
+import Layout from '../layout/Layout';
 
 const Main = () => {
   return (
     <Container>
-      <Section>
-        <Contents>
-          <Point>Point. 01</Point>
-          <Title>
-            누구나 손쉽게, 온라인
-            <Br /> 롤링 페이퍼를 만들 수 있어요
-          </Title>
-          <Description>로그인 없이 자유롭게 만들어요.</Description>
-        </Contents>
-        <Cover>
-          <img src={landing01} alt="landingCover01" />
-        </Cover>
-      </Section>
-      <Section>
-        <Contents>
-          <Point>Point. 02</Point>
-          <Title>
-            서로에게 이모지로 감정을
-            <Br /> 표현해보세요.
-          </Title>
-          <Description>롤링 페이퍼에 이모지를 추가할 수 있어요.</Description>
-        </Contents>
-        <Cover>
-          <img src={landing02} alt="landingCover01" />
-        </Cover>
-      </Section>
-      <Button>구경해보기</Button>
+      <Layout>
+        <Section>
+          <Contents>
+            <Point>Point. 01</Point>
+            <Title>
+              누구나 손쉽게, 온라인
+              <Br /> 롤링 페이퍼를 만들 수 있어요
+            </Title>
+            <Description>로그인 없이 자유롭게 만들어요.</Description>
+          </Contents>
+          <Cover>
+            <img src={landing01} alt="landingCover01" />
+          </Cover>
+        </Section>
+        <Section>
+          <Contents>
+            <Point>Point. 02</Point>
+            <Title>
+              서로에게 이모지로 감정을
+              <Br /> 표현해보세요.
+            </Title>
+            <Description>롤링 페이퍼에 이모지를 추가할 수 있어요.</Description>
+          </Contents>
+          <Cover>
+            <img src={landing02} alt="landingCover01" />
+          </Cover>
+        </Section>
+        <Button>구경해보기</Button>
+      </Layout>
     </Container>
   );
 };
