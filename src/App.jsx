@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import List from './pages/List';
-import Post from './pages/Post';
 import Edit from './pages/Edit';
 import Paper from './pages/Paper';
 import Message from './pages/Message';
 import Layout from './layout/Layout';
+import { Post } from './pages/PostPage';
 
 const App = () => {
   return (
