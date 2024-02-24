@@ -1,16 +1,24 @@
-function App() {
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Main from './pages/Main';
+import List from './pages/List';
+import Post from './pages/Post';
+import Edit from './pages/Edit';
+import Paper from './pages/Paper';
+import Message from './pages/Message';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/list" element={<List />} />
+        <Route path="/post" element={<Post />} />
+        <Route path="/post/:id" element={<Paper />} />
+        <Route path="/post/:id/edit" element={<Edit />} />
+        <Route path="/post/:id/message" element={<Message />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
