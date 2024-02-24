@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import COLORS from '../utils/colors';
 import { Link } from 'react-router-dom';
 import logoImg from '../assets/rolling_Logo.svg';
+import { CreateButton } from './CreateButton';
 
 const Navbar = () => {
   return (
@@ -16,7 +17,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <button>버튼</button>
+            <CreateButton widthOption="auto" updownMargin="medium" fontColor="gray900" fontSize="medium" bgColor="white" border="gray300">롤링 페이퍼 만들기</CreateButton>
           </li>
         </Ul>
       </Container>
