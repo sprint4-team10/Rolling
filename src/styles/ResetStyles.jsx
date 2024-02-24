@@ -4,8 +4,13 @@ const ResetStyles = createGlobalStyle`
     * {
         box-sizing: border-box;
         margin: 0;
+        padding:0;
         font-family: "Pretendard-Regular";
         word-break: keep-all;
+    }
+
+    li{
+        list-style-type:none;
     }
 
     a {
