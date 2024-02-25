@@ -23,6 +23,8 @@ const initial_recipient = {
 const Paper = () => {
   const [recipientInfo, setRecipientInfo] = useState(initial_recipient);
   const [messages, setMessages] = useState({});
+  const [update, setUpdate] = useState(false);
+
   const { id } = useParams();
 
   const handleLoadRecipient = async (options) => {
@@ -39,12 +41,12 @@ const Paper = () => {
   useEffect(() => {
     handleLoadRecipient({ id });
     handleLoadMessages({ id });
-  }, []);
+  }, [update]);
 
   return (
     <>
-      <PaperHeader item={recipientInfo} />
-      <PaperContents recipientInfo={recipientInfo}>
+      <PaperHeader item={recipientInfo} triggerUpdate={setUpdate} update={update} />
+      <PaperContents recipientinfo={recipientInfo}>
         <Layout>
           <Container>
             <CardList>
@@ -79,8 +81,8 @@ const Paper = () => {
 };
 
 const PaperContents = styled.div`
-  background-color: ${(props) => props.recipientInfo.backgroundColor};
-  background-image: url(${(props) => props.recipientInfo.backgroundImageURL});
+  background-color: ${(props) => props.recipientinfo.backgroundColor};
+  background-image: url(${(props) => props.recipientinfo.backgroundImageURL});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -139,16 +141,21 @@ const CardHeader = styled.div`
   border-bottom: 1px solid ${COLORS.gray200};
 `;
 const CardContents = styled.div`
-  padding-top: 20px;
+  padding: 20px 0 10px;
   color: ${COLORS.gray600};
   font-size: 1.8rem;
   font-weight: 400;
   flex-grow: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
 `;
 const CardFooter = styled.div`
   color: ${COLORS.gray400};
   font-size: 1.2rem;
   font-weight: 400;
+  margin-top: 10px;
 `;
 const CardProfile = styled.div`
   width: 50px;

@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 import COLORS from '../../../utils/colors';
 import arrowDownImg from '../../../assets/icons/arrow_down.svg';
-import unionImg from '../../../assets/icons/Union.svg';
 import shareImg from '../../../assets/icons/share.svg';
 import Layout from '../../../layout/Layout';
 import Senders from '../../../components/Senders';
 import Reaction from '../../../components/Reaction';
+import { usePopOver } from '../../../hooks/usePopOver';
+import PopOverIcons from '../../../components/PopOverIcons';
+import ReactionAddButton from '../../../components/ReactionAddButton';
 
-const PaperHeader = ({ item }) => {
+const PaperHeader = ({ item, triggerUpdate, update }) => {
+  const { isOpen: iconsIsOpen, ref: iconsRef, handleOpen: iconsHandleOpen } = usePopOver();
+  const handleIconMore = (e) => {
+    iconsHandleOpen();
+  };
+
   return (
     <Layout>
       <Header>
@@ -16,18 +23,16 @@ const PaperHeader = ({ item }) => {
         </Title>
         <Contents>
           {/* senders */}
+          <PopOverIcons ref={iconsRef} isOpen={iconsIsOpen} update={update} />
           <Senders messageCount={item.messageCount} messages={item.recentMessages} />
           <Reactions>
             {item.topReactions.map((reaction) => (
               <Reaction key={reaction.id} reaction={reaction} />
             ))}
-            <MoreBtn>
+            <MoreBtn onClick={handleIconMore}>
               <img src={arrowDownImg} alt="arrowDownIcon" />
             </MoreBtn>
-            <AddBtn>
-              <img src={unionImg} alt="personIcon" />
-              추가
-            </AddBtn>
+            <ReactionAddButton triggerUpdate={triggerUpdate} />
           </Reactions>
           <Share>
             <ShareBtn>
@@ -55,6 +60,7 @@ const Title = styled.div`
 `;
 const Contents = styled.div`
   display: flex;
+  position: relative;
 `;
 const Recipient = styled.h2``;
 const Reactions = styled.ul`
@@ -75,7 +81,7 @@ const MoreBtn = styled.button`
   display: flex;
 `;
 
-const AddBtn = styled.button`
+const ShareBtn = styled.button`
   border: 1px solid ${COLORS.gray300};
   padding: 6px 16px;
   display: flex;
@@ -89,8 +95,6 @@ const AddBtn = styled.button`
     font-size: 1.2rem;
   }
 `;
-
-const ShareBtn = styled(AddBtn)``;
 
 const Share = styled.div`
   padding-left: 20px;
