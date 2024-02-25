@@ -4,36 +4,23 @@ import arrowDownImg from '../../../assets/icons/arrow_down.svg';
 import unionImg from '../../../assets/icons/Union.svg';
 import shareImg from '../../../assets/icons/share.svg';
 import Layout from '../../../layout/Layout';
+import Senders from '../../../components/Senders';
+import Reaction from '../../../components/Reaction';
 
-const PaperHeader = () => {
+const PaperHeader = ({ item }) => {
   return (
     <Layout>
       <Header>
         <Title>
-          <Recipient>To. 김태진</Recipient>
+          <Recipient>To. {item.name}</Recipient>
         </Title>
         <Contents>
-          <Senders>
-            <SendersProfileList>
-              <Item>
-                <img src="https://img.hankyung.com/photo/202307/BF.34034086.1.jpg" />
-              </Item>
-              <Item>
-                <img src="https://img.hankyung.com/photo/202307/BF.34034086.1.jpg" />
-              </Item>
-              <Item>
-                <img src="https://img.hankyung.com/photo/202307/BF.34034086.1.jpg" />
-              </Item>
-              <Item>+6</Item>
-            </SendersProfileList>
-            <SendersDescription>
-              <b>23</b>명이 작성했어요!
-            </SendersDescription>
-          </Senders>
+          {/* senders */}
+          <Senders messageCount={item.messageCount} messages={item.recentMessages} />
           <Reactions>
-            <Reaction>😊 24</Reaction>
-            <Reaction>😊 3</Reaction>
-            <Reaction>😊 26</Reaction>
+            {item.topReactions.map((reaction) => (
+              <Reaction key={reaction.id} reaction={reaction} />
+            ))}
             <MoreBtn>
               <img src={arrowDownImg} alt="arrowDownIcon" />
             </MoreBtn>
@@ -70,17 +57,6 @@ const Contents = styled.div`
   display: flex;
 `;
 const Recipient = styled.h2``;
-const Senders = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  border-right: 2px solid ${COLORS.gray200};
-  padding-right: 20px;
-
-  @media (max-width: 960px) {
-    display: none;
-  }
-`;
 const Reactions = styled.ul`
   display: flex;
   gap: 10px;
@@ -92,18 +68,6 @@ const Reactions = styled.ul`
     padding-left: 0;
     padding-right: 10px;
     gap: 5px;
-  }
-`;
-const Reaction = styled.li`
-  background-color: ${COLORS.gray400};
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 32px;
-  font-size: 1.6rem;
-
-  @media (max-width: 960px) {
-    padding: 4px 8px;
-    font-size: 1.2rem;
   }
 `;
 
@@ -127,37 +91,6 @@ const AddBtn = styled.button`
 `;
 
 const ShareBtn = styled(AddBtn)``;
-
-const SendersProfileList = styled.ul`
-  display: flex;
-`;
-
-const SendersDescription = styled.p`
-  font-size: 1.8rem;
-`;
-
-const Item = styled.li`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #fff;
-  padding: 1px;
-  font-size: 1.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:last-child {
-    border: 1px solid ${COLORS.gray300};
-  }
-  &:not(:last-child) {
-    margin-right: -10px;
-  }
-  img {
-    border-radius: 50%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
 
 const Share = styled.div`
   padding-left: 20px;
