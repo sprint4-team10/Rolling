@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 
-const Senders = ({ messageCount, messages }) => {
+const Senders = ({ style, messageCount, messages }) => {
   return (
-    <Container>
+    <Container style={style}>
       <ProfileList>
         {messages.map((message) => (
           <Item key={message.id}>
-            <img src={message.profileImageURL} />
+            <img src={message.profileImageURL} alt="profileImg" />
           </Item>
         ))}
         {messageCount > 3 && <Item>+{messageCount - 3}</Item>}
@@ -23,8 +23,6 @@ const Container = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  border-right: 2px solid ${COLORS.gray200};
-  padding-right: 20px;
 
   @media (max-width: 960px) {
     display: none;
