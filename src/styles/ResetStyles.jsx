@@ -34,6 +34,11 @@ const ResetStyles = createGlobalStyle`
         cursor: pointer;
     }
 
+    img{
+        max-width: 100%;
+        vertical-align:top;
+    }
+
 `;
 
 export default ResetStyles;
