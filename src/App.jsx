@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
-import List from './pages/List';
+import List from './pages/List/List';
+import Post from './pages/Post';
 import Edit from './pages/Edit';
 import Paper from './pages/Paper';
 import Message from './pages/Message';
