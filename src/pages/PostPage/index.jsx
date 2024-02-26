@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ColorBoxBtn } from './component/ColorBox';
 import COLORS from '../../utils/colors';
+import FONTS from '../../utils/Fonts';
 
 export const Post = () => {
   return (
@@ -48,17 +49,12 @@ const InputBox = styled.input`
 `;
 
 const MainDescription = styled.h2`
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 4.2rem;
-  letter-spacing: -0.024rem;
+  ${FONTS.font24_Bold}
   color: ${COLORS.gray900};
 `;
 
 const Subscription = styled.p`
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 2.6rem;
+  ${FONTS.font16_Regular}
   color: ${COLORS.gray500};
 `;
 
