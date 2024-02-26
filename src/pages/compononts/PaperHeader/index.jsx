@@ -16,45 +16,53 @@ const PaperHeader = ({ item, triggerUpdate, update }) => {
   };
 
   return (
-    <Layout>
-      <Header>
-        <Title>
-          <Recipient>To. {item.name}</Recipient>
-        </Title>
-        <Contents>
-          {/* senders */}
-          <PopOverIcons ref={iconsRef} isOpen={iconsIsOpen} update={update} />
-          <Senders messageCount={item.messageCount} messages={item.recentMessages} />
-          <Reactions>
-            {item.topReactions.map((reaction) => (
-              <Reaction key={reaction.id} reaction={reaction} />
-            ))}
-            <MoreBtn onClick={handleIconMore}>
-              <img src={arrowDownImg} alt="arrowDownIcon" />
-            </MoreBtn>
-            <ReactionAddButton triggerUpdate={triggerUpdate} />
-          </Reactions>
-          <Share>
-            <ShareBtn>
-              <img src={shareImg} alt="shareIcon" />
-            </ShareBtn>
-          </Share>
-        </Contents>
-      </Header>
-    </Layout>
+    <Header>
+      <Layout>
+        <Headings>
+          <Title>
+            <Recipient>To. {item.name}</Recipient>
+          </Title>
+          <Contents>
+            {/* senders */}
+            <PopOverIcons ref={iconsRef} isOpen={iconsIsOpen} update={update} />
+            <Senders messageCount={item.messageCount} messages={item.recentMessages} />
+            <Reactions>
+              {item.topReactions.map((reaction) => (
+                <Reaction key={reaction.id} reaction={reaction} />
+              ))}
+              <MoreBtn onClick={handleIconMore}>
+                <img src={arrowDownImg} alt="arrowDownIcon" />
+              </MoreBtn>
+              <ReactionAddButton triggerUpdate={triggerUpdate} />
+            </Reactions>
+            <Share>
+              <ShareBtn>
+                <img src={shareImg} alt="shareIcon" />
+              </ShareBtn>
+            </Share>
+          </Contents>
+        </Headings>
+      </Layout>
+    </Header>
   );
 };
 
 const Header = styled.header`
+  position: relative;
+  z-index: 9999;
+  background-color: ${COLORS.white};
+`;
+
+const Headings = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
-
   @media (max-width: 960px) {
     flex-direction: column;
     gap: 10px;
   }
 `;
+
 const Title = styled.div`
   font-size: 1.8rem;
 `;

@@ -9,8 +9,8 @@ export const getRecipient = async ({ id }) => {
   return data;
 };
 
-export const getMessages = async ({ id }) => {
-  const res = await fetch(`${BASE_URL}recipients/${id}/messages/`);
+export const getMessages = async ({ id, offset = 0, limit = 8 }) => {
+  const res = await fetch(`${BASE_URL}recipients/${id}/messages/?limit=${limit}&offset=${offset}`);
   if (!res.ok) {
     throw new Error('messages를 불러오는데 실패하였습니다.');
   }
