@@ -6,7 +6,7 @@ import { getReactions } from '../../api/api';
 import Reaction from '../Reaction';
 import { useParams } from 'react-router-dom';
 
-const PopOverIcons = forwardRef(({ isOpen, style, update }, ref) => {
+const ReactionsPopOver = forwardRef(({ isOpen, style, update }, ref) => {
   const { id } = useParams();
   const [reactions, setReactions] = useState([]);
 
@@ -59,4 +59,4 @@ const Container = styled.div`
   }
 `;
 
-export default PopOverIcons;
+export default ReactionsPopOver;
