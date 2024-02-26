@@ -15,5 +15,5 @@ export const usePopOver = () => {
 
   useHandleOutsideClick(ref, handleClose);
 
-  return { isOpen, ref, handleOpen };
+  return { isOpen, ref, handleOpen, handleClose };
 };

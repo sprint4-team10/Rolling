@@ -43,7 +43,7 @@ const CardList = () => {
 
     const handleScroll = () => {
       const { scrollTop, offsetHeight } = document.documentElement;
-      if (window.innerHeight + scrollTop >= offsetHeight) {
+      if (window.innerHeight + scrollTop >= offsetHeight - 10) {
         setOffset((offset) => offset + OFFSET);
       }
     };

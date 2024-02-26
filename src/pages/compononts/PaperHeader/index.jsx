@@ -6,13 +6,24 @@ import Layout from '../../../layout/Layout';
 import Senders from '../../../components/Senders';
 import Reaction from '../../../components/Reaction';
 import { usePopOver } from '../../../hooks/usePopOver';
-import PopOverIcons from '../../../components/PopOverIcons';
 import ReactionAddButton from '../../../components/ReactionAddButton';
+import ReactionsPopOver from '../../../components/ReactionsPopOver';
+import SharePopOver from '../../../components/SharePopOver';
 
 const PaperHeader = ({ item, triggerUpdate, update }) => {
   const { isOpen: iconsIsOpen, ref: iconsRef, handleOpen: iconsHandleOpen } = usePopOver();
-  const handleIconMore = (e) => {
+  const {
+    isOpen: shareIsOpen,
+    ref: shareRef,
+    handleOpen: shareHandleOpen,
+    handleClose: shareHandleClose,
+  } = usePopOver();
+  const handleIconMore = () => {
     iconsHandleOpen();
+  };
+
+  const handleShare = () => {
+    shareHandleOpen();
   };
 
   return (
@@ -24,7 +35,8 @@ const PaperHeader = ({ item, triggerUpdate, update }) => {
           </Title>
           <Contents>
             {/* senders */}
-            <PopOverIcons ref={iconsRef} isOpen={iconsIsOpen} update={update} />
+            <ReactionsPopOver ref={iconsRef} isOpen={iconsIsOpen} update={update} />
+            <SharePopOver ref={shareRef} isOpen={shareIsOpen} handleClose={shareHandleClose} />
             <Senders messageCount={item.messageCount} messages={item.recentMessages} />
             <Reactions>
               {item.topReactions.map((reaction) => (
@@ -36,7 +48,7 @@ const PaperHeader = ({ item, triggerUpdate, update }) => {
               <ReactionAddButton triggerUpdate={triggerUpdate} />
             </Reactions>
             <Share>
-              <ShareBtn>
+              <ShareBtn onClick={handleShare}>
                 <img src={shareImg} alt="shareIcon" />
               </ShareBtn>
             </Share>
