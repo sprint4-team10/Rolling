@@ -88,6 +88,8 @@ const Reactions = styled.ul`
   gap: 10px;
   align-items: center;
   border-right: 2px solid ${COLORS.gray200};
+  border-left: 2px solid ${COLORS.gray200};
+  margin-left: 20px;
   padding-right: 20px;
   padding-left: 20px;
   @media (max-width: 960px) {
@@ -117,7 +119,7 @@ const ShareBtn = styled.button`
 `;
 
 const Share = styled.div`
-  padding-left: 20px;
+  padding-left: 28px;
   @media (max-width: 960px) {
     padding-left: 10px;
   }

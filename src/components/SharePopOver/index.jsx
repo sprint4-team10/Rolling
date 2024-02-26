@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 import PopOver from '../PopOver';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
+import { ModalPortal } from '../Portal';
+import Toast from '../Toast';
 
 const SharePopOver = forwardRef(({ isOpen, style, handleClose }, ref) => {
+  const [showToast, setShowToast] = useState(false);
+
   const handleUrlShare = () => {
     try {
       const copiedText = `${window.location.href}`;
       navigator.clipboard.writeText(copiedText);
       console.log(copiedText);
       //토스트 UI 나오게
-      alert('클립보드에 복사되었습니다.');
+      //   alert('클립보드에 복사되었습니다.');
+      setShowToast(true);
     } catch (error) {
       alert('클립보드 복사에 실패하였습니다.');
     }
@@ -19,12 +24,19 @@ const SharePopOver = forwardRef(({ isOpen, style, handleClose }, ref) => {
   };
 
   return (
-    <PopOver popOverRef={ref} isOpen={isOpen} style={style}>
-      <Container>
-        <Btn>카카오톡 공유</Btn>
-        <Btn onClick={handleUrlShare}>URL 공유</Btn>
-      </Container>
-    </PopOver>
+    <>
+      {showToast && (
+        <ModalPortal>
+          <Toast setShowToast={setShowToast} />
+        </ModalPortal>
+      )}
+      <PopOver popOverRef={ref} isOpen={isOpen} style={style}>
+        <Container>
+          <Btn>카카오톡 공유</Btn>
+          <Btn onClick={handleUrlShare}>URL 공유</Btn>
+        </Container>
+      </PopOver>
+    </>
   );
 });
 
