@@ -3,6 +3,8 @@ import landing01 from '../assets/covers/landing01.png';
 import landing02 from '../assets/covers/landing02.png';
 import COLORS from '../utils/colors';
 import Layout from '../layout/Layout';
+import { Link } from 'react-router-dom';
+import { Buttons } from '../components/Buttons';
 
 const Main = () => {
   return (
@@ -34,7 +36,11 @@ const Main = () => {
             <img src={landing02} alt="landingCover01" />
           </Cover>
         </Section>
-        <Button>구경해보기</Button>
+        <div style={{ width: 'fit-content', margin: '0 auto' }}>
+          <Link to="/list">
+            <Buttons buttonType="Primary56">구경해보기</Buttons>
+          </Link>
+        </div>
       </Layout>
     </Container>
   );
@@ -94,10 +100,6 @@ const Br = styled.br`
   @media (max-width: 1200px) {
     display: none;
   }
-`;
-
-const Button = styled.button`
-  color: purple;
 `;
 
 export default Main;

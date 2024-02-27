@@ -3,8 +3,9 @@ import PaperHeader from './compononts/PaperHeader';
 import Layout from '../layout/Layout';
 import { useEffect, useState } from 'react';
 import { getRecipient } from '../api/api';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CardList from './compononts/CardList';
+import { Buttons } from '../components/Buttons';
 
 const initial_recipient = {
   id: null,
@@ -41,6 +42,11 @@ const Paper = () => {
         <Cover src={recipientInfo.backgroundImageURL} alt="coverImg" />
         <Layout>
           <Container>
+            <div style={{ marginBottom: '10px', marginLeft: 'auto', width: 'fit-content' }}>
+              <Link to="edit">
+                <Buttons buttonType="Outlined40">편집하기</Buttons>
+              </Link>
+            </div>
             <CardList />
           </Container>
         </Layout>
