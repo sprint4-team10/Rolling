@@ -61,7 +61,7 @@ const PaperHeader = ({ item, triggerUpdate, update }) => {
 
 const Header = styled.header`
   position: relative;
-  z-index: 9999;
+  z-index: 10;
   background-color: ${COLORS.white};
 `;
 
