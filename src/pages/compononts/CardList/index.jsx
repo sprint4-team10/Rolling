@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import plusImg from '../../../assets/icons/plus.svg';
-import { formatDate } from '../../../utils/formatDate';
 import { useEffect, useState } from 'react';
 import { getMessages } from '../../../api/api';
 import { useParams } from 'react-router-dom';
 import COLORS from '../../../utils/colors';
+import { MessageCard } from '../MessageCard/MessageCard';
 
 const OFFSET = 8;
 
@@ -65,21 +65,14 @@ const CardList = () => {
         </AddButton>
       </EmptyCard>
       {messages.map((message) => (
-        <MessageCard key={message.id}>
-          <CardHeader>
-            <CardProfile>
-              <img src={message.profileImageURL} alt="profileImg" />
-            </CardProfile>
-            <div>
-              <Sender>
-                From. <b>{message.sender}</b>
-              </Sender>
-              <Relationship>{message.relationship}</Relationship>
-            </div>
-          </CardHeader>
-          <CardContents>{message.content}</CardContents>
-          <CardFooter>{formatDate(message.createdAt)}</CardFooter>
-        </MessageCard>
+        <MessageCard
+          profileImageURL={message.profileImageURL}
+          sender={message.sender}
+          relationship={message.relationship}
+          content={message.content}
+          createdAt={message.createdAt}
+          key={message.id}
+        />
       ))}
     </Container>
   );
@@ -107,50 +100,11 @@ const Card = styled.div`
   border-radius: 16px;
   padding: 30px;
 `;
+
 const EmptyCard = styled(Card)`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const MessageCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-`;
-
-const CardHeader = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid ${COLORS.gray200};
-`;
-const CardContents = styled.div`
-  padding: 20px 0 10px;
-  color: ${COLORS.gray600};
-  font-size: 1.8rem;
-  font-weight: 400;
-  flex-grow: 1;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-`;
-const CardFooter = styled.div`
-  color: ${COLORS.gray400};
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin-top: 10px;
-`;
-const CardProfile = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 9999px;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const AddButton = styled.button`
@@ -158,18 +112,6 @@ const AddButton = styled.button`
   width: 56px;
   height: 56px;
   border-radius: 50%;
-`;
-
-const Relationship = styled.span`
-  font-size: 1.4rem;
-  color: ${COLORS.blue500};
-  background-color: ${COLORS.blue100};
-  padding: 1px 8px;
-  border-radius: 4px;
-`;
-const Sender = styled.p`
-  font-size: 2rem;
-  margin-bottom: 5px;
 `;
 
 export default CardList;
