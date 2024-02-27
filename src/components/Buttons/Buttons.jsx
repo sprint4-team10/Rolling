@@ -1,6 +1,6 @@
 import { Outlined36, Outlined40, Outlined56, Primary40, Primary56, Secondary40 } from './ButtonsStyled';
 
-const Buttons = ({ children, buttonType }) => {
+export const Buttons = ({ children, buttonType }) => {
   switch (buttonType) {
     case 'Primary56':
       return <Primary56>{children}</Primary56>;
@@ -16,5 +16,3 @@ const Buttons = ({ children, buttonType }) => {
       return <Outlined36>{children}</Outlined36>;
   }
 };
-
-export default Buttons;

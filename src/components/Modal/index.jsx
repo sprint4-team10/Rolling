@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 import { formatDate } from '../../utils/formatDate';
+import { Buttons } from '../Buttons';
 
 const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, content, createdAt }) => {
   if (!openModal) {
@@ -28,7 +29,9 @@ const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, 
         </CardHeader>
         <CardContents>{content}</CardContents>
         <CardFooter>
-          <button onClick={handleClose}>확인</button>
+          <div onClick={handleClose}>
+            <Buttons buttonType="Primary40">확인</Buttons>
+          </div>
         </CardFooter>
       </Container>
     </>
