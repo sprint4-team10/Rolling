@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 
-const Senders = ({ style, messageCount, messages }) => {
+const Senders = ({ containerStyle, profileListStyle, descriptionStyle, messageCount, messages }) => {
   return (
-    <Container style={style}>
-      <ProfileList>
+    <Container style={containerStyle}>
+      <ProfileList style={profileListStyle}>
         {messages.map((message) => (
           <Item key={message.id}>
             <img src={message.profileImageURL} alt="profileImg" />
@@ -12,7 +12,7 @@ const Senders = ({ style, messageCount, messages }) => {
         ))}
         {messageCount > 3 && <Item>+{messageCount - 3}</Item>}
       </ProfileList>
-      <Description>
+      <Description style={descriptionStyle}>
         <b>{messageCount}</b>명이 작성했어요!
       </Description>
     </Container>

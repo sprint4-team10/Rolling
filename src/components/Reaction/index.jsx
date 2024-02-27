@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 
-const Reaction = ({ reaction }) => {
+const Reaction = ({ reaction, containerStyle }) => {
   return (
-    <Container>
+    <Container style={containerStyle}>
       {reaction.emoji} {reaction.count}
     </Container>
   );

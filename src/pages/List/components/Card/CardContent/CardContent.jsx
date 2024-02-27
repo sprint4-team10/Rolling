@@ -1,13 +1,30 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import COLORS from '../../../../../utils/colors';
+import Senders from '../../../../../components/Senders';
+import Reaction from '../../../../../components/Reaction';
 
-const CardContent = ({ title, peopleNumber }) => {
+const CardContent = ({ title, messageCount, messages, backgroundImageURL, topReactions }) => {
   return (
     <Wrapper>
-      <Content>
-        <Title>{title}</Title>
-        <Profiles>{/* Self-closing empty component */}</Profiles>
-        <Number>{peopleNumber}명이 작성했어요!</Number>
-      </Content>
+      <Title backgroundImageURL={backgroundImageURL}>To. {title}</Title>
+      <Sender>
+        <Senders
+          containerStyle={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1.2rem', display: 'flex' }}
+          profileListStyle={{ height: '3rem' }}
+          descriptionStyle={{ color: backgroundImageURL ? COLORS.white : COLORS.gray900 }}
+          messageCount={messageCount}
+          messages={messages}
+        />
+      </Sender>
+      <Reactions>
+        {topReactions.map((reaction) => (
+          <Reaction
+            containerStyle={{ padding: '0.8rem 1.2rem', fontSize: '1.6rem' }}
+            key={reaction.id}
+            reaction={reaction}
+          />
+        ))}
+      </Reactions>
     </Wrapper>
   );
 };
@@ -15,37 +32,44 @@ const CardContent = ({ title, peopleNumber }) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const Content = styled.div`
-  padding-bottom: 4.3rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border: none;
 `;
 
 const Title = styled.div`
   margin-bottom: 1.2rem;
   overflow: hidden;
-  color: var(gray900);
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 3.6rem;
   letter-spacing: -0.024rem;
+
+  ${(props) =>
+    props.backgroundImageURL &&
+    css`
+      color: ${COLORS.white};
+    `}
+
+  /* 백그라운드가 이미지가 아닌 경우 */
+  ${(props) =>
+    !props.backgroundImageURL &&
+    css`
+      color: ${COLORS.gray900};
+    `}
 `;
 
-const Profiles = styled.div`
-  width: 5rem;
-  height: 1.75rem;
-  margin-bottom: 1.2rem;
+const Sender = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4.3rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
 `;
 
-const Number = styled.div`
-  color: var(gray700, #3a3a3a);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 2.6rem;
-  letter-spacing: -0.016rem;
+const Reactions = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
 `;
 
 export default CardContent;

@@ -43,3 +43,14 @@ export const createReaction = async ({ id, body }) => {
   const data = await res.json();
   return data;
 };
+
+export const getRecipientList = async () => {
+  const res = await fetch(`${BASE_URL}recipients/`);
+
+  if (!res.ok) {
+    throw new Error('recipientList를 불러오는데 실패하였습니다.');
+  }
+
+  const data = await res.json();
+  return data;
+};
