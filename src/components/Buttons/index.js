@@ -1,1 +1,1 @@
-import * as from "./Buttons";
+export * as default from './Buttons';
