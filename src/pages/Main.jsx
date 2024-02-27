@@ -4,7 +4,7 @@ import landing02 from '../assets/covers/landing02.png';
 import COLORS from '../utils/colors';
 import Layout from '../layout/Layout';
 import { Link } from 'react-router-dom';
-import { Buttons } from '../components/Buttons';
+import Buttons from '../components/Buttons';
 
 const Main = () => {
   return (
@@ -38,7 +38,9 @@ const Main = () => {
         </Section>
         <div style={{ width: 'fit-content', margin: '0 auto' }}>
           <Link to="/list">
-            <Buttons buttonType="Primary56">구경해보기</Buttons>
+            <Buttons buttonType="Primary56" buttonSize="small">
+              구경해보기
+            </Buttons>
           </Link>
         </div>
       </Layout>

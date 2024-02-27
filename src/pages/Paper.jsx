@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getRecipient } from '../api/api';
 import { Link, useParams } from 'react-router-dom';
 import CardList from './compononts/CardList';
-import { Buttons } from '../components/Buttons';
+import Buttons from '../components/Buttons';
 
 const initial_recipient = {
   id: null,
@@ -44,7 +44,9 @@ const Paper = () => {
           <Container>
             <div style={{ marginBottom: '10px', marginLeft: 'auto', width: 'fit-content' }}>
               <Link to="edit">
-                <Buttons buttonType="Outlined40">편집하기</Buttons>
+                <Buttons buttonType="Outlined40" buttonSize="small">
+                  편집하기
+                </Buttons>
               </Link>
             </div>
             <CardList />

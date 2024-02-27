@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 import { formatDate } from '../../utils/formatDate';
-import { Buttons } from '../Buttons';
+import Buttons from '../Buttons';
 
 const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, content, createdAt }) => {
   if (!openModal) {
