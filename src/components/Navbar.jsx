@@ -3,7 +3,7 @@ import COLORS from '../utils/colors';
 import { Link } from 'react-router-dom';
 import logoImg from '../assets/rolling_Logo.svg';
 import Layout from '../layout/Layout';
-import { Buttons } from './Buttons/Buttons';
+import Buttons from './Buttons/Buttons';
 
 const Navbar = () => {
   return (
