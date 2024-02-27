@@ -80,7 +80,7 @@ const Container = styled.div`
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.8);
   color: ${COLORS.white};
-  animation: ${(props) => (props.up ? toastUp : toastDown)} 1s;
+  animation: ${(props) => (props.up ? toastUp : toastDown)} 1.1s;
 `;
 
 const Contents = styled.div`

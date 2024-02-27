@@ -1,27 +1,48 @@
+import Modal from '../../../components/Modal';
+import { ModalPortal } from '../../../components/Portal';
+import { useModal } from '../../../hooks/useModal';
 import COLORS from '../../../utils/colors';
 import { formatDate } from '../../../utils/formatDate';
 import styled from 'styled-components';
 
 export const MessageCard = ({ profileImageURL, sender, relationship, content, createdAt }) => {
+  const { openModal, handleClose, handleOpen } = useModal();
+
   return (
-    <MessageCardContainer>
-      <CardHeader>
-        <CardProfile profileImageURL={profileImageURL} />
-        <div>
-          <Sender>
-            From. <b>{sender}</b>
-          </Sender>
-          <Relationship>{relationship}</Relationship>
-        </div>
-      </CardHeader>
-      <CardContents>{content}</CardContents>
-      <CardFooter>{formatDate(createdAt)}</CardFooter>
-    </MessageCardContainer>
+    <>
+      <ModalPortal>
+        <Modal
+          openModal={openModal}
+          handleClose={handleClose}
+          sender={sender}
+          profileImageURL={profileImageURL}
+          relationship={relationship}
+          content={content}
+          createdAt={createdAt}
+        />
+      </ModalPortal>
+      <MessageCardContainer>
+        <CardHeader>
+          <CardProfile profileImageURL={profileImageURL} />
+          <div>
+            <Sender>
+              From. <b>{sender}</b>
+            </Sender>
+            <Relationship>{relationship}</Relationship>
+          </div>
+        </CardHeader>
+        <CardContents>{content}</CardContents>
+        <CardFooter>
+          <Btn onClick={handleOpen}>더보기</Btn>
+          <div>{formatDate(createdAt)}</div>
+        </CardFooter>
+      </MessageCardContainer>
+    </>
   );
 };
 
 const MessageCardContainer = styled.div`
-  height: 28rem;
+  height: 29rem;
   background-color: #fff;
   border-radius: 1.6rem;
   padding: 3rem;
@@ -79,4 +100,15 @@ const Relationship = styled.span`
 const Sender = styled.p`
   font-size: 2rem;
   margin-bottom: 0.5rem;
+`;
+
+const Btn = styled.button`
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 10px;
+  color: ${COLORS.gray400};
+  &:hover {
+    color: ${COLORS.gray500};
+  }
 `;

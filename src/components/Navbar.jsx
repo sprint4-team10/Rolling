@@ -40,7 +40,7 @@ const Navbar = () => {
 const Nav = styled.nav`
   border-bottom: 1px solid ${COLORS.gray200};
   position: relative;
-  z-index: 9999;
+  z-index: 10;
   background-color: ${COLORS.white};
 `;
 
