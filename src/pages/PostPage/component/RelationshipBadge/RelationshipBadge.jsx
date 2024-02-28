@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import BADGE_COLOR from './component/ColorBadge.js';
-import BADGE_COLOR_CONTENT from './component/ColorBadgeContent.js';
+import BADGE_COLOR from './ColorBadge.js';
+import BADGE_COLOR_CONTENT from './ColorBadgeContent.js';
 
 const RelationshipBadge = ({ relationship }) => {
   const labelColorMap = {

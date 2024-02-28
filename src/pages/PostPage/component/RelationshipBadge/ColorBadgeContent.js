@@ -1,4 +1,4 @@
-import COLORS from '../../../utils/colors';
+import COLORS from '../../../../../utils/colors';
 
 const { orange500, purple500, blue500, green500 } = COLORS;
 
