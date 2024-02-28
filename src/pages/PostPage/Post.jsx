@@ -111,8 +111,13 @@ const SelectButton = styled.button`
   background-color: ${COLORS.gray100};
   border: 0.2rem solid ${COLORS.gray100};
 
-  &:hover,
-  &:active {
+  &:hover {
+    background-color: ${COLORS.gray200};
+    border: 0.2rem solid ${COLORS.gray200};
+  }
+
+  &:focus {
+    background-color: ${COLORS.white};
     border: 0.2rem solid ${COLORS.purple700};
     color: ${COLORS.purple700};
     font-weight: 700;
