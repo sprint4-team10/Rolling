@@ -4,25 +4,25 @@ const Buttons = ({ children, buttonType, buttonSize, isDisabled }) => {
   switch (buttonType) {
     case 'Primary56':
       return (
-        <Primary56 buttonSize={buttonSize} isDisabled={isDisabled}>
+        <Primary56 buttonSize={buttonSize} disabled={isDisabled}>
           {children}
         </Primary56>
       );
     case 'Primary40':
       return (
-        <Primary40 buttonSize={buttonSize} isDisabled={isDisabled}>
+        <Primary40 buttonSize={buttonSize} disabled={isDisabled}>
           {children}
         </Primary40>
       );
     case 'Secondary40':
       return (
-        <Secondary40 buttonSize={buttonSize} isDisabled={isDisabled}>
+        <Secondary40 buttonSize={buttonSize} disabled={isDisabled}>
           {children}
         </Secondary40>
       );
     case 'Outlined56':
       return (
-        <Outlined56 buttonSize={buttonSize} isDisabled={isDisabled}>
+        <Outlined56 buttonSize={buttonSize} disabled={isDisabled}>
           {children}
         </Outlined56>
       );
