@@ -4,6 +4,7 @@ import { useModal } from '../../../hooks/useModal';
 import COLORS from '../../../utils/colors';
 import { formatDate } from '../../../utils/formatDate';
 import styled from 'styled-components';
+import RelationshipBadge from '../../../components/RelationshipBadge';
 
 export const MessageCard = ({ profileImageURL, sender, relationship, content, createdAt }) => {
   const { openModal, handleClose, handleOpen } = useModal();
@@ -28,7 +29,7 @@ export const MessageCard = ({ profileImageURL, sender, relationship, content, cr
             <Sender>
               From. <b>{sender}</b>
             </Sender>
-            <Relationship>{relationship}</Relationship>
+            <RelationshipBadge relationship={relationship} />
           </div>
         </CardHeader>
         <CardContents>{content}</CardContents>
@@ -87,14 +88,6 @@ const CardProfile = styled.div`
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-`;
-
-const Relationship = styled.span`
-  font-size: 1.4rem;
-  color: ${COLORS.blue500};
-  background-color: ${COLORS.blue100};
-  padding: 0.1rem 0.8rem;
-  border-radius: 0.4rem;
 `;
 
 const Sender = styled.p`
