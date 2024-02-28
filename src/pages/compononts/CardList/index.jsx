@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import plusImg from '../../../assets/icons/plus.svg';
 import { useEffect, useState } from 'react';
 import { getMessages } from '../../../api/api';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import COLORS from '../../../utils/colors';
 import { MessageCard } from '../MessageCard/MessageCard';
+import EditCard from '../EditCard';
 
 const OFFSET = 8;
 
@@ -13,7 +14,9 @@ const CardList = () => {
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [next, setNext] = useState(true);
+  const { pathname } = useLocation();
 
+  console.log(pathname);
   const handleLoadMessages = async (options) => {
     if (!next) {
       return;
@@ -59,21 +62,40 @@ const CardList = () => {
 
   return (
     <Container>
-      <EmptyCard>
-        <AddButton>
-          <img src={plusImg} alt="plusIcon" />
-        </AddButton>
-      </EmptyCard>
-      {messages.map((message) => (
-        <MessageCard
-          profileImageURL={message.profileImageURL}
-          sender={message.sender}
-          relationship={message.relationship}
-          content={message.content}
-          createdAt={message.createdAt}
-          key={message.id}
-        />
-      ))}
+      {!pathname.includes('edit') && (
+        <EmptyCard>
+          <AddButton>
+            <img src={plusImg} alt="plusIcon" />
+          </AddButton>
+        </EmptyCard>
+      )}
+      {messages.map((message) => {
+        if (pathname.includes('edit')) {
+          return (
+            <EditCard
+              id={message.id}
+              profileImageURL={message.profileImageURL}
+              sender={message.sender}
+              relationship={message.relationship}
+              content={message.content}
+              createdAt={message.createdAt}
+              key={message.id + 'edit'}
+            />
+          );
+        } else {
+          return (
+            <MessageCard
+              id={message.id}
+              profileImageURL={message.profileImageURL}
+              sender={message.sender}
+              relationship={message.relationship}
+              content={message.content}
+              createdAt={message.createdAt}
+              key={message.id}
+            />
+          );
+        }
+      })}
     </Container>
   );
 };

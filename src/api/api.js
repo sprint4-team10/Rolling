@@ -18,6 +18,15 @@ export const getMessages = async ({ id, offset = 0, limit = 8 }) => {
   return data;
 };
 
+export const getAllMessages = async ({ id }) => {
+  const res = await fetch(`${BASE_URL}recipients/${id}/messages/`);
+  if (!res.ok) {
+    throw new Error('messages를 불러오는데 실패하였습니다.');
+  }
+  const data = await res.json();
+  return data;
+};
+
 export const getReactions = async ({ id }) => {
   const res = await fetch(`${BASE_URL}recipients/${id}/reactions/`);
   if (!res.ok) {
