@@ -33,17 +33,29 @@ const Post = () => {
           onChange={handleInputValue}
           onBlur={handleOnBlur}
         />
-        <ErrorMessage visibility={isEmptyError ? 'visible' : 'hidden'}>값을 입력해 주세요.</ErrorMessage>
+        <ErrorMessage isEmptyError={isEmptyError}>값을 입력해 주세요.</ErrorMessage>
       </SendToInputContainer>
       <div>
         <MainDescription>배경화면을 선택해 주세요.</MainDescription>
         <Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</Subscription>
       </div>
       <ToggleButtons>
-        <SelectButton type="button" name="color" onClick={handleBackgroundType} value={backgroundType}>
+        <SelectButton
+          isBgType={backgroundType === 'color'}
+          type="button"
+          name="color"
+          onClick={handleBackgroundType}
+          value={backgroundType}
+        >
           컬러
         </SelectButton>
-        <SelectButton type="button" name="image" onClick={handleBackgroundType} value={backgroundType}>
+        <SelectButton
+          isBgType={backgroundType === 'image'}
+          type="button"
+          name="image"
+          onClick={handleBackgroundType}
+          value={backgroundType}
+        >
           이미지
         </SelectButton>
       </ToggleButtons>
@@ -53,11 +65,6 @@ const Post = () => {
       </Buttons>
     </PostLayout>
   );
-};
-
-const Visibility = {
-  visible: 'visible',
-  hidden: 'hidden',
 };
 
 const PostLayout = styled.div`
@@ -106,15 +113,15 @@ const SelectButton = styled.button`
   display: inline-block;
   width: 12rem;
   padding: 0.7rem 1.6rem;
-  color: ${COLORS.gray900};
-  text-align: cetner;
+  color: ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray900)};
+  text-align: center;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: ${({ isBgType }) => (isBgType === true ? 700 : 400)};
   line-height: 2.6rem;
   letter-spacing: -0.016rem;
   border-radius: 0.8rem;
-  background-color: ${COLORS.gray100};
-  border: 0.2rem solid ${COLORS.gray100};
+  background-color: ${({ isBgType }) => (isBgType === true ? COLORS.white : COLORS.gray100)};
+  border: 0.2rem solid ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray100)};
 
   &:hover {
     background-color: ${COLORS.gray200};
@@ -132,7 +139,7 @@ const SelectButton = styled.button`
 const ErrorMessage = styled.p`
   ${FONTS.font12_Regular}
   color: ${COLORS.error};
-  visibility: ${({ visibility }) => Visibility[visibility] ?? Visibility['hidden']};
+  visibility: ${({ isEmptyError }) => (isEmptyError ? 'visible' : 'hidden')};
 `;
 
 export default Post;
