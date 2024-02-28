@@ -3,6 +3,7 @@ import COLORS from '../../../../utils/colors';
 import { COLOR_OPTION } from './constant';
 import { getBackgroundImageURL } from '../../../../api/getBackgroundImageURL';
 import { useEffect, useState } from 'react';
+import checkIcon from '../../../../assets/icons/check.svg';
 
 const BackgroundOption = ({ backgroundType }) => {
   const [backgroundImgData, setBackgroundImgData] = useState();
@@ -29,7 +30,11 @@ const BackgroundOption = ({ backgroundType }) => {
       return (
         <ImageBoxContainer>
           {backgroundImgData.map((url) => (
-            <BackgroundImage backgroundImageURL={url} key={url.indexOf} />
+            <BackgroundImage backgroundImageURL={url} key={url.indexOf}>
+              <CheckMark>
+                <img src={checkIcon} alt="checkIcon" />
+              </CheckMark>
+            </BackgroundImage>
           ))}
         </ImageBoxContainer>
       );
@@ -37,6 +42,16 @@ const BackgroundOption = ({ backgroundType }) => {
       return;
   }
 };
+
+const CheckMark = styled.div`
+  padding: 1rem;
+  background-color: ${COLORS.gray500};
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const ColorBoxContainer = styled.div`
   display: flex;
@@ -63,5 +78,6 @@ export const BackgroundImage = styled(BackgroundOptionBox)`
   background-image: url(${(props) => props.backgroundImageURL});
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
 `;
 export default BackgroundOption;
