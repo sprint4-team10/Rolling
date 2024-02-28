@@ -3,9 +3,12 @@ import PaperHeader from './compononts/PaperHeader';
 import Layout from '../layout/Layout';
 import { useEffect, useState } from 'react';
 import { getRecipient } from '../api/api';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import CardList from './compononts/CardList';
 import Buttons from '../components/Buttons';
+import { useModal } from '../hooks/useModal';
+import { ModalPortal } from '../components/Portal';
+import DeleteModal from '../components/deleteModal';
 
 const initial_recipient = {
   id: null,
@@ -22,6 +25,8 @@ const initial_recipient = {
 const Paper = () => {
   const [recipientInfo, setRecipientInfo] = useState(initial_recipient);
   const [update, setUpdate] = useState(false);
+  const { openModal, handleClose, handleOpen } = useModal();
+  const { pathname } = useLocation();
 
   const { id } = useParams();
 
@@ -31,23 +36,38 @@ const Paper = () => {
     setRecipientInfo(data);
   };
 
+  const handleDeleteClick = () => {
+    handleOpen();
+  };
+
   useEffect(() => {
     handleLoadRecipient({ id });
   }, [update]);
 
   return (
     <>
+      <ModalPortal>
+        <DeleteModal openModal={openModal} handleClose={handleClose}>
+          정말 롤링페이퍼를 삭제하시겠어요?
+        </DeleteModal>
+      </ModalPortal>
       <PaperHeader item={recipientInfo} triggerUpdate={setUpdate} update={update} />
       <PaperContents recipientinfo={recipientInfo}>
         <Cover src={recipientInfo.backgroundImageURL} alt="coverImg" />
         <Layout>
           <Container>
             <div style={{ marginBottom: '10px', marginLeft: 'auto', width: 'fit-content' }}>
-              <Link to="edit">
-                <Buttons buttonType="Outlined40" buttonSize="small">
-                  편집하기
+              {pathname.includes('edit') ? (
+                <Buttons onClick={handleDeleteClick} buttonType="Primary40" buttonSize="xsmall">
+                  삭제하기
                 </Buttons>
-              </Link>
+              ) : (
+                <Link to="edit">
+                  <Buttons buttonType="Outlined40" buttonSize="small">
+                    편집하기
+                  </Buttons>
+                </Link>
+              )}
             </div>
             <CardList />
           </Container>
