@@ -3,13 +3,36 @@ import { ColorBoxBtn } from './component/ColorBox';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 import Buttons from '../../components/Buttons';
+import { useState } from 'react';
 
-export const Post = () => {
+const Post = () => {
+  const [inputValue, setInputValue] = useState();
+  const [isEmptyError, setIsEmptyError] = useState(false);
+
+  const handleInputValue = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleOnBlur = (e) => {
+    const currentInput = e.target.value;
+    setIsEmptyError(!currentInput ? true : false);
+
+    if (!currentInput) {
+      console.log('반갑고');
+    }
+  };
   return (
     <PostLayout>
       <SendToInputContainer>
         <MainDescription>To.</MainDescription>
-        <InputBox type="text" placeholder="받는 사람 이름을 입력해 주세요" />
+        <InputBox
+          type="text"
+          placeholder="받는 사람 이름을 입력해 주세요"
+          value={inputValue}
+          onChange={handleInputValue}
+          onBlur={handleOnBlur}
+        />
+        <ErrorMessage visibility={isEmptyError ? 'visible' : 'hidden'}>값을 입력해 주세요.</ErrorMessage>
       </SendToInputContainer>
       <div>
         <MainDescription>배경화면을 선택해 주세요.</MainDescription>
@@ -30,6 +53,11 @@ export const Post = () => {
       </Buttons>
     </PostLayout>
   );
+};
+
+const Visibility = {
+  visible: 'visible',
+  hidden: 'hidden',
 };
 
 const PostLayout = styled.div`
@@ -66,7 +94,7 @@ const SendToInputContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 0.4rem;
 `;
 
 const ColorBoxContainer = styled.div`
@@ -98,3 +126,11 @@ const SelectButton = styled.button`
     font-weight: 700;
   }
 `;
+
+const ErrorMessage = styled.p`
+  ${FONTS.font12_Regular}
+  color: ${COLORS.error};
+  visibility: ${({ visibility }) => Visibility[visibility] ?? Visibility['hidden']};
+`;
+
+export default Post;
