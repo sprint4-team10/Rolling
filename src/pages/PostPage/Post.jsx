@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { ColorBoxBtn } from './component/ColorBox';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 import Buttons from '../../components/Buttons';
 import { useState } from 'react';
+import BackgroundOption from './component/BackgroundOption/BackgroundOption.jsx';
 
 const Post = () => {
   const [inputValue, setInputValue] = useState();
   const [isEmptyError, setIsEmptyError] = useState(false);
+  const [backgroundType, setBackgroundType] = useState('color');
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
@@ -16,6 +17,10 @@ const Post = () => {
   const handleOnBlur = (e) => {
     const currentInput = e.target.value;
     setIsEmptyError(!currentInput ? true : false);
+  };
+
+  const handleBackgroundType = (e) => {
+    setBackgroundType(e.target.name);
   };
   return (
     <PostLayout>
@@ -35,15 +40,14 @@ const Post = () => {
         <Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</Subscription>
       </div>
       <div>
-        <SelectButton type="button">컬러</SelectButton>
-        <SelectButton type="button">이미지</SelectButton>
+        <SelectButton type="button" name="color" onClick={handleBackgroundType} value={backgroundType}>
+          컬러
+        </SelectButton>
+        <SelectButton type="button" name="image" onClick={handleBackgroundType} value={backgroundType}>
+          이미지
+        </SelectButton>
       </div>
-      <ColorBoxContainer>
-        <ColorBoxBtn type="button" bgcolor="yellow" />
-        <ColorBoxBtn type="button" bgcolor="purple" />
-        <ColorBoxBtn type="button" bgcolor="blue" />
-        <ColorBoxBtn type="button" bgcolor="green" />
-      </ColorBoxContainer>
+      <BackgroundOption backgroundType={backgroundType} />
       <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError}>
         생성하기
       </Buttons>
@@ -91,14 +95,6 @@ const SendToInputContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 0.4rem;
-`;
-
-const ColorBoxContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.6rem;
 `;
 
 const SelectButton = styled.button`
