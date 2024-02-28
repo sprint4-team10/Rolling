@@ -17,17 +17,21 @@ export const Primary56 = styled.button`
   border-radius: 1.2rem;
   background-color: ${COLORS.purple600};
   width: ${({ buttonSize }) => BUTTON_SIZE[buttonSize]}rem;
+  border: 0.2rem solid ${COLORS.purple600};
 
   &:disabled {
     background-color: ${COLORS.gray300};
+    border: 0.2rem solid ${COLORS.gray300};
   }
 
   &:hover {
     background-color: ${COLORS.purple800};
+    border: 0.2rem solid ${COLORS.purple800};
   }
 
   &:active {
     background-color: ${COLORS.purple800};
+    border: 0.2rem solid ${COLORS.purple800};
   }
 
   &:focus {
@@ -42,6 +46,23 @@ export const Primary40 = styled(Primary56)`
   padding: 0.7rem 1.6rem;
   border-radius: 0.6rem;
   background-color: ${COLORS.purple600};
+  border: 0.1rem solid ${COLORS.purple600};
+
+  &:disabled {
+    border: 0.1rem solid ${COLORS.gray300};
+  }
+
+  &:hover {
+    border: 0.1rem solid ${COLORS.purple800};
+  }
+
+  &:active {
+    border: 0.1rem solid ${COLORS.purple800};
+  }
+
+  &:focus {
+    border: 0.1rem solid ${COLORS.purple900};
+  }
 `;
 
 export const Secondary40 = styled(Primary40)`
