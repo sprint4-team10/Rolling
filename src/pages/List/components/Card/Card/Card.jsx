@@ -1,17 +1,20 @@
+import { Link } from 'react-router-dom';
 import CardContent from '../CardContent/CardContent';
 import styled, { css } from 'styled-components';
 
-const Card = ({ title, backgroundColor, backgroundImageURL, messageCount, messages, topReactions }) => {
+const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, messages, topReactions }) => {
   return (
-    <Wrapper backgroundImageUrl={backgroundImageURL} backgroundColor={backgroundColor}>
-      <CardContent
-        title={title}
-        messageCount={messageCount}
-        messages={messages}
-        backgroundImageURL={backgroundImageURL}
-        topReactions={topReactions}
-      />
-    </Wrapper>
+    <Link to={`/post/${id}`}>
+      <Wrapper backgroundImageUrl={backgroundImageURL} backgroundColor={backgroundColor}>
+        <CardContent
+          title={title}
+          messageCount={messageCount}
+          messages={messages}
+          backgroundImageURL={backgroundImageURL}
+          topReactions={topReactions}
+        />
+      </Wrapper>
+    </Link>
   );
 };
 
