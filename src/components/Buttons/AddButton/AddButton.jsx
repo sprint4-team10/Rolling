@@ -2,9 +2,9 @@ import COLORS from '../../../utils/colors';
 import styled from 'styled-components';
 import { ReactComponent as Plus } from '../../../assets/icons/plus.svg';
 
-const AddButton = () => {
+const AddButton = ({ onClick }) => {
   return (
-    <AddButtonContainer type="button">
+    <AddButtonContainer type="button" onClick={onClick}>
       <Plus
         css={{
           color: `${COLORS.white}`,
