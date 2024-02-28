@@ -9,6 +9,7 @@ import Buttons from '../components/Buttons';
 import { useModal } from '../hooks/useModal';
 import { ModalPortal } from '../components/Portal';
 import DeleteModal from '../components/deleteModal';
+import COLORS from '../utils/colors';
 
 const initial_recipient = {
   id: null,
@@ -22,17 +23,22 @@ const initial_recipient = {
   topReactions: [],
 };
 
+const bgColor = {
+  beige: COLORS.orange200,
+  purple: COLORS.purple200,
+  blue: COLORS.blue200,
+  green: COLORS.green200,
+};
+
 const Paper = () => {
   const [recipientInfo, setRecipientInfo] = useState(initial_recipient);
   const [update, setUpdate] = useState(false);
   const { openModal, handleClose, handleOpen } = useModal();
   const { pathname } = useLocation();
-
   const { id } = useParams();
 
   const handleLoadRecipient = async (options) => {
     const data = await getRecipient(options);
-    console.log(data);
     setRecipientInfo(data);
   };
 
@@ -47,7 +53,7 @@ const Paper = () => {
   return (
     <>
       <ModalPortal>
-        <DeleteModal openModal={openModal} handleClose={handleClose}>
+        <DeleteModal type="recipient" recipientId={id} openModal={openModal} handleClose={handleClose}>
           정말 롤링페이퍼를 삭제하시겠어요?
         </DeleteModal>
       </ModalPortal>
@@ -87,11 +93,7 @@ const Cover = styled.img`
 `;
 
 const PaperContents = styled.div`
-  background-color: ${(props) => props.recipientinfo.backgroundColor};
-  // background-image: url(${(props) => props.recipientinfo.backgroundImageURL});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-color: ${(props) => bgColor[props.recipientinfo.backgroundColor]};
   min-height: 100vh;
   z-index: 1;
 `;

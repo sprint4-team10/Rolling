@@ -8,14 +8,15 @@ import RelationshipBadge from '../../../components/RelationshipBadge';
 import Buttons from '../../../components/Buttons';
 import deleteIcon from '../../../assets/icons/delete.svg';
 import DeleteModal from '../../../components/deleteModal';
+import { useParams } from 'react-router-dom';
 
-const EditCard = ({ id, profileImageURL, sender, relationship, content, createdAt }) => {
+const EditCard = ({ messageId, profileImageURL, sender, relationship, content, createdAt }) => {
   const { openModal, handleClose, handleOpen } = useModal();
   const { openModal: deleteOpenModal, handleClose: deleteHandleClose, handleOpen: deleteHandleOpen } = useModal();
-  console.log('id: ', id);
+
+  const { id } = useParams();
 
   const handleDeleteClick = () => {
-    console.log('click');
     deleteHandleOpen();
   };
 
@@ -33,7 +34,13 @@ const EditCard = ({ id, profileImageURL, sender, relationship, content, createdA
         />
       </ModalPortal>
       <ModalPortal>
-        <DeleteModal openModal={deleteOpenModal} handleClose={deleteHandleClose}>
+        <DeleteModal
+          type="message"
+          messageId={messageId}
+          recipientId={id}
+          openModal={deleteOpenModal}
+          handleClose={deleteHandleClose}
+        >
           정말 메세지를 삭제하시겠어요?
         </DeleteModal>
       </ModalPortal>
