@@ -10,7 +10,8 @@ const Reaction = ({ reaction, containerStyle }) => {
 };
 
 const Container = styled.li`
-  background-color: ${COLORS.gray400};
+  background-color: ${COLORS.black};
+  background: rgba(0, 0, 0, 0.54);
   color: #fff;
   padding: 8px 12px;
   border-radius: 32px;
