@@ -16,10 +16,6 @@ const Post = () => {
   const handleOnBlur = (e) => {
     const currentInput = e.target.value;
     setIsEmptyError(!currentInput ? true : false);
-
-    if (!currentInput) {
-      console.log('반갑고');
-    }
   };
   return (
     <PostLayout>
@@ -48,7 +44,7 @@ const Post = () => {
         <ColorBoxBtn type="button" bgcolor="blue" />
         <ColorBoxBtn type="button" bgcolor="green" />
       </ColorBoxContainer>
-      <Buttons buttonType="Primary56" buttonSize="large">
+      <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError}>
         생성하기
       </Buttons>
     </PostLayout>
