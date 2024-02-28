@@ -39,14 +39,14 @@ const Post = () => {
         <MainDescription>배경화면을 선택해 주세요.</MainDescription>
         <Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</Subscription>
       </div>
-      <div>
+      <ToggleButtons>
         <SelectButton type="button" name="color" onClick={handleBackgroundType} value={backgroundType}>
           컬러
         </SelectButton>
         <SelectButton type="button" name="image" onClick={handleBackgroundType} value={backgroundType}>
           이미지
         </SelectButton>
-      </div>
+      </ToggleButtons>
       <BackgroundOption backgroundType={backgroundType} />
       <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError}>
         생성하기
@@ -97,6 +97,11 @@ const SendToInputContainer = styled.div`
   gap: 0.4rem;
 `;
 
+const ToggleButtons = styled.div`
+  background-color: ${COLORS.gray100};
+  border-radius: 0.8rem;
+`;
+
 const SelectButton = styled.button`
   display: inline-block;
   width: 12rem;
@@ -111,8 +116,13 @@ const SelectButton = styled.button`
   background-color: ${COLORS.gray100};
   border: 0.2rem solid ${COLORS.gray100};
 
-  &:hover,
-  &:active {
+  &:hover {
+    background-color: ${COLORS.gray200};
+    border: 0.2rem solid ${COLORS.gray200};
+  }
+
+  &:focus {
+    background-color: ${COLORS.white};
     border: 0.2rem solid ${COLORS.purple700};
     color: ${COLORS.purple700};
     font-weight: 700;
