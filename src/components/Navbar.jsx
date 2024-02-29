@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import COLORS from '../utils/colors';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logoImg from '../assets/rolling_Logo.svg';
 import Layout from '../layout/Layout';
 import Buttons from './Buttons';
 
 const Navbar = () => {
+  const currentLocation = useLocation();
+
   return (
     <Nav>
       <Layout>
@@ -19,7 +21,11 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Buttons buttonType="Outlined40">롤링 페이퍼 만들기</Buttons>
+              {currentLocation.pathname !== '/post' && (
+                <Link to="/post">
+                  <Buttons buttonType="Outlined40">롤링 페이퍼 만들기</Buttons>
+                </Link>
+              )}
             </li>
           </Ul>
         </Container>
