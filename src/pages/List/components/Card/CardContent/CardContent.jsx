@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import COLORS from '../../../../../utils/colors';
+import FONTS from '../../../../../utils/Fonts';
 import Senders from '../../../../../components/Senders';
 import Reaction from '../../../../../components/Reaction';
 
@@ -40,10 +41,7 @@ const Title = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 3.6rem;
-  letter-spacing: -0.024rem;
+  ${FONTS.font24_Bold}
 
   ${(props) =>
     props.backgroundImageURL &&

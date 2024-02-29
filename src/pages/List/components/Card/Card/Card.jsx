@@ -26,13 +26,15 @@ const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, me
     <Link to={`/post/${id}`}>
       <Wrapper backgroundImageUrl={backgroundImageURL} backgroundColor={backgroundColor}>
         {!backgroundImageURL && <PatternImg src={cardPattern[backgroundColor]} alt="pattern" />}
-        <CardContent
-          title={title}
-          messageCount={messageCount}
-          messages={messages}
-          backgroundImageURL={backgroundImageURL}
-          topReactions={topReactions}
-        />
+        <CardContentWrapper>
+          <CardContent
+            title={title}
+            messageCount={messageCount}
+            messages={messages}
+            backgroundImageURL={backgroundImageURL}
+            topReactions={topReactions}
+          />
+         </CardContentWrapper>
       </Wrapper>
     </Link>
   );
@@ -49,27 +51,49 @@ const Wrapper = styled.div`
   background-size: cover; // 이미지가 컴포넌트 크기에 맞게 조절될 수 있도록
   background-position: center; // 이미지가 가운데 정렬되도록
   box-shadow: 0rem 0.2rem 1.2rem 0rem rgba(0, 0, 0, 0.08);
-  min-width: 27.5rem; /* 최소 너비를 원래 크기로 설정 */
-  min-height: 26rem; /* 최소 높이를 원래 크기로 설정 */
+  min-width: 27.5rem;
+  min-height: 26rem;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(0.95) translateZ(0); /* hover 상태에서 요소 위로 올라감 */
+  }
 
   ${(props) =>
-    props.backgroundImageUrl &&
+    props.backgroundImageURL &&
     css`
-      background-image: url(${props.backgroundImageUrl});
+      background-image: url(${props.backgroundImageURL});
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -;
+        border-radius: 1.6rem;
+      }
     `}
 
   ${(props) =>
-    !props.backgroundImageUrl &&
+    !props.backgroundImageURL &&
     css`
       background-color: ${cardColor[props.backgroundColor]};
     `}
 `;
+
+
+const CardContentWrapper = styled.div`
+  position: relative;
+  z-index: 2; /* 가상 요소의 z-index보다 높은 값으로 설정하여 가상 요소 위에 표시 */
 
 const PatternImg = styled.img`
   position: absolute;
   z-index: -1;
   right: 0;
   bottom: 0;
+
 `;
 
 export default Card;
