@@ -123,11 +123,6 @@ const SelectButton = styled.button`
   background-color: ${({ isBgType }) => (isBgType === true ? COLORS.white : COLORS.gray100)};
   border: 0.2rem solid ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray100)};
 
-  &:hover {
-    background-color: ${COLORS.gray200};
-    border: 0.2rem solid ${COLORS.gray200};
-  }
-
   &:focus {
     background-color: ${COLORS.white};
     border: 0.2rem solid ${COLORS.purple700};
