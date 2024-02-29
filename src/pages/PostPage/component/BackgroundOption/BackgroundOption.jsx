@@ -48,9 +48,12 @@ const BackgroundOption = ({ backgroundType }) => {
           {backgroundImgData.map((url, index) => (
             <BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectedImage}>
               {index === SelectedImage && (
-                <CheckMark>
-                  <img src={checkIcon} alt="checkIcon" />
-                </CheckMark>
+                <>
+                  <CheckMark>
+                    <img src={checkIcon} alt="checkIcon" />
+                  </CheckMark>
+                  <SelectImageCover />
+                </>
               )}
             </BackgroundImage>
           ))}
@@ -69,6 +72,7 @@ const CheckMark = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 `;
 
 const ColorBoxContainer = styled.div`
@@ -100,4 +104,10 @@ export const BackgroundImage = styled(BackgroundOptionBox)`
   background-size: cover;
   position: relative;
 `;
+
+export const SelectImageCover = styled(BackgroundColor)`
+  background-color: white;
+  opacity: 0.2;
+`;
+
 export default BackgroundOption;
