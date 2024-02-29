@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getRecipientList } from '../../api/api';
 import styled from 'styled-components';
+import Layout from '../../layout/Layout';
 import CardList from './components/Card/CardList/CardLIst';
 import Card from './components/Card/Card/Card';
-import Layout from '../../layout/Layout';
 import arrowRightIcon from '../../assets/icons/arrow_right.svg';
 import arrowLeftIcon from '../../assets/icons/arrow_left.svg';
 import COLORS from '../../utils/colors';
+import FONTS from '../../utils/Fonts';
+import Buttons from '../../components/Buttons/Buttons';
 
 const List = () => {
   const [recipientList, setRecipientList] = useState([]);
@@ -14,6 +17,12 @@ const List = () => {
   const [topSlideX, setTopSlideX] = useState(0);
   const [bottomSlideX, setBottomSlideX] = useState(0);
   const recipientListWidth = useRef();
+
+  const topContainerRef = useRef(null);
+  const bottomContainerRef = useRef(null);
+  const [dragging, setDragging] = useState(false);
+  const [clickPoint, setClickPoint] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const handleLoadRecipientList = async (options) => {
     const data = await getRecipientList(options);
@@ -47,6 +56,26 @@ const List = () => {
     }
   };
 
+  const handleMouseDownEvent = (e, containerRef) => {
+    if (window.innerWidth <= 1190) {
+      setDragging(true);
+      if (containerRef.current) {
+        setClickPoint(e.pageX);
+        setScrollLeft(containerRef.current.scrollLeft);
+      }
+    }
+  };
+
+  const handleMouseMoveEvent = (e, containerRef) => {
+    if (!dragging) return;
+    e.preventDefault();
+    if (containerRef.current) {
+      const walk = e.pageX - clickPoint;
+      const speedCoefficient = 0.5; // 이동 속도를 조절하는 계수 (수를 조정하여 속도 조절 가능)
+      containerRef.current.scrollLeft = scrollLeft - walk * speedCoefficient;
+    }
+  };
+
   useEffect(() => {
     handleLoadRecipientList();
   }, []);
@@ -67,7 +96,13 @@ const List = () => {
                 <img src={arrowRightIcon} alt="arrowRightIcon" id="top" />
               </RightBtn>
             )}
-            <CardListContainer>
+            <CardListContainer
+              ref={topContainerRef}
+              onMouseDown={(e) => handleMouseDownEvent(e, topContainerRef)}
+              onMouseLeave={() => setDragging(false)}
+              onMouseUp={() => setDragging(false)}
+              onMouseMove={(e) => handleMouseMoveEvent(e, topContainerRef)}
+            >
               <CardList slideX={topSlideX}>
                 {popularRecipientList
                   // reactionCount를 기준으로 내림차순 정렬
@@ -103,7 +138,13 @@ const List = () => {
                 <img src={arrowRightIcon} alt="arrowRightIcon" id="bottom" />
               </RightBtn>
             )}
-            <CardListContainer>
+            <CardListContainer
+              ref={bottomContainerRef}
+              onMouseDown={(e) => handleMouseDownEvent(e, bottomContainerRef)}
+              onMouseLeave={() => setDragging(false)}
+              onMouseUp={() => setDragging(false)}
+              onMouseMove={(e) => handleMouseMoveEvent(e, bottomContainerRef)}
+            >
               <CardList slideX={bottomSlideX}>
                 {recipientList.map((card) => (
                   <Card
@@ -122,7 +163,13 @@ const List = () => {
           </Wrapper>
         </Content>
 
-        <Button>나도 만들어보기</Button>
+        <ButtonContainer>
+          <Link to="/post">
+            <Buttons buttonType="Primary56" buttonSize="small">
+              나도 만들어보기
+            </Buttons>
+          </Link>
+        </ButtonContainer>
       </Container>
     </Layout>
   );
@@ -131,6 +178,7 @@ const List = () => {
 const Wrapper = styled.div`
   position: relative;
   max-width: 1160px;
+
   @media (max-width: 1190px) {
     width: calc(100vw - 4.8rem);
   }
@@ -138,6 +186,7 @@ const Wrapper = styled.div`
 
 const CardListContainer = styled.div`
   overflow: hidden;
+
   @media (max-width: 1190px) {
     overflow: scroll;
 
@@ -172,18 +221,9 @@ const RightBtn = styled(Btn)`
 `;
 
 const Container = styled.div`
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
-    align-items: start;
-    margin: 0 auto;
-  }
-
-  @media screen and (min-width: 375px) and (max-width: 767px) {
-    align-items: start;
-    margin: 0 auto;
-  }
+  margin: 0 auto;
 `;
 
 const Content = styled.div`
@@ -194,27 +234,23 @@ const Content = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 3.6rem;
-  letter-spacing: -0.024rem;
+  ${FONTS.font24_Bold}
 `;
 
-const Button = styled.button`
-  width: 28rem;
-  margin: 6.4rem auto 0 auto;
-  padding: 1.4rem;
-  background-color: #9935ff;
-  border-radius: 1.2rem;
-  color: #fff;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 6.4rem;
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
-    width: 72rem;
-    padding: 1.4rem 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @media screen and (min-width: 375px) and (max-width: 767px) {
-    width: 32rem;
+    display: flex;
+    justify-content: center;
   }
 `;
 

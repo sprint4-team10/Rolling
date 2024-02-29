@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   gap: 2rem;
   margin-top: 1.6rem;
   transform: translateX(${(props) => props.slide}px);
-  transition: all 0.2s;
+  transition: all 0.5s;
 `;
 
 export default CardList;
