@@ -97,6 +97,7 @@ export const BackgroundImage = styled(BackgroundOptionBox)`
   background-image: url(${(props) => props.backgroundImageURL});
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   position: relative;
 `;
 export default BackgroundOption;
