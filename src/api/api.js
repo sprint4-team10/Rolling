@@ -9,6 +9,26 @@ export const getRecipient = async ({ id }) => {
   return data;
 };
 
+export const deleteRecipient = async ({ id }) => {
+  const res = await fetch(`${BASE_URL}recipients/${id}/`, {
+    method: 'DELETE',
+  });
+
+  if (!res.ok) {
+    throw new Error('recipient를 삭제하는데 실패하였습니다.');
+  }
+};
+
+export const deleteMessage = async ({ id }) => {
+  const res = await fetch(`${BASE_URL}messages/${id}/`, {
+    method: 'DELETE',
+  });
+
+  if (!res.ok) {
+    throw new Error('messages 삭제하는데 실패하였습니다.');
+  }
+};
+
 export const getMessages = async ({ id, offset = 0, limit = 8 }) => {
   const res = await fetch(`${BASE_URL}recipients/${id}/messages/?limit=${limit}&offset=${offset}`);
   if (!res.ok) {

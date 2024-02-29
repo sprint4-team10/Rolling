@@ -1,11 +1,31 @@
 import { Link } from 'react-router-dom';
 import CardContent from '../CardContent/CardContent';
 import styled, { css } from 'styled-components';
+import COLORS from '../../../../../utils/colors';
+import pattern1 from '../../../../../assets/pattern/pattern_01.svg';
+import pattern2 from '../../../../../assets/pattern/pattern_02.svg';
+import pattern3 from '../../../../../assets/pattern/pattern_03.svg';
+import pattern4 from '../../../../../assets/pattern/pattern_04.svg';
+
+const cardColor = {
+  beige: COLORS.orange200,
+  purple: COLORS.purple200,
+  blue: COLORS.blue200,
+  green: COLORS.green200,
+};
+
+const cardPattern = {
+  beige: pattern2,
+  purple: pattern1,
+  blue: pattern3,
+  green: pattern4,
+};
 
 const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, messages, topReactions }) => {
   return (
     <Link to={`/post/${id}`}>
-      <Wrapper backgroundImageURL={backgroundImageURL} backgroundColor={backgroundColor}>
+      <Wrapper backgroundImageUrl={backgroundImageURL} backgroundColor={backgroundColor}>
+        {!backgroundImageURL && <PatternImg src={cardPattern[backgroundColor]} alt="pattern" />}
         <CardContentWrapper>
           <CardContent
             title={title}
@@ -14,7 +34,7 @@ const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, me
             backgroundImageURL={backgroundImageURL}
             topReactions={topReactions}
           />
-        </CardContentWrapper>
+         </CardContentWrapper>
       </Wrapper>
     </Link>
   );
@@ -22,6 +42,7 @@ const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, me
 
 const Wrapper = styled.div`
   position: relative;
+  z-index: 1;
   width: 27.5rem;
   height: 26rem;
   padding: 3rem 2.4rem;
@@ -58,13 +79,21 @@ const Wrapper = styled.div`
   ${(props) =>
     !props.backgroundImageURL &&
     css`
-      background-color: ${props.backgroundColor};
+      background-color: ${cardColor[props.backgroundColor]};
     `}
 `;
+
 
 const CardContentWrapper = styled.div`
   position: relative;
   z-index: 2; /* 가상 요소의 z-index보다 높은 값으로 설정하여 가상 요소 위에 표시 */
+
+const PatternImg = styled.img`
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+
 `;
 
 export default Card;

@@ -73,7 +73,7 @@ const CardList = () => {
         if (pathname.includes('edit')) {
           return (
             <EditCard
-              id={message.id}
+              messageId={message.id}
               profileImageURL={message.profileImageURL}
               sender={message.sender}
               relationship={message.relationship}

@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 import Buttons from '../Buttons';
 import FONTS from '../../utils/Fonts';
+import { deleteMessage, deleteRecipient } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
-const DeleteModal = ({ openModal, handleClose, children }) => {
+const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children }) => {
+  const navigate = useNavigate();
   if (!openModal) {
     return <></>;
   }
@@ -12,13 +15,24 @@ const DeleteModal = ({ openModal, handleClose, children }) => {
     handleClose();
   };
 
+  const handleDeleteClick = async () => {
+    if (type === 'message') {
+      await deleteMessage({ id: messageId });
+      navigate(`/post/${recipientId}`);
+      window.location.reload();
+    } else if (type === 'recipient') {
+      await deleteRecipient({ id: recipientId });
+      navigate('/list');
+    }
+  };
+
   return (
     <>
       <Deem onClick={handleDeemClick} />
       <Container>
         {children}
         <div>
-          <Buttons buttonType="Primary40" buttonSize="xsmall">
+          <Buttons buttonType="Primary40" buttonSize="xsmall" onClick={handleDeleteClick}>
             삭제
           </Buttons>
         </div>
