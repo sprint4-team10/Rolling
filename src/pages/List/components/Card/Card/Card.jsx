@@ -22,6 +22,7 @@ const cardPattern = {
 };
 
 const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, messages, topReactions }) => {
+  console.log('backImgUrl:', backgroundImageURL);
   return (
     <Link to={`/post/${id}`}>
       <Wrapper backgroundImageUrl={backgroundImageURL} backgroundColor={backgroundColor}>
@@ -34,7 +35,7 @@ const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, me
             backgroundImageURL={backgroundImageURL}
             topReactions={topReactions}
           />
-         </CardContentWrapper>
+        </CardContentWrapper>
       </Wrapper>
     </Link>
   );
@@ -54,15 +55,16 @@ const Wrapper = styled.div`
   min-width: 27.5rem;
   min-height: 26rem;
   transition: transform 0.2s ease;
+  overflow: hidden;
 
   &:hover {
     transform: scale(0.95) translateZ(0); /* hover 상태에서 요소 위로 올라감 */
   }
 
   ${(props) =>
-    props.backgroundImageURL &&
+    props.backgroundImageUrl &&
     css`
-      background-image: url(${props.backgroundImageURL});
+      background-image: url('${props.backgroundImageUrl}');
       &::before {
         content: '';
         position: absolute;
@@ -71,7 +73,6 @@ const Wrapper = styled.div`
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
-        z-index: -;
         border-radius: 1.6rem;
       }
     `}
@@ -83,17 +84,15 @@ const Wrapper = styled.div`
     `}
 `;
 
-
 const CardContentWrapper = styled.div`
   position: relative;
-  z-index: 2; /* 가상 요소의 z-index보다 높은 값으로 설정하여 가상 요소 위에 표시 */
+`;
 
 const PatternImg = styled.img`
   position: absolute;
   z-index: -1;
   right: 0;
   bottom: 0;
-
 `;
 
 export default Card;
