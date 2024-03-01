@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import List from './pages/List/List';
 import Paper from './pages/Paper';
-import Message from './pages/Message';
+import Message from './pages/Message/Message';
 import NavLayout from './layout/NavLayout';
 import Post from './pages/PostPage';
 
