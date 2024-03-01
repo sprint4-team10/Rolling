@@ -6,17 +6,18 @@ import { useLocation, useParams } from 'react-router-dom';
 import COLORS from '../../../utils/colors';
 import { MessageCard } from '../MessageCard/MessageCard';
 import EditCard from '../EditCard';
+import { useHandleDeleteMessage } from '../../../hooks/useHandleDeleteMessage';
 
 const OFFSET = 8;
 
 const CardList = () => {
   const { id } = useParams();
+  const { filteredIds } = useHandleDeleteMessage();
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [next, setNext] = useState(true);
   const { pathname } = useLocation();
 
-  console.log(pathname);
   const handleLoadMessages = async (options) => {
     if (!next) {
       return;
@@ -71,29 +72,33 @@ const CardList = () => {
       )}
       {messages.map((message) => {
         if (pathname.includes('edit')) {
-          return (
-            <EditCard
-              messageId={message.id}
-              profileImageURL={message.profileImageURL}
-              sender={message.sender}
-              relationship={message.relationship}
-              content={message.content}
-              createdAt={message.createdAt}
-              key={message.id + 'edit'}
-            />
-          );
+          if (!filteredIds.includes(message.id)) {
+            return (
+              <EditCard
+                messageId={message.id}
+                profileImageURL={message.profileImageURL}
+                sender={message.sender}
+                relationship={message.relationship}
+                content={message.content}
+                createdAt={message.createdAt}
+                key={message.id + 'edit'}
+              />
+            );
+          }
         } else {
-          return (
-            <MessageCard
-              id={message.id}
-              profileImageURL={message.profileImageURL}
-              sender={message.sender}
-              relationship={message.relationship}
-              content={message.content}
-              createdAt={message.createdAt}
-              key={message.id}
-            />
-          );
+          if (!filteredIds.includes(message.id)) {
+            return (
+              <MessageCard
+                id={message.id}
+                profileImageURL={message.profileImageURL}
+                sender={message.sender}
+                relationship={message.relationship}
+                content={message.content}
+                createdAt={message.createdAt}
+                key={message.id}
+              />
+            );
+          }
         }
       })}
     </Container>
