@@ -4,9 +4,12 @@ import Buttons from '../Buttons';
 import FONTS from '../../utils/Fonts';
 import { deleteMessage, deleteRecipient } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
+import { useHandleDeleteMessage } from '../../hooks/useHandleDeleteMessage';
 
-const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children }) => {
+const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children, setFilteredMessageId }) => {
   const navigate = useNavigate();
+  const { changeId } = useHandleDeleteMessage();
+
   if (!openModal) {
     return <></>;
   }
@@ -18,8 +21,9 @@ const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, chi
   const handleDeleteClick = async () => {
     if (type === 'message') {
       await deleteMessage({ id: messageId });
+      changeId(messageId);
       navigate(`/post/${recipientId}`);
-      window.location.reload();
+      // window.location.reload();
     } else if (type === 'recipient') {
       await deleteRecipient({ id: recipientId });
       navigate('/list');
