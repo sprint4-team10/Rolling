@@ -24,19 +24,21 @@ export const Primary56 = styled.button`
     border: 0.2rem solid ${COLORS.gray300};
   }
 
-  &:hover {
-    background-color: ${COLORS.purple800};
-    border: 0.2rem solid ${COLORS.purple800};
-  }
+  &:enabled {
+    &:hover {
+      background-color: ${COLORS.purple800};
+      border: 0.2rem solid ${COLORS.purple800};
+    }
 
-  &:active {
-    background-color: ${COLORS.purple800};
-    border: 0.2rem solid ${COLORS.purple800};
-  }
+    &:active {
+      background-color: ${COLORS.purple800};
+      border: 0.2rem solid ${COLORS.purple800};
+    }
 
-  &:focus {
-    background-color: ${COLORS.purple800};
-    border: 0.2rem solid ${COLORS.purple900};
+    &:focus {
+      background-color: ${COLORS.purple800};
+      border: 0.2rem solid ${COLORS.purple900};
+    }
   }
 `;
 
@@ -52,16 +54,18 @@ export const Primary40 = styled(Primary56)`
     border: 0.1rem solid ${COLORS.gray300};
   }
 
-  &:hover {
-    border: 0.1rem solid ${COLORS.purple800};
-  }
+  &:enabled {
+    &:hover {
+      border: 0.1rem solid ${COLORS.purple800};
+    }
 
-  &:active {
-    border: 0.1rem solid ${COLORS.purple800};
-  }
+    &:active {
+      border: 0.1rem solid ${COLORS.purple800};
+    }
 
-  &:focus {
-    border: 0.1rem solid ${COLORS.purple900};
+    &:focus {
+      border: 0.1rem solid ${COLORS.purple900};
+    }
   }
 `;
 
@@ -73,18 +77,19 @@ export const Secondary40 = styled(Primary40)`
     background-color: ${COLORS.gray300};
     color: ${COLORS.white};
   }
+  &:enabled {
+    &:hover {
+      background-color: ${COLORS.purple100};
+    }
 
-  &:hover {
-    background-color: ${COLORS.purple100};
-  }
+    &:active {
+      background-color: ${COLORS.purple100};
+    }
 
-  &:active {
-    background-color: ${COLORS.purple100};
-  }
-
-  &:focus {
-    background-color: ${COLORS.white};
-    border: 0.2rem solid ${COLORS.purple800};
+    &:focus {
+      background-color: ${COLORS.white};
+      border: 0.2rem solid ${COLORS.purple800};
+    }
   }
 `;
 
@@ -102,17 +107,19 @@ export const Outlined56 = styled.button`
     color: ${COLORS.white};
   }
 
-  &:hover {
-    background-color: ${COLORS.gray100};
-  }
+  &:enabled {
+    &:hover {
+      background-color: ${COLORS.gray100};
+    }
 
-  &:active {
-    background-color: ${COLORS.gray100};
-  }
+    &:active {
+      background-color: ${COLORS.gray100};
+    }
 
-  &:focus {
-    background-color: ${COLORS.white};
-    border: 0.1rem solid ${COLORS.gray500};
+    &:focus {
+      background-color: ${COLORS.white};
+      border: 0.1rem solid ${COLORS.gray500};
+    }
   }
 `;
 
