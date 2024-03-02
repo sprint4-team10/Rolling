@@ -1,6 +1,6 @@
 import Buttons from '../../components/Buttons';
 import { useEffect, useState } from 'react';
-import { COLOR_OPTION } from './component/BackgroundOption/constant.js';
+import { COLOR_OPTION } from './constant.js';
 import { getBackgroundImageURL } from '../../api/getBackgroundImageURL.js';
 import { createRollingPaper } from '../../api/createRollingPaper.js';
 import { useNavigate } from 'react-router-dom';
