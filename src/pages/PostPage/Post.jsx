@@ -44,7 +44,6 @@ const Post = () => {
     e.preventDefault();
     setSelectedImage(+e.target.id);
   };
-  ///
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
@@ -77,7 +76,6 @@ const Post = () => {
     };
 
     const { id } = await createRollingPaper(body);
-    console.log(id);
     navigate(`/post/${id}`);
   };
 
