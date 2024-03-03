@@ -48,6 +48,8 @@ const Item = styled.li`
   justify-content: center;
   align-items: center;
   &:last-child {
+    width: auto;
+    padding: 0 7px;
     border: 1px solid ${COLORS.gray300};
   }
   &:not(:last-child) {
