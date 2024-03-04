@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getRecipientList } from '../../api/api';
-import styled from 'styled-components';
 import Layout from '../../layout/Layout';
-import CardList from './components/Card/CardList/CardLIst';
-import Card from './components/Card/Card/Card';
+import CardList from './components/CardList';
+import Card from './components/Card';
 import arrowRightIcon from '../../assets/icons/arrow_right.svg';
 import arrowLeftIcon from '../../assets/icons/arrow_left.svg';
-import COLORS from '../../utils/colors';
-import FONTS from '../../utils/Fonts';
-import Buttons from '../../components/Buttons/Buttons';
+import Buttons from '../../components/Buttons';
+import * as S from './ListStyled';
 
 const List = () => {
   const [recipientList, setRecipientList] = useState([]);
@@ -82,21 +80,21 @@ const List = () => {
 
   return (
     <Layout>
-      <Container>
-        <Content>
-          <Title>인기 롤링 페이퍼 🔥</Title>
-          <Wrapper>
+      <S.Container>
+        <S.Content>
+          <S.Title>인기 롤링 페이퍼 🔥</S.Title>
+          <S.Wrapper>
             {topSlideX < 0 && (
-              <LeftBtn onClick={handleSlideLeftClick} id="top">
+              <S.LeftBtn onClick={handleSlideLeftClick} id="top">
                 <img src={arrowLeftIcon} alt="arrowLeftIcon" id="top" />
-              </LeftBtn>
+              </S.LeftBtn>
             )}
             {topSlideX > recipientListWidth.current && (
-              <RightBtn onClick={handleSlideRightClick} id="top">
+              <S.RightBtn onClick={handleSlideRightClick} id="top">
                 <img src={arrowRightIcon} alt="arrowRightIcon" id="top" />
-              </RightBtn>
+              </S.RightBtn>
             )}
-            <CardListContainer
+            <S.CardListContainer
               ref={topContainerRef}
               onMouseDown={(e) => handleMouseDownEvent(e, topContainerRef)}
               onMouseLeave={() => setDragging(false)}
@@ -121,24 +119,24 @@ const List = () => {
                     />
                   ))}
               </CardList>
-            </CardListContainer>
-          </Wrapper>
-        </Content>
+            </S.CardListContainer>
+          </S.Wrapper>
+        </S.Content>
 
-        <Content>
-          <Title>최근에 만든 롤링 페이퍼 ⭐️️</Title>
-          <Wrapper>
+        <S.Content>
+          <S.Title>최근에 만든 롤링 페이퍼 ⭐️️</S.Title>
+          <S.Wrapper>
             {bottomSlideX < 0 && (
-              <LeftBtn onClick={handleSlideLeftClick} id="bottom">
+              <S.LeftBtn onClick={handleSlideLeftClick} id="bottom">
                 <img src={arrowLeftIcon} alt="arrowLeftIcon" id="bottom" />
-              </LeftBtn>
+              </S.LeftBtn>
             )}
             {bottomSlideX > recipientListWidth.current && (
-              <RightBtn onClick={handleSlideRightClick} id="bottom">
+              <S.RightBtn onClick={handleSlideRightClick} id="bottom">
                 <img src={arrowRightIcon} alt="arrowRightIcon" id="bottom" />
-              </RightBtn>
+              </S.RightBtn>
             )}
-            <CardListContainer
+            <S.CardListContainer
               ref={bottomContainerRef}
               onMouseDown={(e) => handleMouseDownEvent(e, bottomContainerRef)}
               onMouseLeave={() => setDragging(false)}
@@ -159,99 +157,20 @@ const List = () => {
                   />
                 ))}
               </CardList>
-            </CardListContainer>
-          </Wrapper>
-        </Content>
+            </S.CardListContainer>
+          </S.Wrapper>
+        </S.Content>
 
-        <ButtonContainer>
+        <S.ButtonContainer>
           <Link to="/post">
             <Buttons buttonType="Primary56" buttonSize="small">
               나도 만들어보기
             </Buttons>
           </Link>
-        </ButtonContainer>
-      </Container>
+        </S.ButtonContainer>
+      </S.Container>
     </Layout>
   );
 };
-
-const Wrapper = styled.div`
-  position: relative;
-  max-width: 1160px;
-
-  @media (max-width: 1190px) {
-    width: calc(100vw - 4.8rem);
-  }
-`;
-
-const CardListContainer = styled.div`
-  overflow: hidden;
-
-  @media (max-width: 1190px) {
-    overflow: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;
-
-const Btn = styled.button`
-  position: absolute;
-  z-index: 10;
-  top: 48%;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  background-color: ${COLORS.white};
-  border: 1px solid ${COLORS.gray300};
-  opacity: 0.8;
-
-  @media (max-width: 1190px) {
-    display: none;
-  }
-`;
-
-const LeftBtn = styled(Btn)`
-  left: -20px;
-`;
-
-const RightBtn = styled(Btn)`
-  right: -20px;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-top: 5rem;
-`;
-
-const Title = styled.div`
-  ${FONTS.font24_Bold}
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 6.4rem;
-
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 375px) and (max-width: 767px) {
-    display: flex;
-    justify-content: center;
-  }
-`;
 
 export default List;

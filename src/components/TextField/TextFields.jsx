@@ -1,6 +1,6 @@
-import { Dropdown } from './Dropdown';
-import { Input } from './Input';
-import { TextEditor } from './TextEditor';
+import Dropdown from './Dropdown';
+import * as S from './Input';
+import TextEditor from './TextEditor';
 
 const TextFields = ({
   textFieldType,
@@ -16,7 +16,7 @@ const TextFields = ({
   switch (textFieldType) {
     case 'Input':
       return (
-        <Input
+        <S.Input
           onChange={onChange}
           placeholder={placeholder}
           width={width}
