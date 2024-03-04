@@ -4,11 +4,13 @@ import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 import { PostInput, ProfileImageSelect, RelationshipSelect, EnterContent, FontSelect } from './component';
 import Buttons from '../../components/Buttons';
+import { useNavigate, useParams } from 'react-router-dom';
 import { postMessage } from '../../api/api';
 
 const PostMessagesData = {
   sender: '', // 보낸이 이름
-  profileImageURL: 'https://i.ibb.co/Nx8VY0Z/no-profileimg-1.jpg', // 프로필 이미지 URL
+  profileImageURL:
+    'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png', // 프로필 이미지 URL
   relationship: '', // 관계
   content: '', // 내용
   font: '', // 기본 폰트
@@ -16,22 +18,29 @@ const PostMessagesData = {
 
 const Message = () => {
   const [messageData, setMessageData] = useState(PostMessagesData);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      await postMessage(messageData);
-      console.log('메세지 데이터가 성공적으로 전송되었습니다.');
-    } catch (error) {
-      throw new Error('메시지 데이터 전송을 실패하였습니다.');
-    }
+    console.log(messageData);
+    await postMessage({ id, body: { team: 10, recipientId: id, ...messageData } });
+    console.log('메세지 데이터가 성공적으로 전송되었습니다.');
+    navigate(`/post/${id}`);
   };
 
   const handleChange = (value) => {
     setMessageData((prevData) => ({
       ...prevData,
       sender: value,
+    }));
+  };
+
+  const handleProfileChange = (value) => {
+    setMessageData((prevData) => ({
+      ...prevData,
+      profileImageURL: value,
     }));
   };
 
@@ -44,7 +53,7 @@ const Message = () => {
 
       <div>
         <Title>프로필 이미지</Title>
-        <ProfileImageSelect />
+        <ProfileImageSelect onChange={handleProfileChange} selectedImgUrl={messageData.profileImageURL} />
       </div>
 
       <div>
@@ -54,12 +63,12 @@ const Message = () => {
 
       <div>
         <Title>내용을 입력해주세요</Title>
-        <EnterContent />
+        <EnterContent setMessageData={setMessageData} />
       </div>
 
       <div>
         <Title>폰트 선택</Title>
-        <FontSelect onChange={handleChange} />
+        <FontSelect onChange={handleChange} setMessageData={setMessageData} />
       </div>
 
       <Buttons buttonType="Primary56" buttonSize="large" type="text">

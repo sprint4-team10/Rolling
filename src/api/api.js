@@ -85,7 +85,7 @@ export const getRecipientList = async () => {
 };
 
 export const postMessage = async ({ id, body }) => {
-  const res = await fetch(`${BASE_URL}post/${id}/message/`, {
+  const res = await fetch(`${BASE_URL}recipients/${id}/messages/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import plusImg from '../../../assets/icons/plus.svg';
 import { useEffect, useState } from 'react';
 import { getMessages } from '../../../api/api';
-import { useLocation, useParams } from 'react-router-dom';
-import COLORS from '../../../utils/colors';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { MessageCard } from '../MessageCard/MessageCard';
 import EditCard from '../EditCard';
 import { useHandleDeleteMessage } from '../../../hooks/useHandleDeleteMessage';
+import AddButton from '../../../components/Buttons/AddButton/AddButton';
 
 const OFFSET = 8;
 
@@ -65,9 +65,11 @@ const CardList = () => {
     <Container>
       {!pathname.includes('edit') && (
         <EmptyCard>
-          <AddButton>
-            <img src={plusImg} alt="plusIcon" />
-          </AddButton>
+          <Link to="message">
+            <AddButton>
+              <img src={plusImg} alt="plusIcon" />
+            </AddButton>
+          </Link>
         </EmptyCard>
       )}
       {messages.map((message) => {
@@ -122,7 +124,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
-  height: 280px;
+  height: 29rem;
   background-color: #fff;
   border-radius: 16px;
   padding: 30px;
@@ -132,13 +134,6 @@ const EmptyCard = styled(Card)`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const AddButton = styled.button`
-  background-color: ${COLORS.gray500};
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
 `;
 
 export default CardList;

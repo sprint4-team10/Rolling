@@ -32,7 +32,7 @@ export const MessageCard = ({ profileImageURL, sender, relationship, content, cr
             <RelationshipBadge relationship={relationship} />
           </div>
         </CardHeader>
-        <CardContents>{content}</CardContents>
+        <CardContents dangerouslySetInnerHTML={{ __html: content }} />
         <CardFooter>
           <Btn onClick={handleOpen}>더보기</Btn>
           <div>{formatDate(createdAt)}</div>
