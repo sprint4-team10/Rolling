@@ -11,7 +11,7 @@ export const RelationshipSelect = ({ setMessageData }) => {
   const handleChange = (selectedOption) => {
     setMessageData((prevData) => ({
       ...prevData,
-      relationship: selectedOption.value,
+      relationship: selectedOption,
     }));
   };
   return (

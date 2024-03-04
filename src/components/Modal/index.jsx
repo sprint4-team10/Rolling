@@ -27,7 +27,7 @@ const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, 
           </div>
           <Date>{formatDate(createdAt)}</Date>
         </CardHeader>
-        <CardContents>{content}</CardContents>
+        <CardContents dangerouslySetInnerHTML={{ __html: content }} />
         <CardFooter>
           <div onClick={handleClose}>
             <Buttons buttonType="Primary40">확인</Buttons>

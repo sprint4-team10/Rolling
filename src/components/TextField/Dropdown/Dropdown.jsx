@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import FONTS from '../../../utils/Fonts';
 import COLORS from '../../../utils/colors';
 
-export const Dropdown = ({ options, defaultValue }) => {
+export const Dropdown = ({ options, defaultValue, onChange }) => {
   const [currentValue, setCurrentValue] = useState(defaultValue);
   const [showOptions, setShowOptions] = useState(false);
   const selectRef = useRef(null);
 
   const handleOnChangeSelectValue = (e) => {
     const { innerText } = e.target;
+    console.log('innerText:', innerText);
     setCurrentValue(innerText);
+    onChange(innerText);
   };
 
   useEffect(() => {

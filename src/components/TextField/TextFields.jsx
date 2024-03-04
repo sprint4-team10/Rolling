@@ -5,7 +5,9 @@ import { TextEditor } from './TextEditor';
 const TextFields = ({ textFieldType, placeholder, width, disabled, isError, options, defaultValue, onChange }) => {
   switch (textFieldType) {
     case 'Input':
-      return <Input placeholder={placeholder} width={width} disabled={disabled} isError={isError} />;
+      return (
+        <Input onChange={onChange} placeholder={placeholder} width={width} disabled={disabled} isError={isError} />
+      );
     case 'Dropdown':
       return (
         <Dropdown width={width} disabled={disabled} options={options} defaultValue={defaultValue} onChange={onChange} />

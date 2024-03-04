@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import styled from 'styled-components';
 
-export const TextEditor = () => {
+export const TextEditor = ({ onChange }) => {
   const [value, setValue] = useState('');
 
   const modules = {
@@ -19,6 +19,7 @@ export const TextEditor = () => {
 
   const handleChange = (content) => {
     setValue(content);
+    onChange(content);
   };
 
   return <Quill modules={modules} value={value} onChange={handleChange} />;

@@ -9,7 +9,7 @@ export const FontSelect = ({ setMessageData }) => {
   const handleChange = (selectedOption) => {
     setMessageData((prevData) => ({
       ...prevData,
-      font: selectedOption.value,
+      font: selectedOption,
     }));
   };
   return (
