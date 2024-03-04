@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import styled from 'styled-components';
+import * as S from './TextEditorStyled';
 
-export const TextEditor = ({ onChange }) => {
+const TextEditor = ({ onChange }) => {
   const [value, setValue] = useState('');
 
   const modules = {
@@ -22,14 +21,7 @@ export const TextEditor = ({ onChange }) => {
     onChange(content);
   };
 
-  return <Quill modules={modules} value={value} onChange={handleChange} />;
+  return <S.Quill modules={modules} value={value} onChange={handleChange} />;
 };
 
-const Quill = styled(ReactQuill)`
-  width: 72rem;
-  height: 26rem;
-
-  @media screen and (max-width: 784px) {
-    width: 100%;
-  }
-`;
+export default TextEditor;

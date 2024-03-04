@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import TextFields from '../../../components/TextField/TextFields';
-import styled from 'styled-components';
-import COLORS from '../../../utils/colors';
-import FONTS from '../../../utils/Fonts';
+import TextFields from '../../../../components/TextField/TextFields';
+import * as S from './PostInputStyled';
 
-export const PostInput = ({ onChange }) => {
+const PostInput = ({ onChange }) => {
   const [name, setName] = useState('');
   const [isError, setIsError] = useState(false);
 
@@ -29,14 +27,9 @@ export const PostInput = ({ onChange }) => {
         value={name}
         isError={isError}
       />
-      <ErrorMessage isError={isError}>이름을 입력해주세요.</ErrorMessage>
+      <S.ErrorMessage isError={isError}>이름을 입력해주세요.</S.ErrorMessage>
     </>
   );
 };
 
-const ErrorMessage = styled.p`
-  ${FONTS.font12_Regular}
-  color: ${COLORS.error};
-  visibility: ${({ isError }) => (isError ? 'visible' : 'hidden')};
-  margin-top: 0.4rem;
-`;
+export default PostInput;

@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import TextFields from '../../../components/TextField/TextFields';
-import styled from 'styled-components';
-import COLORS from '../../../utils/colors';
-import FONTS from '../../../utils/Fonts';
+import TextFields from '../../../../components/TextField/TextFields';
+import * as S from './FontSelectStyled';
 
 const OPTIONS = [
   { value: 'Pretendard', name: 'Pretendard' },
@@ -32,14 +30,9 @@ export const FontSelect = ({ messageData, setMessageData }) => {
         onChange={handleChange}
         isError={isError}
       />
-      <ErrorMessage isError={isError}>폰트를 선택해주세요.</ErrorMessage>
+      <S.ErrorMessage isError={isError}>폰트를 선택해주세요.</S.ErrorMessage>
     </>
   );
 };
 
-const ErrorMessage = styled.p`
-  ${FONTS.font12_Regular}
-  color: ${COLORS.error};
-  visibility: ${({ isError }) => (isError ? 'visible' : 'hidden')};
-  margin-top: 0.4rem;
-`;
+export default FontSelect;

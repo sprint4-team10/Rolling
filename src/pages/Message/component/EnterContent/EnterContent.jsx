@@ -1,6 +1,6 @@
-import TextFields from '../../../components/TextField/TextFields';
+import TextFields from '../../../../components/TextField/TextFields';
 
-export const EnterContent = ({ setMessageData }) => {
+const EnterContent = ({ setMessageData }) => {
   const handleChange = (content) => {
     setMessageData((prevData) => ({
       ...prevData,
@@ -13,3 +13,5 @@ export const EnterContent = ({ setMessageData }) => {
     </>
   );
 };
+
+export default EnterContent;
