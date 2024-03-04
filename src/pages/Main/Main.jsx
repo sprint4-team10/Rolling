@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import landing01 from '../assets/covers/landing01.png';
-import landing02 from '../assets/covers/landing02.png';
-import COLORS from '../utils/colors';
-import Layout from '../layout/Layout';
+import landing01 from '../../assets/covers/landing01.png';
+import landing02 from '../../assets/covers/landing02.png';
+import COLORS from '../../utils/colors';
+import Layout from '../../layout/Layout';
 import { Link } from 'react-router-dom';
-import Buttons from '../components/Buttons';
+import Buttons from '../../components/Buttons';
 
 const Main = () => {
   return (
