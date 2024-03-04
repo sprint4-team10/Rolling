@@ -28,4 +28,8 @@ export const TextEditor = ({ onChange }) => {
 const Quill = styled(ReactQuill)`
   width: 72rem;
   height: 26rem;
+
+  @media screen and (max-width: 784px) {
+    width: 100%;
+  }
 `;
