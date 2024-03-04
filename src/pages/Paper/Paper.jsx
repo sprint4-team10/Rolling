@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import PaperHeader from './compononts/PaperHeader';
-import Layout from '../layout/Layout';
+import PaperHeader from './components/PaperHeader';
+import Layout from '../../layout/Layout';
 import { useEffect, useState } from 'react';
-import { getRecipient } from '../api/api';
+import { getRecipient } from '../../api/api';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import CardList from './compononts/CardList';
-import Buttons from '../components/Buttons';
-import { useModal } from '../hooks/useModal';
-import { ModalPortal } from '../components/Portal';
-import DeleteModal from '../components/deleteModal';
-import COLORS from '../utils/colors';
+import CardList from './components/CardList';
+import Buttons from '../../components/Buttons';
+import { useModal } from '../../hooks/useModal';
+import { ModalPortal } from '../../components/Portal';
+import DeleteModal from '../../components/deleteModal';
+import COLORS from '../../utils/colors';
 
 const initial_recipient = {
   id: null,
