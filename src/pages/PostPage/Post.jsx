@@ -8,9 +8,11 @@ import * as S from './PostStyled';
 import CheckMark from './component/CheckMark/CheckMark.jsx';
 
 const Post = () => {
+  const [selectBackgroundType, setSelectBackgroundType] = useState({
+    color: 0,
+    image: 0,
+  });
   const [backgroundImgData, setBackgroundImgData] = useState();
-  const [SelectedColor, setSelectedColor] = useState(0);
-  const [SelectedImage, setSelectedImage] = useState(0);
   const [inputValue, setInputValue] = useState();
   const [isEmptyError, setIsEmptyError] = useState(false);
   const [backgroundType, setBackgroundType] = useState('color');
@@ -21,14 +23,12 @@ const Post = () => {
     setBackgroundImgData(data.imageUrls);
   };
 
-  const handleSelectedColor = (e) => {
+  const handleSelectBackground = (e) => {
     e.preventDefault();
-    setSelectedColor(+e.target.id);
-  };
-
-  const handleSelectedImage = (e) => {
-    e.preventDefault();
-    setSelectedImage(+e.target.id);
+    setSelectBackgroundType({
+      ...selectBackgroundType,
+      [backgroundType]: +e.target.id,
+    });
   };
 
   const handleInputValue = (e) => {
@@ -57,8 +57,8 @@ const Post = () => {
     const body = {
       team: '10',
       name: inputValue,
-      backgroundColor: BgColor[COLOR_OPTION[SelectedColor]],
-      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[SelectedImage] : null,
+      backgroundColor: BgColor[COLOR_OPTION[selectBackgroundType.color]],
+      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[selectBackgroundType.image] : null,
     };
 
     const { id } = await createRollingPaper(body);
@@ -109,16 +109,16 @@ const Post = () => {
       {backgroundType === 'color' ? (
         <S.ColorBoxContainer>
           {COLOR_OPTION.map((color, index) => (
-            <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectedColor}>
-              {index === SelectedColor && <CheckMark />}
+            <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+              {index === selectBackgroundType.color && <CheckMark />}
             </S.BackgroundColor>
           ))}
         </S.ColorBoxContainer>
       ) : (
         <S.ImageBoxContainer>
           {backgroundImgData.map((url, index) => (
-            <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectedImage}>
-              {index === SelectedImage && (
+            <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
+              {index === selectBackgroundType.image && (
                 <>
                   <CheckMark />
                   <S.SelectImageCover />
