@@ -4,27 +4,15 @@ import { COLOR_OPTION } from './constant.js';
 import { getBackgroundImageURL } from '../../api/getBackgroundImageURL.js';
 import { createRollingPaper } from '../../api/createRollingPaper.js';
 import { useNavigate } from 'react-router-dom';
-import {
-  BackgroundColor,
-  BackgroundImage,
-  ColorBoxContainer,
-  ErrorMessage,
-  ImageBoxContainer,
-  InputBox,
-  MainDescription,
-  PostLayout,
-  SelectButton,
-  SelectImageCover,
-  SendToInputContainer,
-  Subscription,
-  ToggleButtons,
-} from './PostStyled.js';
+import * as S from './PostStyled';
 import CheckMark from './component/CheckMark/CheckMark.jsx';
 
 const Post = () => {
+  const [selectBackgroundType, setSelectBackgroundType] = useState({
+    color: 0,
+    image: 0,
+  });
   const [backgroundImgData, setBackgroundImgData] = useState();
-  const [SelectedColor, setSelectedColor] = useState(0);
-  const [SelectedImage, setSelectedImage] = useState(0);
   const [inputValue, setInputValue] = useState();
   const [isEmptyError, setIsEmptyError] = useState(false);
   const [backgroundType, setBackgroundType] = useState('color');
@@ -35,14 +23,12 @@ const Post = () => {
     setBackgroundImgData(data.imageUrls);
   };
 
-  const handleSelectedColor = (e) => {
+  const handleSelectBackground = (e) => {
     e.preventDefault();
-    setSelectedColor(+e.target.id);
-  };
-
-  const handleSelectedImage = (e) => {
-    e.preventDefault();
-    setSelectedImage(+e.target.id);
+    setSelectBackgroundType({
+      ...selectBackgroundType,
+      [backgroundType]: +e.target.id,
+    });
   };
 
   const handleInputValue = (e) => {
@@ -71,8 +57,8 @@ const Post = () => {
     const body = {
       team: '10',
       name: inputValue,
-      backgroundColor: BgColor[COLOR_OPTION[SelectedColor]],
-      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[SelectedImage] : null,
+      backgroundColor: BgColor[COLOR_OPTION[selectBackgroundType.color]],
+      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[selectBackgroundType.image] : null,
     };
 
     const { id } = await createRollingPaper(body);
@@ -84,24 +70,24 @@ const Post = () => {
   }, []);
 
   return (
-    <PostLayout onSubmit={handleSubmit}>
-      <SendToInputContainer>
-        <MainDescription>To.</MainDescription>
-        <InputBox
+    <S.PostLayout onSubmit={handleSubmit}>
+      <S.SendToInputContainer>
+        <S.MainDescription>To.</S.MainDescription>
+        <S.InputBox
           type="text"
           placeholder="받는 사람 이름을 입력해 주세요"
           value={inputValue}
           onChange={handleInputValue}
           onBlur={handleOnBlur}
         />
-        <ErrorMessage isEmptyError={isEmptyError}>값을 입력해 주세요.</ErrorMessage>
-      </SendToInputContainer>
+        <S.ErrorMessage isEmptyError={isEmptyError}>값을 입력해 주세요.</S.ErrorMessage>
+      </S.SendToInputContainer>
       <div>
-        <MainDescription>배경화면을 선택해 주세요.</MainDescription>
-        <Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</Subscription>
+        <S.MainDescription>배경화면을 선택해 주세요.</S.MainDescription>
+        <S.Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</S.Subscription>
       </div>
-      <ToggleButtons>
-        <SelectButton
+      <S.ToggleButtons>
+        <S.SelectButton
           isBgType={backgroundType === 'color'}
           type="button"
           name="color"
@@ -109,8 +95,8 @@ const Post = () => {
           value={backgroundType}
         >
           컬러
-        </SelectButton>
-        <SelectButton
+        </S.SelectButton>
+        <S.SelectButton
           isBgType={backgroundType === 'image'}
           type="button"
           name="image"
@@ -118,34 +104,34 @@ const Post = () => {
           value={backgroundType}
         >
           이미지
-        </SelectButton>
-      </ToggleButtons>
+        </S.SelectButton>
+      </S.ToggleButtons>
       {backgroundType === 'color' ? (
-        <ColorBoxContainer>
+        <S.ColorBoxContainer>
           {COLOR_OPTION.map((color, index) => (
-            <BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectedColor}>
-              {index === SelectedColor && <CheckMark />}
-            </BackgroundColor>
+            <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+              {index === selectBackgroundType.color && <CheckMark />}
+            </S.BackgroundColor>
           ))}
-        </ColorBoxContainer>
+        </S.ColorBoxContainer>
       ) : (
-        <ImageBoxContainer>
+        <S.ImageBoxContainer>
           {backgroundImgData.map((url, index) => (
-            <BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectedImage}>
-              {index === SelectedImage && (
+            <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
+              {index === selectBackgroundType.image && (
                 <>
                   <CheckMark />
-                  <SelectImageCover />
+                  <S.SelectImageCover />
                 </>
               )}
-            </BackgroundImage>
+            </S.BackgroundImage>
           ))}
-        </ImageBoxContainer>
+        </S.ImageBoxContainer>
       )}
       <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError} onClick={handleSubmit}>
         생성하기
       </Buttons>
-    </PostLayout>
+    </S.PostLayout>
   );
 };
 
