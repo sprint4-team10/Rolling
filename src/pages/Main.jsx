@@ -38,7 +38,7 @@ const Main = () => {
         </Section>
         <div style={{ width: 'fit-content', margin: '0 auto' }}>
           <Link to="/list">
-            <Buttons buttonType="Primary56" buttonSize="small">
+            <Buttons buttonType="Primary56" buttonSize="small" tabletButtonSize="full">
               구경해보기
             </Buttons>
           </Link>

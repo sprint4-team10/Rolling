@@ -3,10 +3,11 @@ import FONTS from '../../utils/Fonts';
 import COLORS from '../../utils/colors';
 
 const BUTTON_SIZE = {
-  large: 72,
-  medium: 32,
-  small: 28,
-  xSmall: 12,
+  large: `72rem`,
+  medium: `32rem`,
+  small: `28rem`,
+  xSmall: `12rem`,
+  full: '95vw',
 };
 
 export const Primary56 = styled.button`
@@ -16,7 +17,7 @@ export const Primary56 = styled.button`
   padding: 1.4rem 2.4rem;
   border-radius: 1.2rem;
   background-color: ${COLORS.purple600};
-  width: ${({ buttonSize }) => BUTTON_SIZE[buttonSize]}rem;
+  width: ${({ buttonSize }) => BUTTON_SIZE[buttonSize]};
   border: 0.2rem solid ${COLORS.purple600};
 
   &:disabled {
@@ -38,6 +39,14 @@ export const Primary56 = styled.button`
     &:focus {
       background-color: ${COLORS.purple800};
       border: 0.2rem solid ${COLORS.purple900};
+    }
+
+    @media (max-width: 1199px) {
+      width: ${({ tabletButtonSize }) => BUTTON_SIZE[tabletButtonSize]};
+    }
+
+    @media (max-width: 767px) {
+      width: ${({ mobileButtonSize }) => BUTTON_SIZE[mobileButtonSize]};
     }
   }
 `;
