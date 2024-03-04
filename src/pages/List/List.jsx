@@ -223,7 +223,7 @@ const RightBtn = styled(Btn)`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  align-items: center;
 `;
 
 const Content = styled.div`
