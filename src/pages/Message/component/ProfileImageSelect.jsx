@@ -57,13 +57,13 @@ const Preview = styled.img``;
 
 const ProfileCandidates = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 0.4rem;
   flex-wrap: wrap;
 `;
 
 const ImgContainer = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
   flex-shrink: 0;
   overflow: hidden;
@@ -88,8 +88,8 @@ const CheckIcon = styled.img`
 `;
 
 const PreviewContent = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
   background-color: blue;
   flex-shrink: 0;
@@ -101,5 +101,5 @@ const ImgSelectContent = styled.div``;
 const Title = styled.p`
   color: ${COLORS.gray500};
   ${FONTS.font16_Regular}
-  margin-bottom: 10px;
+  margin-bottom: 0.1rem;
 `;

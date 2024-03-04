@@ -12,7 +12,7 @@ export const Input = styled.input`
   border: 0.1rem solid ${({ isError }) => (isError ? COLORS.error : COLORS.gray300)};
 
   &:focus {
-    outline: 0.2rem solid ${COLORS.gray500};
+    outline: 0.2rem solid ${({ isError }) => (isError ? COLORS.error : COLORS.gray500)};
   }
 
   &::placeholder {
@@ -27,5 +27,9 @@ export const Input = styled.input`
     &::placeholder {
       color: ${COLORS.gray400};
     }
+  }
+
+  @media screen and (max-width: 784px) {
+    width: 100%;
   }
 `;

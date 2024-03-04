@@ -1,11 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import FONTS from '../../../utils/Fonts';
 import COLORS from '../../../utils/colors';
+import { useHandleOutsideClick } from '../../../hooks/useHandleOutsideClick';
 
-export const Dropdown = ({ options, defaultValue, onChange }) => {
+export const Dropdown = ({ options, defaultValue, onChange, isError }) => {
   const [currentValue, setCurrentValue] = useState(defaultValue);
   const [showOptions, setShowOptions] = useState(false);
+
   const selectRef = useRef(null);
 
   const handleOnChangeSelectValue = (e) => {
@@ -15,27 +17,21 @@ export const Dropdown = ({ options, defaultValue, onChange }) => {
     onChange(innerText);
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
-        setShowOptions(false);
-      }
-    };
+  useHandleOutsideClick(selectRef, () => {
+    setShowOptions(false);
+  });
 
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
+  const handleToggleOptions = () => {
+    setShowOptions((prev) => !prev);
+  };
 
   return (
     <SelectBox
       ref={selectRef}
       tabIndex="0"
-      onClick={() => {
-        setShowOptions((prev) => !prev);
-      }}
+      onClick={handleToggleOptions}
+      isOpen={showOptions}
+      isError={isError} // 에러 상태가 있거나 외부에서 isError prop이 전달되면 에러 스타일을 적용
     >
       <Label>{currentValue}</Label>
 
@@ -64,14 +60,15 @@ const SelectBox = styled.div`
   &::before {
     content: '⌵';
     position: absolute;
-    top: 0rem;
+    top: ${({ isOpen }) => (isOpen ? '1.5rem' : '0.1rem')};
     right: 1.6rem;
     color: ${COLORS.gray900};
     font-size: 3rem;
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'none')};
   }
 
   &:focus {
-    border: 0.1rem solid ${COLORS.gray500};
+    border: 0.1rem solid ${({ isError }) => (isError ? COLORS.error : COLORS.gray500)};
   }
 `;
 
