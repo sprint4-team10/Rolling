@@ -13,9 +13,6 @@ const SharePopOver = forwardRef(({ isOpen, style, handleClose }, ref) => {
     try {
       const copiedText = `${window.location.href}`;
       navigator.clipboard.writeText(copiedText);
-      console.log(copiedText);
-      //토스트 UI 나오게
-      //   alert('클립보드에 복사되었습니다.');
       setShowToast(true);
     } catch (error) {
       alert('클립보드 복사에 실패하였습니다.');

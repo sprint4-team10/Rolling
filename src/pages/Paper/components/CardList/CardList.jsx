@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import plusImg from '../../../assets/icons/plus.svg';
+import plusImg from '../../../../assets/icons/plus.svg';
 import { useEffect, useState } from 'react';
-import { getMessages } from '../../../api/api';
+import { getMessages } from '../../../../api/api';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { MessageCard } from '../MessageCard/MessageCard';
 import EditCard from '../EditCard';
-import { useHandleDeleteMessage } from '../../../hooks/useHandleDeleteMessage';
-import AddButton from '../../../components/Buttons/AddButton/AddButton';
+import { useHandleDeleteMessage } from '../../../../hooks/useHandleDeleteMessage';
+import AddButton from '../../../../components/Buttons/AddButton/AddButton';
+import * as S from './CardListStyled';
 
 const OFFSET = 8;
 
@@ -24,7 +24,6 @@ const CardList = () => {
     }
 
     const data = await getMessages(options);
-    console.log('messages:', messages);
     if (data.next === null) {
       setNext(false);
     }
@@ -62,15 +61,15 @@ const CardList = () => {
   }, [offset]);
 
   return (
-    <Container>
+    <S.Container>
       {!pathname.includes('edit') && (
-        <EmptyCard>
+        <S.EmptyCard>
           <Link to="message">
             <AddButton>
               <img src={plusImg} alt="plusIcon" />
             </AddButton>
           </Link>
-        </EmptyCard>
+        </S.EmptyCard>
       )}
       {messages.map((message) => {
         if (pathname.includes('edit')) {
@@ -103,37 +102,8 @@ const CardList = () => {
           }
         }
       })}
-    </Container>
+    </S.Container>
   );
 };
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(30rem, 33.33333%));
-  gap: 2.4rem;
-
-  @media (max-width: 1184px) {
-    grid-template-columns: repeat(2, minmax(30rem, 50%));
-    gap: 2rem;
-  }
-
-  @media (max-width: 685px) {
-    grid-template-columns: repeat(1, minmax(30rem, 100%));
-    gap: 1.6rem;
-  }
-`;
-
-const Card = styled.div`
-  height: 29rem;
-  background-color: #fff;
-  border-radius: 16px;
-  padding: 30px;
-`;
-
-const EmptyCard = styled(Card)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 export default CardList;
