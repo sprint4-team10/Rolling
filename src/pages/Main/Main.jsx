@@ -35,13 +35,13 @@ const Main = () => {
             <img src={landing02} alt="landingCover01" />
           </S.Cover>
         </S.Section>
-        <div style={{ width: 'fit-content', margin: '0 auto' }}>
-          <Link to="/list">
+        <Link to="/list">
+          <div style={{ textAlign: 'center' }}>
             <Buttons buttonType="Primary56" buttonSize="small" tabletButtonSize="full">
               구경해보기
             </Buttons>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </Layout>
     </S.Container>
   );

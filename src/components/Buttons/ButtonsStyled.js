@@ -7,7 +7,7 @@ const BUTTON_SIZE = {
   medium: `32rem`,
   small: `28rem`,
   xSmall: `12rem`,
-  full: '95vw',
+  full: '100%',
 };
 
 export const Primary56 = styled.button`
