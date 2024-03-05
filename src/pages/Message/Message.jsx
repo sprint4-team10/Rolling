@@ -22,6 +22,7 @@ const PostMessagesData = {
 const Message = () => {
   const [messageData, setMessageData] = useState(PostMessagesData);
   const [isInputError, setIsInputError] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,10 +30,23 @@ const Message = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(messageData);
-    await postMessage({ id, body: { team: 10, recipientId: id, ...messageData } });
-    console.log('메세지 데이터가 성공적으로 전송되었습니다.');
-    navigate(`/post/${id}`);
+    // 이미 요청 중인 경우 무시
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      console.log(messageData);
+      await postMessage({ id, body: { team: 10, recipientId: id, ...messageData } });
+      console.log('메세지 데이터가 성공적으로 전송되었습니다.');
+      navigate(`/post/${id}`);
+    } catch (error) {
+      console.error('메세지 데이터 전송 중 오류가 발생하였습니다.', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (value) => {
