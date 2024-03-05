@@ -75,27 +75,20 @@ export const ErrorMessage = styled.p`
 `;
 
 export const ColorBoxContainer = styled.div`
+  width: 100%;
   display: grid;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   gap: 1.6rem;
-  grid-template-columns: repeat(4, minmax(16.6rem, 28.8rem));
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(3, minmax(11rem, 16.8rem));
-  }
+  grid-template-columns: repeat(4, minmax(100px, auto));
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, minmax(16.6rem, 16.8rem));
+    grid-template-columns: repeat(2, minmax(100px, auto));
   }
 `;
 
 export const ImageBoxContainer = styled(ColorBoxContainer)``;
 
 export const BackgroundOptionBox = styled.button`
-  width: 16.8rem;
-  height: 16.8rem;
+  aspect-ratio: 1;
   border-radius: 1.6rem;
   cursor: pointer;
 `;
