@@ -14,7 +14,7 @@ const Post = () => {
   });
   const [backgroundImgData, setBackgroundImgData] = useState();
   const [inputValue, setInputValue] = useState();
-  const [isEmptyError, setIsEmptyError] = useState(false);
+  const [isEmptyError, setIsEmptyError] = useState(true);
   const [backgroundType, setBackgroundType] = useState('color');
   const navigate = useNavigate();
 
