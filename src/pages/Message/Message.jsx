@@ -91,7 +91,7 @@ const Message = () => {
           <FontSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
         </div>
 
-        <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError && isSubmitting}>
+        <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError || isSubmitting}>
           생성하기
         </Buttons>
       </S.Container>
