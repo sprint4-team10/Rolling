@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import TextFields from '../../../../components/TextField/TextFields';
-import * as S from './RelationshipSelectStyled';
 
 const OPTIONS = [
   { value: '지인', name: '지인' },
@@ -9,9 +7,7 @@ const OPTIONS = [
   { value: '친구', name: '친구' },
 ];
 
-const RelationshipSelect = ({ messageData, setMessageData }) => {
-  const [isError, setIsError] = useState(false);
-
+const RelationshipSelect = ({ setMessageData }) => {
   const handleChange = (selectedOption) => {
     setMessageData((prevData) => ({
       ...prevData,
@@ -19,22 +15,16 @@ const RelationshipSelect = ({ messageData, setMessageData }) => {
     }));
   };
 
-  useEffect(() => {
-    setIsError(messageData.relationship === '');
-  }, [messageData.relationship]);
-
   return (
     <>
       <TextFields
         textFieldType="Dropdown"
-        defaultValue="상대와의 관계"
+        defaultValue="지인"
         options={OPTIONS}
         width="72rem"
         name="relationship"
         onChange={handleChange}
-        isError={isError}
       />
-      <S.ErrorMessage isError={isError}>상대와의 관계를 선택해주세요.</S.ErrorMessage>
     </>
   );
 };

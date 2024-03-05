@@ -14,13 +14,15 @@ const PostMessagesData = {
   sender: '', // 보낸이 이름
   profileImageURL:
     'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png', // 프로필 이미지 URL
-  relationship: '', // 관계
+  relationship: '지인', // 관계
   content: '', // 내용
-  font: '', // 기본 폰트
+  font: 'Noto Sans', // 기본 폰트
 };
 
 const Message = () => {
   const [messageData, setMessageData] = useState(PostMessagesData);
+  const [isInputError, setIsInputError] = useState(true);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -52,7 +54,7 @@ const Message = () => {
       <S.Container onSubmit={handleSubmit}>
         <div>
           <S.Title>From.</S.Title>
-          <PostInput onChange={handleChange} />
+          <PostInput onChange={handleChange} isInputError={isInputError} setIsInputError={setIsInputError} />
         </div>
 
         <div>
@@ -75,7 +77,7 @@ const Message = () => {
           <FontSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
         </div>
 
-        <Buttons buttonType="Primary56" buttonSize="large" type="text">
+        <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError}>
           생성하기
         </Buttons>
       </S.Container>

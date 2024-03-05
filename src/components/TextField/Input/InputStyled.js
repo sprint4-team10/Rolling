@@ -29,7 +29,7 @@ export const Input = styled.input`
     }
   }
 
-  @media screen and (max-width: 784px) {
+  @media screen and (max-width: 1199px) {
     width: 100%;
   }
 `;
