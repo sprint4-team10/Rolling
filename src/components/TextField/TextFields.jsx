@@ -1,5 +1,5 @@
 import Dropdown from './Dropdown';
-import * as S from './Input';
+import * as S from './Input/InputStyled';
 import TextEditor from './TextEditor';
 
 const TextFields = ({
