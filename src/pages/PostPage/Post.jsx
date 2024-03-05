@@ -16,6 +16,7 @@ const Post = () => {
   const [inputValue, setInputValue] = useState();
   const [isEmptyError, setIsEmptyError] = useState(true);
   const [backgroundType, setBackgroundType] = useState('color');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLoadBackgroundImgURL = async () => {
@@ -60,9 +61,15 @@ const Post = () => {
       backgroundColor: BgColor[COLOR_OPTION[selectBackgroundType.color]],
       backgroundImageURL: backgroundType === 'image' ? backgroundImgData[selectBackgroundType.image] : null,
     };
-
-    const { id } = await createRollingPaper(body);
-    navigate(`/post/${id}`);
+    try {
+      setIsLoading(true);
+      const { id } = await createRollingPaper(body);
+      navigate(`/post/${id}`);
+    } catch (error) {
+      return;
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -128,7 +135,7 @@ const Post = () => {
           ))}
         </S.ImageBoxContainer>
       )}
-      <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError} onClick={handleSubmit}>
+      <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError || isLoading} onClick={handleSubmit}>
         생성하기
       </Buttons>
     </S.PostLayout>
