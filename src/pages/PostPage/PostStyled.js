@@ -4,18 +4,19 @@ import FONTS from '../../utils/Fonts';
 
 export const PostLayout = styled.form`
   padding-top: 6rem;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 4rem;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+  max-width: 72rem;
+  width: calc(-9.6rem + 100vw);
+  margin: 2rem auto;
 `;
 
 export const InputBox = styled.input`
-  width: 72rem;
+  max-width: 72rem;
+  width: 100%;
   padding: 1.2rem 1.6rem;
   border: 0.1rem solid ${COLORS.gray300};
   border-radius: 0.8rem;
@@ -37,6 +38,7 @@ export const SendToInputContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 0.4rem;
+  width: 100%;
 `;
 
 export const ToggleButtons = styled.div`
@@ -46,7 +48,7 @@ export const ToggleButtons = styled.div`
 
 export const SelectButton = styled.button`
   display: inline-block;
-  width: 12rem;
+  max-width: 12rem;
   padding: 0.7rem 1.6rem;
   color: ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray900)};
   text-align: center;
@@ -73,11 +75,20 @@ export const ErrorMessage = styled.p`
 `;
 
 export const ColorBoxContainer = styled.div`
-  display: flex;
+  display: grid;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 1.6rem;
+  grid-template-columns: repeat(4, minmax(16.6rem, 28.8rem));
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(11rem, 16.8rem));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(16.6rem, 16.8rem));
+  }
 `;
 
 export const ImageBoxContainer = styled(ColorBoxContainer)``;
