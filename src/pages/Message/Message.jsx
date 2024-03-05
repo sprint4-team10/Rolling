@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-import COLORS from '../../utils/colors';
-import FONTS from '../../utils/Fonts';
-import { PostInput, ProfileImageSelect, RelationshipSelect, EnterContent, FontSelect } from './component';
-import Buttons from '../../components/Buttons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postMessage } from '../../api/api';
+import Layout from '../../layout/Layout';
+import PostInput from './component/PostInput';
+import ProfileImageSelect from './component/ProfileImageSelect';
+import RelationshipSelect from './component/RelationshipSelect';
+import EnterContent from './component/EnterContent';
+import FontSelect from './component/FontSelect';
+import Buttons from '../../components/Buttons';
+import * as S from './MessageStyled';
 
 const PostMessagesData = {
   sender: '', // 보낸이 이름
@@ -45,53 +48,39 @@ const Message = () => {
   };
 
   return (
-    <Container onSubmit={handleSubmit}>
-      <div>
-        <Title>From.</Title>
-        <PostInput onChange={handleChange} />
-      </div>
+    <Layout>
+      <S.Container onSubmit={handleSubmit}>
+        <div>
+          <S.Title>From.</S.Title>
+          <PostInput onChange={handleChange} />
+        </div>
 
-      <div>
-        <Title>프로필 이미지</Title>
-        <ProfileImageSelect onChange={handleProfileChange} selectedImgUrl={messageData.profileImageURL} />
-      </div>
+        <div>
+          <S.Title>프로필 이미지</S.Title>
+          <ProfileImageSelect onChange={handleProfileChange} selectedImgUrl={messageData.profileImageURL} />
+        </div>
 
-      <div>
-        <Title>상대와의 관계</Title>
-        <RelationshipSelect onChange={handleChange} setMessageData={setMessageData} />
-      </div>
+        <div>
+          <S.Title>상대와의 관계</S.Title>
+          <RelationshipSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
+        </div>
 
-      <div>
-        <Title>내용을 입력해주세요</Title>
-        <EnterContent setMessageData={setMessageData} />
-      </div>
+        <S.EnterContentWrapper>
+          <S.Title>내용을 입력해주세요</S.Title>
+          <EnterContent setMessageData={setMessageData} />
+        </S.EnterContentWrapper>
 
-      <div>
-        <Title>폰트 선택</Title>
-        <FontSelect onChange={handleChange} setMessageData={setMessageData} />
-      </div>
+        <div>
+          <S.Title>폰트 선택</S.Title>
+          <FontSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
+        </div>
 
-      <Buttons buttonType="Primary56" buttonSize="large" type="text">
-        생성하기
-      </Buttons>
-    </Container>
+        <Buttons buttonType="Primary56" buttonSize="large" type="text">
+          생성하기
+        </Buttons>
+      </S.Container>
+    </Layout>
   );
 };
 
 export default Message;
-
-const Container = styled.form`
-  max-width: 72rem;
-  padding: 5rem 0 6rem 0;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  justify-content: center;
-  gap: 5rem;
-`;
-
-const Title = styled.h2`
-  margin-bottom: 1.2rem;
-  ${FONTS.font24_Bold}
-  ${COLORS.gray900}
-`;

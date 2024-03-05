@@ -1,16 +1,40 @@
-import { Dropdown } from './Dropdown';
-import { Input } from './Input';
-import { TextEditor } from './TextEditor';
+import Dropdown from './Dropdown';
+import * as S from './Input';
+import TextEditor from './TextEditor';
 
-const TextFields = ({ textFieldType, placeholder, width, disabled, isError, options, defaultValue, onChange }) => {
+const TextFields = ({
+  textFieldType,
+  placeholder,
+  width,
+  disabled,
+  isError,
+  options,
+  defaultValue,
+  onChange,
+  onBlur,
+}) => {
   switch (textFieldType) {
     case 'Input':
       return (
-        <Input onChange={onChange} placeholder={placeholder} width={width} disabled={disabled} isError={isError} />
+        <S.Input
+          onChange={onChange}
+          placeholder={placeholder}
+          width={width}
+          disabled={disabled}
+          isError={isError}
+          onBlur={onBlur}
+        />
       );
     case 'Dropdown':
       return (
-        <Dropdown width={width} disabled={disabled} options={options} defaultValue={defaultValue} onChange={onChange} />
+        <Dropdown
+          onChange={onChange}
+          options={options}
+          width={width}
+          disabled={disabled}
+          defaultValue={defaultValue}
+          isError={isError}
+        />
       );
     case 'TextEditor':
       return <TextEditor onChange={onChange} />;
