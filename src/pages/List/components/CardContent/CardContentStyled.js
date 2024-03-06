@@ -16,14 +16,14 @@ export const Title = styled.div`
   ${FONTS.font24_Bold}
 
   ${(props) =>
-    props.backgroundImageURL &&
+    props.$backgroundImageURL &&
     css`
       color: ${COLORS.white};
     `}
 
   /* 백그라운드가 이미지가 아닌 경우 */
   ${(props) =>
-    !props.backgroundImageURL &&
+    !props.$backgroundImageURL &&
     css`
       color: ${COLORS.gray900};
     `}
