@@ -103,28 +103,24 @@ const Post = () => {
         rightContent="이미지"
         onClick={handleBackgroundType}
       />
-      {backgroundType === 'color' ? (
-        <S.ColorBoxContainer>
-          {COLOR_OPTION.map((color, index) => (
-            <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
-              {index === selectBackgroundType.color && <CheckMark />}
-            </S.BackgroundColor>
-          ))}
-        </S.ColorBoxContainer>
-      ) : (
-        <S.ImageBoxContainer>
-          {backgroundImgData.map((url, index) => (
-            <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
-              {index === selectBackgroundType.image && (
-                <>
-                  <CheckMark />
-                  <S.SelectImageCover />
-                </>
-              )}
-            </S.BackgroundImage>
-          ))}
-        </S.ImageBoxContainer>
-      )}
+      <S.BoxContainer>
+        {backgroundType === 'color'
+          ? COLOR_OPTION.map((color, index) => (
+              <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+                {index === selectBackgroundType.color && <CheckMark />}
+              </S.BackgroundColor>
+            ))
+          : backgroundImgData.map((url, index) => (
+              <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
+                {index === selectBackgroundType.image && (
+                  <>
+                    <CheckMark />
+                    <S.SelectImageCover />
+                  </>
+                )}
+              </S.BackgroundImage>
+            ))}
+      </S.BoxContainer>
       <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError || isLoading} onClick={handleSubmit}>
         생성하기
       </Buttons>

@@ -47,7 +47,7 @@ export const ErrorMessage = styled.p`
   visibility: ${({ isEmptyError }) => (isEmptyError ? 'visible' : 'hidden')};
 `;
 
-export const ColorBoxContainer = styled.div`
+export const BoxContainer = styled.div`
   width: 100%;
   display: grid;
   gap: 1.6rem;
@@ -58,17 +58,15 @@ export const ColorBoxContainer = styled.div`
   }
 `;
 
-export const ImageBoxContainer = styled(ColorBoxContainer)``;
-
 export const BackgroundOptionBox = styled.button`
   aspect-ratio: 1;
   border-radius: 1.6rem;
   cursor: pointer;
+  position: relative;
 `;
 
 export const BackgroundColor = styled(BackgroundOptionBox)`
   background-color: ${({ backgroundColor }) => COLORS[backgroundColor]};
-  position: relative;
 `;
 
 export const BackgroundImage = styled(BackgroundOptionBox)`
@@ -76,7 +74,6 @@ export const BackgroundImage = styled(BackgroundOptionBox)`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: relative;
 `;
 
 export const SelectImageCover = styled(BackgroundColor)`
