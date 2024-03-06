@@ -35,15 +35,12 @@ const Message = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
     try {
-      console.log(messageData);
+      setIsSubmitting(true);
       await postMessage({ id, body: { team: 10, recipientId: id, ...messageData } });
-      console.log('메세지 데이터가 성공적으로 전송되었습니다.');
       navigate(`/post/${id}`);
     } catch (error) {
-      console.error('메세지 데이터 전송 중 오류가 발생하였습니다.', error);
+      return;
     } finally {
       setIsSubmitting(false);
     }
