@@ -6,7 +6,7 @@ import * as S from './CardContentStyled';
 const CardContent = ({ title, messageCount, messages, backgroundImageURL, topReactions }) => {
   return (
     <S.Wrapper>
-      <S.Title backgroundImageURL={backgroundImageURL}>To. {title}</S.Title>
+      <S.Title $backgroundImageURL={backgroundImageURL}>To. {title}</S.Title>
       <S.Sender>
         <Senders
           containerStyle={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1.2rem', display: 'flex' }}

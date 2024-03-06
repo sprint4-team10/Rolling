@@ -29,9 +29,9 @@ export const Wrapper = styled.div`
   }
 
   ${(props) =>
-    props.backgroundImageUrl &&
+    props.$backgroundImageUrl &&
     css`
-      background-image: url('${props.backgroundImageUrl}');
+      background-image: url('${props.$backgroundImageUrl}');
       &::before {
         content: '';
         position: absolute;
@@ -45,9 +45,9 @@ export const Wrapper = styled.div`
     `}
 
   ${(props) =>
-    !props.backgroundImageURL &&
+    !props.$backgroundImageURL &&
     css`
-      background-color: ${cardColor[props.backgroundColor]};
+      background-color: ${cardColor[props.$backgroundColor]};
     `}
 `;
 

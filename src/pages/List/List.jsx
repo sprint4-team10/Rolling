@@ -163,7 +163,7 @@ const List = () => {
 
         <S.ButtonContainer>
           <Link to="/post">
-            <Buttons buttonType="Primary56" buttonSize="small">
+            <Buttons buttonType="Primary56" buttonSize="small" tabletButtonSize="full">
               나도 만들어보기
             </Buttons>
           </Link>
