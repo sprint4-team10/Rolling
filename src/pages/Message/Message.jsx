@@ -22,6 +22,7 @@ const PostMessagesData = {
 const Message = () => {
   const [messageData, setMessageData] = useState(PostMessagesData);
   const [isInputError, setIsInputError] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,10 +30,20 @@ const Message = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(messageData);
-    await postMessage({ id, body: { team: 10, recipientId: id, ...messageData } });
-    console.log('메세지 데이터가 성공적으로 전송되었습니다.');
-    navigate(`/post/${id}`);
+    // 이미 요청 중인 경우 무시
+    if (isSubmitting) {
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      await postMessage({ id, body: { team: 10, recipientId: id, ...messageData } });
+      navigate(`/post/${id}`);
+    } catch (error) {
+      return;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (value) => {
@@ -77,7 +88,7 @@ const Message = () => {
           <FontSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
         </div>
 
-        <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError}>
+        <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError || isSubmitting}>
           생성하기
         </Buttons>
       </S.Container>
