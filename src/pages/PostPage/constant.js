@@ -1,1 +1,1 @@
-export const COLOR_OPTION = [`orange200`, `purple200`, `blue200`, `green200`];
+export const COLOR_OPTION = [`beige`, `purple`, `blue`, `green`];

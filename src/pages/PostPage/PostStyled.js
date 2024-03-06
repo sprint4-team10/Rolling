@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 
+const BACKGROUND_COLOR = {
+  beige: 'orange200',
+  purple: 'purple200',
+  blue: 'blue200',
+  green: 'green200',
+};
+
 export const PostLayout = styled.form`
   padding-top: 6rem;
   display: flex;
@@ -41,40 +48,13 @@ export const SendToInputContainer = styled.div`
   width: 100%;
 `;
 
-export const ToggleButtons = styled.div`
-  background-color: ${COLORS.gray100};
-  border-radius: 0.8rem;
-`;
-
-export const SelectButton = styled.button`
-  display: inline-block;
-  max-width: 12rem;
-  padding: 0.7rem 1.6rem;
-  color: ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray900)};
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: ${({ isBgType }) => (isBgType === true ? 700 : 400)};
-  line-height: 2.6rem;
-  letter-spacing: -0.016rem;
-  border-radius: 0.8rem;
-  background-color: ${({ isBgType }) => (isBgType === true ? COLORS.white : COLORS.gray100)};
-  border: 0.2rem solid ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray100)};
-
-  &:focus {
-    background-color: ${COLORS.white};
-    border: 0.2rem solid ${COLORS.purple700};
-    color: ${COLORS.purple700};
-    font-weight: 700;
-  }
-`;
-
 export const ErrorMessage = styled.p`
   ${FONTS.font12_Regular}
   color: ${COLORS.error};
   visibility: ${({ isEmptyError }) => (isEmptyError ? 'visible' : 'hidden')};
 `;
 
-export const ColorBoxContainer = styled.div`
+export const BoxContainer = styled.div`
   width: 100%;
   display: grid;
   gap: 1.6rem;
@@ -85,17 +65,15 @@ export const ColorBoxContainer = styled.div`
   }
 `;
 
-export const ImageBoxContainer = styled(ColorBoxContainer)``;
-
 export const BackgroundOptionBox = styled.button`
   aspect-ratio: 1;
   border-radius: 1.6rem;
   cursor: pointer;
+  position: relative;
 `;
 
 export const BackgroundColor = styled(BackgroundOptionBox)`
-  background-color: ${({ backgroundColor }) => COLORS[backgroundColor]};
-  position: relative;
+  background-color: ${({ backgroundColor }) => COLORS[BACKGROUND_COLOR[backgroundColor]]};
 `;
 
 export const BackgroundImage = styled(BackgroundOptionBox)`
@@ -103,7 +81,6 @@ export const BackgroundImage = styled(BackgroundOptionBox)`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: relative;
 `;
 
 export const SelectImageCover = styled(BackgroundColor)`

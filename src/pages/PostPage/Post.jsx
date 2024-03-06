@@ -6,6 +6,7 @@ import { createRollingPaper } from '../../api/createRollingPaper.js';
 import { useNavigate } from 'react-router-dom';
 import * as S from './PostStyled';
 import CheckMark from './component/CheckMark/CheckMark.jsx';
+import ToggleButton from '../../components/Buttons/ToggleButton/ToggleButton.jsx';
 
 const Post = () => {
   const [selectBackgroundType, setSelectBackgroundType] = useState({
@@ -14,9 +15,9 @@ const Post = () => {
   });
   const [backgroundImgData, setBackgroundImgData] = useState();
   const [inputValue, setInputValue] = useState();
-  const [isEmptyError, setIsEmptyError] = useState(true);
-  const [backgroundType, setBackgroundType] = useState('color');
+  const [isEmptyError, setIsEmptyError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [backgroundType, setBackgroundType] = useState('color');
   const navigate = useNavigate();
 
   const handleLoadBackgroundImgURL = async () => {
@@ -47,19 +48,15 @@ const Post = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsEmptyError(!inputValue ? true : false);
 
-    const BgColor = {
-      orange200: 'beige',
-      purple200: 'purple',
-      blue200: 'blue',
-      green200: 'green',
-    };
+    const { image, color } = selectBackgroundType;
 
     const body = {
       team: '10',
       name: inputValue,
-      backgroundColor: BgColor[COLOR_OPTION[selectBackgroundType.color]],
-      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[selectBackgroundType.image] : null,
+      backgroundColor: COLOR_OPTION[color],
+      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[image] : null,
     };
     try {
       setIsLoading(true);
@@ -93,48 +90,32 @@ const Post = () => {
         <S.MainDescription>배경화면을 선택해 주세요.</S.MainDescription>
         <S.Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</S.Subscription>
       </div>
-      <S.ToggleButtons>
-        <S.SelectButton
-          isBgType={backgroundType === 'color'}
-          type="button"
-          name="color"
-          onClick={handleBackgroundType}
-          value={backgroundType}
-        >
-          컬러
-        </S.SelectButton>
-        <S.SelectButton
-          isBgType={backgroundType === 'image'}
-          type="button"
-          name="image"
-          onClick={handleBackgroundType}
-          value={backgroundType}
-        >
-          이미지
-        </S.SelectButton>
-      </S.ToggleButtons>
-      {backgroundType === 'color' ? (
-        <S.ColorBoxContainer>
-          {COLOR_OPTION.map((color, index) => (
-            <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
-              {index === selectBackgroundType.color && <CheckMark />}
-            </S.BackgroundColor>
-          ))}
-        </S.ColorBoxContainer>
-      ) : (
-        <S.ImageBoxContainer>
-          {backgroundImgData.map((url, index) => (
-            <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
-              {index === selectBackgroundType.image && (
-                <>
-                  <CheckMark />
-                  <S.SelectImageCover />
-                </>
-              )}
-            </S.BackgroundImage>
-          ))}
-        </S.ImageBoxContainer>
-      )}
+      <ToggleButton
+        isBgType={backgroundType}
+        leftType="color"
+        rightType="image"
+        leftContent="컬러"
+        rightContent="이미지"
+        onClick={handleBackgroundType}
+      />
+      <S.BoxContainer>
+        {backgroundType === 'color'
+          ? COLOR_OPTION.map((color, index) => (
+              <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+                {index === selectBackgroundType.color && <CheckMark />}
+              </S.BackgroundColor>
+            ))
+          : backgroundImgData.map((url, index) => (
+              <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
+                {index === selectBackgroundType.image && (
+                  <>
+                    <CheckMark />
+                    <S.SelectImageCover />
+                  </>
+                )}
+              </S.BackgroundImage>
+            ))}
+      </S.BoxContainer>
       <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError || isLoading} onClick={handleSubmit}>
         생성하기
       </Buttons>
