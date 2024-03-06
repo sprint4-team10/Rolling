@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
 
+const BACKGROUND_COLOR = {
+  beige: 'orange200',
+  purple: 'purple200',
+  blue: 'blue200',
+  green: 'green200',
+};
+
 export const PostLayout = styled.form`
   padding-top: 6rem;
   display: flex;
@@ -66,7 +73,7 @@ export const BackgroundOptionBox = styled.button`
 `;
 
 export const BackgroundColor = styled(BackgroundOptionBox)`
-  background-color: ${({ backgroundColor }) => COLORS[backgroundColor]};
+  background-color: ${({ backgroundColor }) => COLORS[BACKGROUND_COLOR[backgroundColor]]};
 `;
 
 export const BackgroundImage = styled(BackgroundOptionBox)`
