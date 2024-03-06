@@ -20,7 +20,6 @@ export const Primary56 = styled.button`
   width: ${({ buttonSize }) => BUTTON_SIZE[buttonSize]};
   border: 0.2rem solid ${COLORS.purple600};
   max-width: 72rem;
-  width: 100%;
 
   &:disabled {
     background-color: ${COLORS.gray300};

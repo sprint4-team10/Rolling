@@ -4,7 +4,7 @@ import FONTS from '../../utils/Fonts';
 
 export const Wrapper = styled.div`
   position: relative;
-  max-width: 1160px;
+  max-width: 116rem;
 
   @media (max-width: 1190px) {
     width: calc(100vw - 4.8rem);
@@ -31,7 +31,7 @@ export const Btn = styled.button`
   height: 4rem;
   border-radius: 50%;
   background-color: ${COLORS.white};
-  border: 1px solid ${COLORS.gray300};
+  border: 0.1rem solid ${COLORS.gray300};
   opacity: 0.8;
 
   @media (max-width: 1190px) {
@@ -40,17 +40,17 @@ export const Btn = styled.button`
 `;
 
 export const LeftBtn = styled(Btn)`
-  left: -20px;
+  left: -2rem;
 `;
 
 export const RightBtn = styled(Btn)`
-  right: -20px;
+  right: -2rem;
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 116rem;
+  margin: 0 auto;
+  padding-bottom: 6rem;
 `;
 
 export const Content = styled.div`
@@ -65,18 +65,6 @@ export const Title = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  text-align: center;
   margin-top: 6.4rem;
-
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 375px) and (max-width: 767px) {
-    display: flex;
-    justify-content: center;
-  }
 `;
