@@ -6,6 +6,7 @@ import { createRollingPaper } from '../../api/createRollingPaper.js';
 import { useNavigate } from 'react-router-dom';
 import * as S from './PostStyled';
 import CheckMark from './component/CheckMark/CheckMark.jsx';
+import ToggleButton from '../../components/Buttons/ToggleButton/ToggleButton.jsx';
 
 const Post = () => {
   const [selectBackgroundType, setSelectBackgroundType] = useState({
@@ -94,26 +95,14 @@ const Post = () => {
         <S.MainDescription>배경화면을 선택해 주세요.</S.MainDescription>
         <S.Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</S.Subscription>
       </div>
-      <S.ToggleButtons>
-        <S.SelectButton
-          isBgType={backgroundType === 'color'}
-          type="button"
-          name="color"
-          onClick={handleBackgroundType}
-          value={backgroundType}
-        >
-          컬러
-        </S.SelectButton>
-        <S.SelectButton
-          isBgType={backgroundType === 'image'}
-          type="button"
-          name="image"
-          onClick={handleBackgroundType}
-          value={backgroundType}
-        >
-          이미지
-        </S.SelectButton>
-      </S.ToggleButtons>
+      <ToggleButton
+        isBgType={backgroundType}
+        leftType="color"
+        rightType="image"
+        leftContent="컬러"
+        rightContent="이미지"
+        onClick={handleBackgroundType}
+      />
       {backgroundType === 'color' ? (
         <S.ColorBoxContainer>
           {COLOR_OPTION.map((color, index) => (
