@@ -28,9 +28,9 @@ const PostInput = ({ onChange, isInputError, setIsInputError }) => {
         onChange={handleChange}
         onBlur={handleBlur}
         value={name}
-        isError={isInputError && touched}
+        $isError={isInputError && touched}
       />
-      <S.ErrorMessage isError={isInputError && touched}>이름을 입력해주세요.</S.ErrorMessage>
+      <S.ErrorMessage $isError={isInputError && touched}>이름을 입력해주세요.</S.ErrorMessage>
     </>
   );
 };

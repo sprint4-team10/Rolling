@@ -8,6 +8,7 @@ const TextFields = ({
   width,
   disabled,
   isError,
+  $isError,
   options,
   defaultValue,
   onChange,
@@ -21,7 +22,7 @@ const TextFields = ({
           placeholder={placeholder}
           width={width}
           disabled={disabled}
-          isError={isError}
+          $isError={$isError}
           onBlur={onBlur}
         />
       );

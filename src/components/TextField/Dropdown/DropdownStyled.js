@@ -16,15 +16,15 @@ export const SelectBox = styled.div`
   &::before {
     content: '⌵';
     position: absolute;
-    top: ${({ isOpen }) => (isOpen ? '1.5rem' : '0.1rem')};
+    top: ${({ $isOpen }) => ($isOpen ? '1.5rem' : '0.1rem')};
     right: 1.6rem;
     color: ${COLORS.gray900};
     font-size: 3rem;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'none')};
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'none')};
   }
 
   &:focus {
-    border: 0.1rem solid ${({ isError }) => (isError ? COLORS.error : COLORS.gray500)};
+    border: 0.1rem solid ${({ $isError }) => ($isError ? COLORS.error : COLORS.gray500)};
   }
 `;
 
@@ -39,7 +39,7 @@ export const SelectOptions = styled.ul`
   top: 0;
   left: 0;
   width: 100%;
-  display: ${({ show }) => (show ? 'block' : 'none')};
+  display: ${({ $show }) => ($show ? 'block' : 'none')};
   overflow: hidden;
   margin-top: 5.8rem;
   border-radius: 0.8rem;
