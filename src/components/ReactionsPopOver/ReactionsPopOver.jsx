@@ -11,8 +11,12 @@ const ReactionsPopOver = forwardRef(({ isOpen, style, update }, ref) => {
   const [reactions, setReactions] = useState([]);
 
   const handleLoadReactions = async (options) => {
-    const data = await getReactions(options);
-    setReactions(data.results);
+    try {
+      const data = await getReactions(options);
+      setReactions(data.results);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
