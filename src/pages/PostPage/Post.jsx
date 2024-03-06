@@ -14,9 +14,9 @@ const Post = () => {
   });
   const [backgroundImgData, setBackgroundImgData] = useState();
   const [inputValue, setInputValue] = useState();
-  const [isEmptyError, setIsEmptyError] = useState(true);
-  const [backgroundType, setBackgroundType] = useState('color');
+  const [isEmptyError, setIsEmptyError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [backgroundType, setBackgroundType] = useState('color');
   const navigate = useNavigate();
 
   const handleLoadBackgroundImgURL = async () => {
@@ -47,6 +47,7 @@ const Post = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsEmptyError(!inputValue ? true : false);
 
     const BgColor = {
       orange200: 'beige',

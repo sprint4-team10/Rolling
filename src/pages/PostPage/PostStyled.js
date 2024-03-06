@@ -48,6 +48,7 @@ export const ToggleButtons = styled.div`
 
 export const SelectButton = styled.button`
   display: inline-block;
+  min-width: 12.2rem;
   max-width: 12rem;
   padding: 0.7rem 1.6rem;
   color: ${({ isBgType }) => (isBgType === true ? COLORS.purple700 : COLORS.gray900)};
