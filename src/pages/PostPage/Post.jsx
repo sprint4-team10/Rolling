@@ -50,18 +50,13 @@ const Post = () => {
     e.preventDefault();
     setIsEmptyError(!inputValue ? true : false);
 
-    const BgColor = {
-      orange200: 'beige',
-      purple200: 'purple',
-      blue200: 'blue',
-      green200: 'green',
-    };
+    const { image, color } = selectBackgroundType;
 
     const body = {
       team: '10',
       name: inputValue,
-      backgroundColor: BgColor[COLOR_OPTION[selectBackgroundType.color]],
-      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[selectBackgroundType.image] : null,
+      backgroundColor: COLOR_OPTION[color],
+      backgroundImageURL: backgroundType === 'image' ? backgroundImgData[image] : null,
     };
     try {
       setIsLoading(true);
