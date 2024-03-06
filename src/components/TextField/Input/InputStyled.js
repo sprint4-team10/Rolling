@@ -9,10 +9,10 @@ export const Input = styled.input`
   ${FONTS.font16_Regular}
   color: ${COLORS.gray500};
   border-radius: 0.8rem;
-  border: 0.1rem solid ${({ isError }) => (isError ? COLORS.error : COLORS.gray300)};
+  border: 0.1rem solid ${({ $isError }) => ($isError ? COLORS.error : COLORS.gray300)};
 
   &:focus {
-    outline: 0.2rem solid ${({ isError }) => (isError ? COLORS.error : COLORS.gray500)};
+    outline: 0.2rem solid ${({ $isError }) => ($isError ? COLORS.error : COLORS.gray500)};
   }
 
   &::placeholder {
