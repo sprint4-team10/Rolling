@@ -64,7 +64,7 @@ const Paper = () => {
           <Container>
             <div style={{ marginBottom: '10px', marginLeft: 'auto', width: 'fit-content' }}>
               {pathname.includes('edit') ? (
-                <Buttons onClick={handleDeleteClick} buttonType="Primary40" buttonSize="xsmall">
+                <Buttons onClick={handleDeleteClick} buttonType="Primary40" buttonSize="xsmall" mobileButtonSize="full">
                   삭제하기
                 </Buttons>
               ) : (

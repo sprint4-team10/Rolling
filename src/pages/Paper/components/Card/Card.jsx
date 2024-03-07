@@ -3,10 +3,22 @@ import { ModalPortal } from '../../../../components/Portal';
 import { useModal } from '../../../../hooks/useModal';
 import { formatDate } from '../../../../utils/formatDate';
 import RelationshipBadge from '../../../../components/RelationshipBadge';
-import * as S from './MessageCardStyled';
+import Buttons from '../../../../components/Buttons';
+import deleteIcon from '../../../../assets/icons/delete.svg';
+import DeleteModal from '../../../../components/deleteModal';
+import { useLocation, useParams } from 'react-router-dom';
+import * as S from './CardStyled';
 
-export const MessageCard = ({ profileImageURL, sender, relationship, content, createdAt }) => {
+const Card = ({ messageId, profileImageURL, sender, relationship, content, createdAt }) => {
   const { openModal, handleClose, handleOpen } = useModal();
+  const { openModal: deleteOpenModal, handleClose: deleteHandleClose, handleOpen: deleteHandleOpen } = useModal();
+
+  const { id } = useParams();
+  const { pathname } = useLocation();
+
+  const handleDeleteClick = () => {
+    deleteHandleOpen();
+  };
 
   return (
     <>
@@ -21,6 +33,17 @@ export const MessageCard = ({ profileImageURL, sender, relationship, content, cr
           createdAt={createdAt}
         />
       </ModalPortal>
+      <ModalPortal>
+        <DeleteModal
+          type="message"
+          messageId={messageId}
+          recipientId={id}
+          openModal={deleteOpenModal}
+          handleClose={deleteHandleClose}
+        >
+          정말 메세지를 삭제하시겠어요?
+        </DeleteModal>
+      </ModalPortal>
       <S.MessageCardContainer>
         <S.CardHeader>
           <S.CardProfile profileImageURL={profileImageURL} />
@@ -30,6 +53,13 @@ export const MessageCard = ({ profileImageURL, sender, relationship, content, cr
             </S.Sender>
             <RelationshipBadge relationship={relationship} />
           </div>
+          {pathname.includes('edit') && (
+            <div style={{ marginLeft: 'auto' }}>
+              <Buttons buttonType="Outlined40" buttonSize="xsmall" onClick={handleDeleteClick}>
+                <img src={deleteIcon} alt="deleteIcon" />
+              </Buttons>
+            </div>
+          )}
         </S.CardHeader>
         <S.CardContents dangerouslySetInnerHTML={{ __html: content }} />
         <S.CardFooter>
@@ -40,3 +70,5 @@ export const MessageCard = ({ profileImageURL, sender, relationship, content, cr
     </>
   );
 };
+
+export default Card;

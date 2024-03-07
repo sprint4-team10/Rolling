@@ -2,11 +2,10 @@ import plusImg from '../../../../assets/icons/plus.svg';
 import { useEffect, useState } from 'react';
 import { getMessages } from '../../../../api/api';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { MessageCard } from '../MessageCard/MessageCard';
-import EditCard from '../EditCard';
 import { useHandleDeleteMessage } from '../../../../hooks/useHandleDeleteMessage';
 import AddButton from '../../../../components/Buttons/AddButton/AddButton';
 import * as S from './CardListStyled';
+import Card from '../Card';
 
 const OFFSET = 8;
 
@@ -72,34 +71,18 @@ const CardList = () => {
         </S.EmptyCard>
       )}
       {messages.map((message) => {
-        if (pathname.includes('edit')) {
-          if (!filteredIds.includes(message.id)) {
-            return (
-              <EditCard
-                messageId={message.id}
-                profileImageURL={message.profileImageURL}
-                sender={message.sender}
-                relationship={message.relationship}
-                content={message.content}
-                createdAt={message.createdAt}
-                key={message.id + 'edit'}
-              />
-            );
-          }
-        } else {
-          if (!filteredIds.includes(message.id)) {
-            return (
-              <MessageCard
-                id={message.id}
-                profileImageURL={message.profileImageURL}
-                sender={message.sender}
-                relationship={message.relationship}
-                content={message.content}
-                createdAt={message.createdAt}
-                key={message.id}
-              />
-            );
-          }
+        if (!filteredIds.includes(message.id)) {
+          return (
+            <Card
+              id={message.id}
+              profileImageURL={message.profileImageURL}
+              sender={message.sender}
+              relationship={message.relationship}
+              content={message.content}
+              createdAt={message.createdAt}
+              key={message.id}
+            />
+          );
         }
       })}
     </S.Container>
