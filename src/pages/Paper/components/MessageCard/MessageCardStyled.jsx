@@ -19,7 +19,7 @@ export const CardHeader = styled.div`
 `;
 
 export const CardContents = styled.div`
-  padding: 2rem 0 1rem;
+  padding: 2rem 0 0;
   color: ${COLORS.gray600};
   font-size: 1.8rem;
   font-weight: 400;
@@ -27,7 +27,7 @@ export const CardContents = styled.div`
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
 `;
 
 export const CardFooter = styled.div`
@@ -38,6 +38,7 @@ export const CardFooter = styled.div`
 `;
 
 export const CardProfile = styled.div`
+  flex-shrink: 0;
   width: 5.6rem;
   height: 5.6rem;
   border-radius: 10rem;
@@ -49,7 +50,16 @@ export const CardProfile = styled.div`
   background-position: center;
 `;
 
+export const SenderInfo = styled.div`
+  // overflow: hidden;
+  min-width: 0;
+  flex-grow: 1;
+`;
+
 export const Sender = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 2rem;
   margin-bottom: 0.5rem;
 `;

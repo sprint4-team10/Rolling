@@ -24,12 +24,12 @@ export const MessageCard = ({ profileImageURL, sender, relationship, content, cr
       <S.MessageCardContainer>
         <S.CardHeader>
           <S.CardProfile profileImageURL={profileImageURL} />
-          <div>
+          <S.SenderInfo>
             <S.Sender>
               From. <b>{sender}</b>
             </S.Sender>
             <RelationshipBadge relationship={relationship} />
-          </div>
+          </S.SenderInfo>
         </S.CardHeader>
         <S.CardContents dangerouslySetInnerHTML={{ __html: content }} />
         <S.CardFooter>

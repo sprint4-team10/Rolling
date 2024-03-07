@@ -46,12 +46,12 @@ const EditCard = ({ messageId, profileImageURL, sender, relationship, content, c
       <S.MessageCardContainer>
         <S.CardHeader>
           <S.CardProfile profileImageURL={profileImageURL} />
-          <div>
+          <S.SenderInfo>
             <S.Sender>
               From. <b>{sender}</b>
             </S.Sender>
             <RelationshipBadge relationship={relationship} />
-          </div>
+          </S.SenderInfo>
           <div style={{ marginLeft: 'auto' }}>
             <Buttons buttonType="Outlined40" buttonSize="xsmall" onClick={handleDeleteClick}>
               <img src={deleteIcon} alt="deleteIcon" />
