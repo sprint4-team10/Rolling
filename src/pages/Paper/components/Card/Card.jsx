@@ -6,14 +6,15 @@ import RelationshipBadge from '../../../../components/RelationshipBadge';
 import Buttons from '../../../../components/Buttons';
 import deleteIcon from '../../../../assets/icons/delete.svg';
 import DeleteModal from '../../../../components/deleteModal';
-import { useParams } from 'react-router-dom';
-import * as S from './EditCardStyled';
+import { useLocation, useParams } from 'react-router-dom';
+import * as S from './CardStyled';
 
-const EditCard = ({ messageId, profileImageURL, sender, relationship, content, createdAt }) => {
+const Card = ({ messageId, profileImageURL, sender, relationship, content, createdAt }) => {
   const { openModal, handleClose, handleOpen } = useModal();
   const { openModal: deleteOpenModal, handleClose: deleteHandleClose, handleOpen: deleteHandleOpen } = useModal();
 
   const { id } = useParams();
+  const { pathname } = useLocation();
 
   const handleDeleteClick = () => {
     deleteHandleOpen();
@@ -52,11 +53,13 @@ const EditCard = ({ messageId, profileImageURL, sender, relationship, content, c
             </S.Sender>
             <RelationshipBadge relationship={relationship} />
           </S.SenderInfo>
-          <div style={{ marginLeft: 'auto' }}>
-            <Buttons buttonType="Outlined40" buttonSize="xsmall" onClick={handleDeleteClick}>
-              <img src={deleteIcon} alt="deleteIcon" />
-            </Buttons>
-          </div>
+          {pathname.includes('edit') && (
+            <div style={{ marginLeft: 'auto' }}>
+              <Buttons buttonType="Outlined40" buttonSize="xsmall" onClick={handleDeleteClick}>
+                <img src={deleteIcon} alt="deleteIcon" />
+              </Buttons>
+            </div>
+          )}
         </S.CardHeader>
         <S.CardContents dangerouslySetInnerHTML={{ __html: content }} />
         <S.CardFooter>
@@ -68,4 +71,4 @@ const EditCard = ({ messageId, profileImageURL, sender, relationship, content, c
   );
 };
 
-export default EditCard;
+export default Card;
