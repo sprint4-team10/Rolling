@@ -10,14 +10,14 @@ const BACKGROUND_COLOR = {
 };
 
 export const PostLayout = styled.form`
-  padding-top: 6rem;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 4rem;
+  gap: 3rem;
   max-width: 72rem;
-  width: calc(-9.6rem + 100vw);
+  width: calc(-4.6rem + 100vw);
   margin: 2rem auto;
 `;
 

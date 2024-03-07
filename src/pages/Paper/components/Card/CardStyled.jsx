@@ -49,7 +49,16 @@ export const CardProfile = styled.div`
   background-position: center;
 `;
 
+export const SenderInfo = styled.div`
+  // overflow: hidden;
+  min-width: 0;
+  flex-grow: 1;
+`;
+
 export const Sender = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 2rem;
   margin-bottom: 0.5rem;
 `;

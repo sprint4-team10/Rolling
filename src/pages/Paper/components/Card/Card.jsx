@@ -47,12 +47,12 @@ const Card = ({ messageId, profileImageURL, sender, relationship, content, creat
       <S.MessageCardContainer>
         <S.CardHeader>
           <S.CardProfile profileImageURL={profileImageURL} />
-          <div>
+          <S.SenderInfo>
             <S.Sender>
               From. <b>{sender}</b>
             </S.Sender>
             <RelationshipBadge relationship={relationship} />
-          </div>
+          </S.SenderInfo>
           {pathname.includes('edit') && (
             <div style={{ marginLeft: 'auto' }}>
               <Buttons buttonType="Outlined40" buttonSize="xsmall" onClick={handleDeleteClick}>
