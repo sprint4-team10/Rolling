@@ -21,8 +21,12 @@ const Post = () => {
   const navigate = useNavigate();
 
   const handleLoadBackgroundImgURL = async () => {
-    const data = await getBackgroundImageURL();
-    setBackgroundImgData(data.imageUrls);
+    try {
+      const data = await getBackgroundImageURL();
+      setBackgroundImgData(data.imageUrls);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSelectBackground = (e) => {

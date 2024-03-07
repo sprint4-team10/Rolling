@@ -18,12 +18,20 @@ const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, chi
 
   const handleDeleteClick = async () => {
     if (type === 'message') {
-      await deleteMessage({ id: messageId });
-      changeId(messageId);
-      navigate(`/post/${recipientId}`);
+      try {
+        await deleteMessage({ id: messageId });
+        changeId(messageId);
+        navigate(`/post/${recipientId}`);
+      } catch (error) {
+        console.error(error);
+      }
     } else if (type === 'recipient') {
-      await deleteRecipient({ id: recipientId });
-      navigate('/list');
+      try {
+        await deleteRecipient({ id: recipientId });
+        navigate('/list');
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

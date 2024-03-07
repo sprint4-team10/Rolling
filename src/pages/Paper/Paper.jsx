@@ -38,8 +38,12 @@ const Paper = () => {
   const { id } = useParams();
 
   const handleLoadRecipient = async (options) => {
-    const data = await getRecipient(options);
-    setRecipientInfo(data);
+    try {
+      const data = await getRecipient(options);
+      setRecipientInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleDeleteClick = () => {

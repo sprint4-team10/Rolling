@@ -23,12 +23,16 @@ const CardList = () => {
       return;
     }
 
-    const data = await getMessages(options);
-    if (data.next === null) {
-      setNext(false);
-    }
-    if (data.results.length > 0) {
-      setMessages([...messages, ...data.results]);
+    try {
+      const data = await getMessages(options);
+      if (data.next === null) {
+        setNext(false);
+      }
+      if (data.results.length > 0) {
+        setMessages([...messages, ...data.results]);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 

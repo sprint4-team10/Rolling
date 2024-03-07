@@ -23,11 +23,15 @@ const List = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const handleLoadRecipientList = async (options) => {
-    const data = await getRecipientList(options);
-    setRecipientList(data.results);
-    setPopularRecipientList([...data.results]);
-    const w = data.results.length - 1;
-    recipientListWidth.current = -(w * 275 + w * 20) + 1160;
+    try {
+      const data = await getRecipientList(options);
+      setRecipientList(data.results);
+      setPopularRecipientList([...data.results]);
+      const w = data.results.length - 1;
+      recipientListWidth.current = -(w * 275 + w * 20) + 1160;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSlideLeftClick = (e) => {

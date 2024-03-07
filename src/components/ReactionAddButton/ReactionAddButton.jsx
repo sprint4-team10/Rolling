@@ -14,15 +14,19 @@ const ReactionAddButton = ({ triggerUpdate }) => {
   };
 
   const handleEmojiClick = async (emoji) => {
-    await createReaction({
-      id,
-      body: {
-        emoji: emoji.emoji,
-        type: 'increase',
-      },
-    });
+    try {
+      await createReaction({
+        id,
+        body: {
+          emoji: emoji.emoji,
+          type: 'increase',
+        },
+      });
 
-    triggerUpdate((prevValue) => !prevValue);
+      triggerUpdate((prevValue) => !prevValue);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
