@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useHandleDeleteMessage } from '../../hooks/useHandleDeleteMessage';
 import * as S from './deleteModalStyled';
 
-const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children, setFilteredMessageId }) => {
+const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children }) => {
   const navigate = useNavigate();
   const { changeId } = useHandleDeleteMessage();
 

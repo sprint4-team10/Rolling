@@ -78,7 +78,7 @@ const CardList = () => {
         if (!filteredIds.includes(message.id)) {
           return (
             <Card
-              id={message.id}
+              messageId={message.id}
               profileImageURL={message.profileImageURL}
               sender={message.sender}
               relationship={message.relationship}
