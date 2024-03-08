@@ -5,7 +5,7 @@ import { getBackgroundImageURL } from '../../api/getBackgroundImageURL.js';
 import { createRollingPaper } from '../../api/createRollingPaper.js';
 import { useNavigate } from 'react-router-dom';
 import * as S from './PostStyled';
-import CheckMark from './component/CheckMark/CheckMark.jsx';
+import CheckMark from './components/CheckMark';
 import ToggleButton from '../../components/Buttons/ToggleButton/ToggleButton.jsx';
 
 const Post = () => {

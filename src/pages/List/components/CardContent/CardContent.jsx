@@ -1,4 +1,4 @@
-import COLORS from '../../../../utils/colors';
+import COLORS from '../../../../styles/colors';
 import Senders from '../../../../components/Senders';
 import Reaction from '../../../../components/Reaction';
 import * as S from './CardContentStyled';

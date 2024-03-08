@@ -1,15 +1,6 @@
-import styled from 'styled-components';
-
+import * as S from './CardListStyled';
 const CardList = ({ children, slideX }) => {
-  return <Wrapper slide={slideX}>{children}</Wrapper>;
+  return <S.Wrapper slide={slideX}>{children}</S.Wrapper>;
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  gap: 2rem;
-  margin-top: 1.6rem;
-  transform: translateX(${(props) => props.slide}px);
-  transition: all 0.5s;
-`;
 
 export default CardList;
