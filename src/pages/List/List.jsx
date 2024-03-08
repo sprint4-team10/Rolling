@@ -86,7 +86,7 @@ const List = () => {
   return (
     <>
       <Helmet>
-        <title>Rolling - List</title>
+        <title>Rolling 롤링페이퍼 목록</title>
       </Helmet>{' '}
       <Layout>
         <S.Container>
