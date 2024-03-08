@@ -8,6 +8,7 @@ import arrowRightIcon from '../../assets/icons/arrow_right.svg';
 import arrowLeftIcon from '../../assets/icons/arrow_left.svg';
 import Buttons from '../../components/Buttons';
 import * as S from './ListStyled';
+import { Helmet } from 'react-helmet-async';
 
 const List = () => {
   const [recipientList, setRecipientList] = useState([]);
@@ -83,34 +84,76 @@ const List = () => {
   }, []);
 
   return (
-    <Layout>
-      <S.Container>
-        <S.Content>
-          <S.Title>인기 롤링 페이퍼 🔥</S.Title>
-          <S.Wrapper>
-            {topSlideX < 0 && (
-              <S.LeftBtn onClick={handleSlideLeftClick} id="top">
-                <img src={arrowLeftIcon} alt="arrowLeftIcon" id="top" />
-              </S.LeftBtn>
-            )}
-            {topSlideX > recipientListWidth.current && (
-              <S.RightBtn onClick={handleSlideRightClick} id="top">
-                <img src={arrowRightIcon} alt="arrowRightIcon" id="top" />
-              </S.RightBtn>
-            )}
-            <S.CardListContainer
-              ref={topContainerRef}
-              onMouseDown={(e) => handleMouseDownEvent(e, topContainerRef)}
-              onMouseLeave={() => setDragging(false)}
-              onMouseUp={() => setDragging(false)}
-              onMouseMove={(e) => handleMouseMoveEvent(e, topContainerRef)}
-            >
-              <CardList slideX={topSlideX}>
-                {popularRecipientList
-                  // reactionCount를 기준으로 내림차순 정렬
-                  .sort((a, b) => b.reactionCount - a.reactionCount)
-                  // 정렬된 결과를 매핑하여 각각의 카드를 생성
-                  .map((card) => (
+    <>
+      <Helmet>
+        <title>Rolling - List</title>
+      </Helmet>{' '}
+      <Layout>
+        <S.Container>
+          <S.Content>
+            <S.Title>인기 롤링 페이퍼 🔥</S.Title>
+            <S.Wrapper>
+              {topSlideX < 0 && (
+                <S.LeftBtn onClick={handleSlideLeftClick} id="top">
+                  <img src={arrowLeftIcon} alt="arrowLeftIcon" id="top" />
+                </S.LeftBtn>
+              )}
+              {topSlideX > recipientListWidth.current && (
+                <S.RightBtn onClick={handleSlideRightClick} id="top">
+                  <img src={arrowRightIcon} alt="arrowRightIcon" id="top" />
+                </S.RightBtn>
+              )}
+              <S.CardListContainer
+                ref={topContainerRef}
+                onMouseDown={(e) => handleMouseDownEvent(e, topContainerRef)}
+                onMouseLeave={() => setDragging(false)}
+                onMouseUp={() => setDragging(false)}
+                onMouseMove={(e) => handleMouseMoveEvent(e, topContainerRef)}
+              >
+                <CardList slideX={topSlideX}>
+                  {popularRecipientList
+                    // reactionCount를 기준으로 내림차순 정렬
+                    .sort((a, b) => b.reactionCount - a.reactionCount)
+                    // 정렬된 결과를 매핑하여 각각의 카드를 생성
+                    .map((card) => (
+                      <Card
+                        key={card.id}
+                        id={card.id}
+                        title={card.name}
+                        backgroundColor={card.backgroundColor}
+                        backgroundImageURL={card.backgroundImageURL}
+                        messageCount={card.messageCount}
+                        messages={card.recentMessages}
+                        topReactions={card.topReactions}
+                      />
+                    ))}
+                </CardList>
+              </S.CardListContainer>
+            </S.Wrapper>
+          </S.Content>
+
+          <S.Content>
+            <S.Title>최근에 만든 롤링 페이퍼 ⭐️️</S.Title>
+            <S.Wrapper>
+              {bottomSlideX < 0 && (
+                <S.LeftBtn onClick={handleSlideLeftClick} id="bottom">
+                  <img src={arrowLeftIcon} alt="arrowLeftIcon" id="bottom" />
+                </S.LeftBtn>
+              )}
+              {bottomSlideX > recipientListWidth.current && (
+                <S.RightBtn onClick={handleSlideRightClick} id="bottom">
+                  <img src={arrowRightIcon} alt="arrowRightIcon" id="bottom" />
+                </S.RightBtn>
+              )}
+              <S.CardListContainer
+                ref={bottomContainerRef}
+                onMouseDown={(e) => handleMouseDownEvent(e, bottomContainerRef)}
+                onMouseLeave={() => setDragging(false)}
+                onMouseUp={() => setDragging(false)}
+                onMouseMove={(e) => handleMouseMoveEvent(e, bottomContainerRef)}
+              >
+                <CardList slideX={bottomSlideX}>
+                  {recipientList.map((card) => (
                     <Card
                       key={card.id}
                       id={card.id}
@@ -122,58 +165,21 @@ const List = () => {
                       topReactions={card.topReactions}
                     />
                   ))}
-              </CardList>
-            </S.CardListContainer>
-          </S.Wrapper>
-        </S.Content>
+                </CardList>
+              </S.CardListContainer>
+            </S.Wrapper>
+          </S.Content>
 
-        <S.Content>
-          <S.Title>최근에 만든 롤링 페이퍼 ⭐️️</S.Title>
-          <S.Wrapper>
-            {bottomSlideX < 0 && (
-              <S.LeftBtn onClick={handleSlideLeftClick} id="bottom">
-                <img src={arrowLeftIcon} alt="arrowLeftIcon" id="bottom" />
-              </S.LeftBtn>
-            )}
-            {bottomSlideX > recipientListWidth.current && (
-              <S.RightBtn onClick={handleSlideRightClick} id="bottom">
-                <img src={arrowRightIcon} alt="arrowRightIcon" id="bottom" />
-              </S.RightBtn>
-            )}
-            <S.CardListContainer
-              ref={bottomContainerRef}
-              onMouseDown={(e) => handleMouseDownEvent(e, bottomContainerRef)}
-              onMouseLeave={() => setDragging(false)}
-              onMouseUp={() => setDragging(false)}
-              onMouseMove={(e) => handleMouseMoveEvent(e, bottomContainerRef)}
-            >
-              <CardList slideX={bottomSlideX}>
-                {recipientList.map((card) => (
-                  <Card
-                    key={card.id}
-                    id={card.id}
-                    title={card.name}
-                    backgroundColor={card.backgroundColor}
-                    backgroundImageURL={card.backgroundImageURL}
-                    messageCount={card.messageCount}
-                    messages={card.recentMessages}
-                    topReactions={card.topReactions}
-                  />
-                ))}
-              </CardList>
-            </S.CardListContainer>
-          </S.Wrapper>
-        </S.Content>
-
-        <S.ButtonContainer>
-          <Link to="/post">
-            <Buttons buttonType="Primary56" buttonSize="small" tabletButtonSize="full">
-              나도 만들어보기
-            </Buttons>
-          </Link>
-        </S.ButtonContainer>
-      </S.Container>
-    </Layout>
+          <S.ButtonContainer>
+            <Link to="/post">
+              <Buttons buttonType="Primary56" buttonSize="small" tabletButtonSize="full">
+                나도 만들어보기
+              </Buttons>
+            </Link>
+          </S.ButtonContainer>
+        </S.Container>
+      </Layout>
+    </>
   );
 };
 

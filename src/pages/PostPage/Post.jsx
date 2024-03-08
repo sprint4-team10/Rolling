@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './PostStyled';
 import CheckMark from './component/CheckMark/CheckMark.jsx';
 import ToggleButton from '../../components/Buttons/ToggleButton/ToggleButton.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const Post = () => {
   const [selectBackgroundType, setSelectBackgroundType] = useState({
@@ -78,52 +79,62 @@ const Post = () => {
   }, []);
 
   return (
-    <S.PostLayout onSubmit={handleSubmit}>
-      <S.SendToInputContainer>
-        <S.MainDescription>To.</S.MainDescription>
-        <S.InputBox
-          type="text"
-          placeholder="받는 사람 이름을 입력해 주세요"
-          value={inputValue}
-          onChange={handleInputValue}
-          onBlur={handleOnBlur}
+    <>
+      <Helmet>
+        <title>Rolling 롤링페이퍼 생성하기</title>
+      </Helmet>
+      <S.PostLayout onSubmit={handleSubmit}>
+        <S.SendToInputContainer>
+          <S.MainDescription>To.</S.MainDescription>
+          <S.InputBox
+            type="text"
+            placeholder="받는 사람 이름을 입력해 주세요"
+            value={inputValue}
+            onChange={handleInputValue}
+            onBlur={handleOnBlur}
+          />
+          <S.ErrorMessage isEmptyError={isEmptyError}>값을 입력해 주세요.</S.ErrorMessage>
+        </S.SendToInputContainer>
+        <div>
+          <S.MainDescription>배경화면을 선택해 주세요.</S.MainDescription>
+          <S.Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</S.Subscription>
+        </div>
+        <ToggleButton
+          isBgType={backgroundType}
+          leftType="color"
+          rightType="image"
+          leftContent="컬러"
+          rightContent="이미지"
+          onClick={handleBackgroundType}
         />
-        <S.ErrorMessage isEmptyError={isEmptyError}>값을 입력해 주세요.</S.ErrorMessage>
-      </S.SendToInputContainer>
-      <div>
-        <S.MainDescription>배경화면을 선택해 주세요.</S.MainDescription>
-        <S.Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</S.Subscription>
-      </div>
-      <ToggleButton
-        isBgType={backgroundType}
-        leftType="color"
-        rightType="image"
-        leftContent="컬러"
-        rightContent="이미지"
-        onClick={handleBackgroundType}
-      />
-      <S.BoxContainer>
-        {backgroundType === 'color'
-          ? COLOR_OPTION.map((color, index) => (
-              <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
-                {index === selectBackgroundType.color && <CheckMark />}
-              </S.BackgroundColor>
-            ))
-          : backgroundImgData.map((url, index) => (
-              <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
-                {index === selectBackgroundType.image && (
-                  <>
-                    <CheckMark />
-                    <S.SelectImageCover />
-                  </>
-                )}
-              </S.BackgroundImage>
-            ))}
-      </S.BoxContainer>
-      <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError || isLoading} onClick={handleSubmit}>
-        생성하기
-      </Buttons>
-    </S.PostLayout>
+        <S.BoxContainer>
+          {backgroundType === 'color'
+            ? COLOR_OPTION.map((color, index) => (
+                <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+                  {index === selectBackgroundType.color && <CheckMark />}
+                </S.BackgroundColor>
+              ))
+            : backgroundImgData.map((url, index) => (
+                <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
+                  {index === selectBackgroundType.image && (
+                    <>
+                      <CheckMark />
+                      <S.SelectImageCover />
+                    </>
+                  )}
+                </S.BackgroundImage>
+              ))}
+        </S.BoxContainer>
+        <Buttons
+          buttonType="Primary56"
+          buttonSize="large"
+          isDisabled={isEmptyError || isLoading}
+          onClick={handleSubmit}
+        >
+          생성하기
+        </Buttons>
+      </S.PostLayout>
+    </>
   );
 };
 
