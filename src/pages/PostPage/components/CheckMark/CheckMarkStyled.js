@@ -1,14 +1,5 @@
 import styled from 'styled-components';
-import checkIcon from '../../../../assets/icons/check.svg';
-import COLORS from '../../../../utils/colors';
-
-const CheckMark = () => {
-  return (
-    <Check>
-      <img src={checkIcon} alt="checkIcon" />
-    </Check>
-  );
-};
+import COLORS from '../../../../styles/colors';
 
 export const Check = styled.div`
   padding: 1rem;
@@ -20,5 +11,3 @@ export const Check = styled.div`
   transform: translate(-50%, -50%);
   z-index: 1;
 `;
-
-export default CheckMark;

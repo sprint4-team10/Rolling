@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import FONTS from '../../../utils/Fonts';
-import COLORS from '../../../utils/colors';
+import FONTS from '../../../styles/fonts';
+import COLORS from '../../../styles/colors';
 
 export const Input = styled.input`
   width: ${({ width }) => width || '32rem'};
