@@ -18,7 +18,7 @@ const Toast = ({ setShowToast }) => {
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, []);
+  }, [setShowToast]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import plusImg from '../../../../assets/icons/plus.svg';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getMessages } from '../../../../api/api';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useHandleDeleteMessage } from '../../../../hooks/useHandleDeleteMessage';
@@ -17,23 +17,26 @@ const CardList = () => {
   const [next, setNext] = useState(true);
   const { pathname } = useLocation();
 
-  const handleLoadMessages = async (options) => {
-    if (!next) {
-      return;
-    }
+  const handleLoadMessages = useCallback(
+    async (options) => {
+      if (!next) {
+        return;
+      }
 
-    try {
-      const data = await getMessages(options);
-      if (data.next === null) {
-        setNext(false);
+      try {
+        const data = await getMessages(options);
+        if (data.next === null) {
+          setNext(false);
+        }
+        if (data.results.length > 0) {
+          setMessages([...messages, ...data.results]);
+        }
+      } catch (error) {
+        console.error(error);
       }
-      if (data.results.length > 0) {
-        setMessages([...messages, ...data.results]);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    },
+    [messages, next],
+  );
 
   useEffect(() => {
     const throttle = (callback, delay) => {
@@ -61,7 +64,7 @@ const CardList = () => {
 
   useEffect(() => {
     handleLoadMessages({ id, offset });
-  }, [offset]);
+  }, [offset, handleLoadMessages, id]);
 
   return (
     <S.Container>

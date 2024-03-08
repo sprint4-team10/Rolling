@@ -15,6 +15,7 @@
         "endOfLine": "auto",
       },
     ],
+    "array-callback-return": 0,
   },
   "env": {
     "browser": true,

@@ -52,7 +52,7 @@ const Paper = () => {
 
   useEffect(() => {
     handleLoadRecipient({ id });
-  }, [update]);
+  }, [update, id]);
 
   return (
     <>
