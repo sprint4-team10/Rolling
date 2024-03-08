@@ -24,8 +24,14 @@
 <div align="center"> 캡쳐본</div>
 <br />
 
+### 최적 화면크기 및 크로스 브라우징
+▪ **Rolling은 크롬 브라우저에 최적화되어 있습니다** <br />
+▪ 최적 화면 사이즈 : 375px ~ 1,440px
 
-**프로젝트 진행 기간** : 2024.02.24 ~ 2024.03.12
+<br />
+
+### 프로젝트 진행 기간
+> 2024.02.24 ~ 2024.03.12
 
 <br />
 
@@ -34,11 +40,13 @@
 <br />
 
 ## 개발팀 소개
-김유경
-김태진
-이승훈
-백승아
-*사진도 넣고, 기본적인 정보 조금 적어야될 듯
+|김유경|김태진|이승훈|백승아|
+|:---|:---|:---|:---|
+|![화면 캡처 2024-03-08 152750](https://github.com/sprint4-team10/Rolling/assets/153581513/7d2fa06d-23b0-460e-b4bf-13723fa60962)|![화면 캡처 2024-03-08 152800](https://github.com/sprint4-team10/Rolling/assets/153581513/0905480d-424a-49f8-82d6-e2b29600c1df)|![화면 캡처 2024-03-08 152813](https://github.com/sprint4-team10/Rolling/assets/153581513/4750e49b-64ea-4888-836e-30e67536fe5b)|![화면 캡처 2024-03-08 152822](https://github.com/sprint4-team10/Rolling/assets/153581513/79ad6fda-827c-4d2e-b967-86e7823317b1)|
+|[codingaring](https://github.com/codingaring)|[kimtaejin3](https://github.com/kimtaejin3)|[ysh73900](https://github.com/ysh73900)|[SeungAAA](https://github.com/SeungAAA)|
+|- 팀장<br /> - 롤링페이퍼 생성하기 페이지 구현 <br />- Button Component|- 초기 개발환경 셋팅 <br /> - Toast, Modal Component <br />- 롤링페이퍼 슬라이드 기능 <br />- 롤링페이퍼 목록페이지 <br /> - 롤링페이퍼 편집페이지|- 롤링페이퍼 리스트페이지  <br /> - 메시지 작성 페이지 <br />- TextFields Component |- Badge Component <br /> - 롤링페이퍼 생성하기 페이지 <br />크로스 브라우징|
+
+<br />
 
 ## STACKS
 ### ◻ Development
