@@ -28,6 +28,10 @@ export const CardContents = styled.div`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
+
+  p {
+    font-family: ${(props) => props.font || 'Pretendard-Regular'};
+  }
 `;
 
 export const CardFooter = styled.div`

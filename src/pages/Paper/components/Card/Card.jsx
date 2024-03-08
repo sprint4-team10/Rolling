@@ -9,7 +9,14 @@ import DeleteModal from '../../../../components/DeleteModal';
 import { useLocation, useParams } from 'react-router-dom';
 import * as S from './CardStyled';
 
-const Card = ({ messageId, profileImageURL, sender, relationship, content, createdAt, triggerUpdate }) => {
+const FONT = {
+  'Noto Sans': 'font-NotoSans',
+  Pretendard: 'font-Pretendard',
+  나눔명조: 'Nanum Myeongjo',
+  '나눔손글씨 손편지체': 'Handletter',
+};
+
+const Card = ({ message, messageId, profileImageURL, sender, relationship, content, createdAt, triggerUpdate }) => {
   const { openModal, handleClose, handleOpen } = useModal();
   const { openModal: deleteOpenModal, handleClose: deleteHandleClose, handleOpen: deleteHandleOpen } = useModal();
 
@@ -62,7 +69,7 @@ const Card = ({ messageId, profileImageURL, sender, relationship, content, creat
             </div>
           )}
         </S.CardHeader>
-        <S.CardContents dangerouslySetInnerHTML={{ __html: content }} />
+        <S.CardContents dangerouslySetInnerHTML={{ __html: content }} font={FONT[message.font]} />
         <S.CardFooter>
           <S.Btn onClick={handleOpen}>더보기</S.Btn>
           <div>{formatDate(createdAt)}</div>

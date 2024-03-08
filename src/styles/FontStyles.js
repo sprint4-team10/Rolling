@@ -8,6 +8,20 @@ const FontStyles = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: "Nanum Myeongjo", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Handletter';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 `;
 
 export default FontStyles;
