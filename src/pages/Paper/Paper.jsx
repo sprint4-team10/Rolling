@@ -79,7 +79,7 @@ const Paper = () => {
                 </Link>
               )}
             </div>
-            <CardList />
+            <CardList triggerUpdate={setUpdate} />
           </Container>
         </Layout>
       </PaperContents>

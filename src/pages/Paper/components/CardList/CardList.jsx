@@ -1,5 +1,5 @@
 import plusImg from '../../../../assets/icons/plus.svg';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getMessages } from '../../../../api/api';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useHandleDeleteMessage } from '../../../../hooks/useHandleDeleteMessage';
@@ -9,7 +9,7 @@ import Card from '../Card';
 
 const OFFSET = 8;
 
-const CardList = () => {
+const CardList = ({ triggerUpdate }) => {
   const { id } = useParams();
   const { filteredIds } = useHandleDeleteMessage();
   const [messages, setMessages] = useState([]);
@@ -17,26 +17,23 @@ const CardList = () => {
   const [next, setNext] = useState(true);
   const { pathname } = useLocation();
 
-  const handleLoadMessages = useCallback(
-    async (options) => {
-      if (!next) {
-        return;
-      }
+  const handleLoadMessages = async (options) => {
+    if (!next) {
+      return;
+    }
 
-      try {
-        const data = await getMessages(options);
-        if (data.next === null) {
-          setNext(false);
-        }
-        if (data.results.length > 0) {
-          setMessages([...messages, ...data.results]);
-        }
-      } catch (error) {
-        console.error(error);
+    try {
+      const data = await getMessages(options);
+      if (data.next === null) {
+        setNext(false);
       }
-    },
-    [messages, next],
-  );
+      if (data.results.length > 0) {
+        setMessages([...messages, ...data.results]);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const throttle = (callback, delay) => {
@@ -64,7 +61,7 @@ const CardList = () => {
 
   useEffect(() => {
     handleLoadMessages({ id, offset });
-  }, [offset, handleLoadMessages, id]);
+  }, [offset]);
 
   return (
     <S.Container>
@@ -87,6 +84,7 @@ const CardList = () => {
               relationship={message.relationship}
               content={message.content}
               createdAt={message.createdAt}
+              triggerUpdate={triggerUpdate}
               key={message.id}
             />
           );
