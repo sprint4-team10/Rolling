@@ -73,8 +73,9 @@ export const createReaction = async ({ id, body }) => {
   return data;
 };
 
-export const getPopularRecipientList = async () => {
-  const res = await fetch(`${BASE_URL}recipients/?sort=like`);
+export const getPopularRecipientList = async (options) => {
+  const { limit } = options;
+  const res = await fetch(`${BASE_URL}recipients/?sort=like&limit=${limit || 1000}`);
 
   if (!res.ok) {
     throw new Error('PopularRecipientList를 불러오는데 실패하였습니다.');
@@ -84,8 +85,9 @@ export const getPopularRecipientList = async () => {
   return data;
 };
 
-export const getRecipientList = async () => {
-  const res = await fetch(`${BASE_URL}recipients/`);
+export const getRecipientList = async (options) => {
+  const { limit } = options;
+  const res = await fetch(`${BASE_URL}recipients/?limit=${limit || 1000}`);
 
   if (!res.ok) {
     throw new Error('recipientList를 불러오는데 실패하였습니다.');
