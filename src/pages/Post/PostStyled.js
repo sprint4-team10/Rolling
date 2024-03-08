@@ -43,6 +43,7 @@ export const BackgroundColor = styled(BackgroundOptionBox)`
 `;
 
 export const BackgroundImage = styled(BackgroundOptionBox)`
+  background-color: ${COLORS.gray200};
   background-image: url(${(props) => props.backgroundImageURL});
   background-repeat: no-repeat;
   background-position: center;

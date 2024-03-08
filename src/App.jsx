@@ -5,10 +5,14 @@ import Paper from './pages/Paper';
 import Message from './pages/Message';
 import NavLayout from './layout/NavLayout';
 import Post from './pages/Post';
+import { Helmet } from 'react-helmet-async';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Helmet>
+        <title>Rolling</title>
+      </Helmet>
       <Routes>
         <Route path="/" element={<NavLayout />}>
           <Route index element={<Main />} />

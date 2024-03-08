@@ -9,7 +9,8 @@ import Buttons from '../../components/Buttons';
 import { useModal } from '../../hooks/useModal';
 import { ModalPortal } from '../../components/Portal';
 import DeleteModal from '../../components/DeleteModal';
-import COLORS from '../../styles/colors';
+import COLORS from '../../utils/colors';
+import { Helmet } from 'react-helmet-async';
 
 const initial_recipient = {
   id: null,
@@ -56,6 +57,9 @@ const Paper = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{pathname.includes('edit') ? 'Rolling 편집하기' : 'Rolling 메시지'}</title>
+      </Helmet>
       <ModalPortal>
         <DeleteModal type="recipient" recipientId={id} openModal={openModal} handleClose={handleClose}>
           정말 롤링페이퍼를 삭제하시겠어요?

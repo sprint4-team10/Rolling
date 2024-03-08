@@ -9,6 +9,7 @@ import EnterContent from './components/EnterContent';
 import FontSelect from './components/FontSelect';
 import Buttons from '../../components/Buttons';
 import * as S from './MessageStyled';
+import { Helmet } from 'react-helmet-async';
 
 const initialState = {
   sender: '', // 보낸이 이름
@@ -70,38 +71,43 @@ const Message = () => {
   // }
 
   return (
-    <Layout>
-      <S.Container onSubmit={handleSubmit}>
-        <div>
-          <S.Title>From.</S.Title>
-          <PostInput onChange={handleChange} isInputError={isInputError} setIsInputError={setIsInputError} />
-        </div>
+    <>
+      <Helmet>
+        <title>Rolling 메시지 작성하기</title>
+      </Helmet>
+      <Layout>
+        <S.Container onSubmit={handleSubmit}>
+          <div>
+            <S.Title>From.</S.Title>
+            <PostInput onChange={handleChange} isInputError={isInputError} setIsInputError={setIsInputError} />
+          </div>
 
-        <div>
-          <S.Title>프로필 이미지</S.Title>
-          <ProfileImageSelect onChange={handleChange} selectedImgUrl={messageData.profileImageURL} />
-        </div>
+          <div>
+            <S.Title>프로필 이미지</S.Title>
+            <ProfileImageSelect onChange={handleChange} selectedImgUrl={messageData.profileImageURL} />
+          </div>
 
-        <div>
-          <S.Title>상대와의 관계</S.Title>
-          <RelationshipSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
-        </div>
+          <div>
+            <S.Title>상대와의 관계</S.Title>
+            <RelationshipSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
+          </div>
 
-        <S.EnterContentWrapper>
-          <S.Title>내용을 입력해주세요</S.Title>
-          <EnterContent onChange={handleChange} setMessageData={setMessageData} />
-        </S.EnterContentWrapper>
+          <S.EnterContentWrapper>
+            <S.Title>내용을 입력해주세요</S.Title>
+            <EnterContent onChange={handleChange} setMessageData={setMessageData} />
+          </S.EnterContentWrapper>
 
-        <div>
-          <S.Title>폰트 선택</S.Title>
-          <FontSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
-        </div>
+          <div>
+            <S.Title>폰트 선택</S.Title>
+            <FontSelect onChange={handleChange} setMessageData={setMessageData} messageData={messageData} />
+          </div>
 
-        <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError || isSubmitting}>
-          생성하기
-        </Buttons>
-      </S.Container>
-    </Layout>
+          <Buttons buttonType="Primary56" buttonSize="large" type="text" isDisabled={isInputError || isSubmitting}>
+            생성하기
+          </Buttons>
+        </S.Container>
+      </Layout>
+    </>
   );
 };
 

@@ -5,10 +5,8 @@ import { getBackgroundImageURL } from '../../api/getBackgroundImageURL.js';
 import { createRollingPaper } from '../../api/createRollingPaper.js';
 import { useNavigate } from 'react-router-dom';
 import * as S from './PostStyled';
-import CheckMark from './components/CheckMark';
+import CheckMark from './component/CheckMark/CheckMark.jsx';
 import ToggleButton from '../../components/Buttons/ToggleButton/ToggleButton.jsx';
-import PostInput from './components/PostInput/PostInput.jsx';
-import PostDescription from './components/PostDescription/PostDescription.jsx';
 
 const Post = () => {
   const [selectBackgroundType, setSelectBackgroundType] = useState({
@@ -81,8 +79,21 @@ const Post = () => {
 
   return (
     <S.PostLayout onSubmit={handleSubmit}>
-      <PostInput value={inputValue} onChange={handleInputValue} onBlur={handleOnBlur} isEmptyError={isEmptyError} />
-      <PostDescription />
+      <S.SendToInputContainer>
+        <S.MainDescription>To.</S.MainDescription>
+        <S.InputBox
+          type="text"
+          placeholder="받는 사람 이름을 입력해 주세요"
+          value={inputValue}
+          onChange={handleInputValue}
+          onBlur={handleOnBlur}
+        />
+        <S.ErrorMessage isEmptyError={isEmptyError}>값을 입력해 주세요.</S.ErrorMessage>
+      </S.SendToInputContainer>
+      <div>
+        <S.MainDescription>배경화면을 선택해 주세요.</S.MainDescription>
+        <S.Subscription>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</S.Subscription>
+      </div>
       <ToggleButton
         isBgType={backgroundType}
         leftType="color"
