@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import logoImg from '../../assets/rolling_Logo.svg';
-import Layout from '../../layout/Layout';
+import Layout from '../../layout/Layout/Layout';
 import Buttons from '../Buttons';
 import * as S from './NavbarStyled';
 

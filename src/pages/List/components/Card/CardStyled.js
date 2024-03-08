@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import COLORS from '../../../../utils/colors';
+import COLORS from '../../../../styles/colors';
 
 const cardColor = {
   beige: COLORS.orange200,

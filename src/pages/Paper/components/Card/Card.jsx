@@ -2,10 +2,10 @@ import Modal from '../../../../components/Modal';
 import { ModalPortal } from '../../../../components/Portal';
 import { useModal } from '../../../../hooks/useModal';
 import { formatDate } from '../../../../utils/formatDate';
-import RelationshipBadge from '../../../../components/RelationshipBadge';
+import Badge from '../../../../components/Badge';
 import Buttons from '../../../../components/Buttons';
 import deleteIcon from '../../../../assets/icons/delete.svg';
-import DeleteModal from '../../../../components/deleteModal';
+import DeleteModal from '../../../../components/DeleteModal';
 import { useLocation, useParams } from 'react-router-dom';
 import * as S from './CardStyled';
 
@@ -51,7 +51,7 @@ const Card = ({ messageId, profileImageURL, sender, relationship, content, creat
             <S.Sender>
               From. <b>{sender}</b>
             </S.Sender>
-            <RelationshipBadge relationship={relationship} />
+            <Badge relationship={relationship} />
           </S.SenderInfo>
           {pathname.includes('edit') && (
             <div style={{ marginLeft: 'auto' }}>

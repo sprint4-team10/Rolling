@@ -2,7 +2,7 @@ import Buttons from '../Buttons';
 import { deleteMessage, deleteRecipient } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import { useHandleDeleteMessage } from '../../hooks/useHandleDeleteMessage';
-import * as S from './deleteModalStyled';
+import * as S from './DeleteModalStyled';
 
 const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children }) => {
   const navigate = useNavigate();
