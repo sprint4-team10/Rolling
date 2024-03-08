@@ -82,7 +82,7 @@ const List = () => {
   };
 
   useEffect(() => {
-    handleLoadRecipientList();
+    handleLoadRecipientList({ limit: 1000 });
   }, []);
 
   return (

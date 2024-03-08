@@ -39,6 +39,8 @@ const TextFields = ({
       );
     case 'TextEditor':
       return <TextEditor onChange={onChange} />;
+    default:
+      return <></>;
   }
 };
 
