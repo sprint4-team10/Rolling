@@ -1,4 +1,4 @@
-import COLORS from '../../../utils/colors';
+import COLORS from '../../../styles/colors';
 import { ReactComponent as Plus } from '../../../assets/icons/plus.svg';
 import * as S from './AddButtonStyled';
 

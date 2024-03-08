@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import COLORS from '../../utils/colors';
-import FONTS from '../../utils/Fonts';
+import COLORS from '../../styles/colors';
+import FONTS from '../../styles/fonts';
 
 export const toastUp = keyframes`
     0%{

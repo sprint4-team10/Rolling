@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import COLORS from '../../utils/colors';
-import FONTS from '../../utils/Fonts';
+import COLORS from '../../styles/colors';
+import FONTS from '../../styles/fonts';
 
 const BACKGROUND_COLOR = {
   beige: 'orange200',

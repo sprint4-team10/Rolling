@@ -1,7 +1,7 @@
 import { formatDate } from '../../utils/formatDate';
 import Buttons from '../Buttons';
 import * as S from './ModalStyled';
-import RelationshipBadge from '../RelationshipBadge/RelationshipBadge';
+import Badge from '../Badge';
 
 const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, content, createdAt }) => {
   if (!openModal) {
@@ -22,7 +22,7 @@ const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, 
             <S.Sender>
               From. <b>{sender}</b>
             </S.Sender>
-            <RelationshipBadge relationship={relationship} />
+            <Badge relationship={relationship} />
           </div>
           <S.Date>{formatDate(createdAt)}</S.Date>
         </S.CardHeader>

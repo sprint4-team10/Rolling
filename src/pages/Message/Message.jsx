@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postMessage } from '../../api/api';
 import Layout from '../../layout/Layout';
-import PostInput from './component/PostInput';
-import ProfileImageSelect from './component/ProfileImageSelect';
-import RelationshipSelect from './component/RelationshipSelect';
-import EnterContent from './component/EnterContent';
-import FontSelect from './component/FontSelect';
+import PostInput from './components/PostInput';
+import ProfileImageSelect from './components/ProfileImageSelect';
+import RelationshipSelect from './components/RelationshipSelect';
+import EnterContent from './components/EnterContent';
+import FontSelect from './components/FontSelect';
 import Buttons from '../../components/Buttons';
 import * as S from './MessageStyled';
 

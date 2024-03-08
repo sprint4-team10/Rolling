@@ -8,8 +8,8 @@ import CardList from './components/CardList';
 import Buttons from '../../components/Buttons';
 import { useModal } from '../../hooks/useModal';
 import { ModalPortal } from '../../components/Portal';
-import DeleteModal from '../../components/deleteModal';
-import COLORS from '../../utils/colors';
+import DeleteModal from '../../components/DeleteModal';
+import COLORS from '../../styles/colors';
 
 const initial_recipient = {
   id: null,

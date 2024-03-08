@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import COLORS from '../../utils/colors';
+import COLORS from '../../styles/colors';
 
 export const Nav = styled.nav`
   border-bottom: 1px solid ${COLORS.gray200};

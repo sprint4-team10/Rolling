@@ -1,4 +1,4 @@
-import COLORS from '../../../../utils/colors';
+import COLORS from '../../../../styles/colors';
 import styled from 'styled-components';
 
 export const MessageCardContainer = styled.div`
