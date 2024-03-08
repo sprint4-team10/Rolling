@@ -3,6 +3,8 @@ import TextFields from '../../../../components/TextField/TextFields';
 const OPTIONS = [
   { value: 'Noto Sans', name: 'Noto Sans' },
   { value: 'Pretendard', name: 'Pretendard' },
+  { value: '나눔명조', name: '나눔명조' },
+  { value: '나눔손글씨 손편지체', name: '나눔손글씨 손편지체' },
 ];
 
 export const FontSelect = ({ onChange }) => {
