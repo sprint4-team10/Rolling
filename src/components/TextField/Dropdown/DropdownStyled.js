@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import FONTS from '../../../styles/fonts';
 import COLORS from '../../../styles/colors';
 
@@ -41,12 +41,24 @@ export const SelectOptions = styled.ul`
   width: 100%;
   display: ${({ $show }) => ($show ? 'block' : 'none')};
   overflow: hidden;
-  margin-top: 5.8rem;
+  margin: 0.8rem 0;
   border-radius: 0.8rem;
   border: 0.1rem solid ${COLORS.gray300};
   background-color: ${COLORS.white};
   color: ${COLORS.gray900};
   z-index: 1;
+
+  ${({ $show }) => ($show === 'true' ? showStyles : hideStyles)}
+`;
+
+const showStyles = css`
+  top: ${({ $isOpen, $bottomSpace }) => ($isOpen && !$bottomSpace ? 'auto' : '100%')};
+  bottom: ${({ $isOpen, $bottomSpace }) => ($isOpen && !$bottomSpace ? '100%' : 'auto')};
+  max-height: 20rem;
+`;
+
+const hideStyles = css`
+  display: none;
 `;
 
 export const Option = styled.li`
