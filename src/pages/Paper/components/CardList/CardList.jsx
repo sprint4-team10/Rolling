@@ -78,6 +78,7 @@ const CardList = ({ triggerUpdate }) => {
         if (!filteredIds.includes(message.id)) {
           return (
             <Card
+              message={message}
               messageId={message.id}
               profileImageURL={message.profileImageURL}
               sender={message.sender}
