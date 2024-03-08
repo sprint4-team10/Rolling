@@ -9,7 +9,7 @@ import DeleteModal from '../../../../components/DeleteModal';
 import { useLocation, useParams } from 'react-router-dom';
 import * as S from './CardStyled';
 
-const Card = ({ messageId, profileImageURL, sender, relationship, content, createdAt }) => {
+const Card = ({ messageId, profileImageURL, sender, relationship, content, createdAt, triggerUpdate }) => {
   const { openModal, handleClose, handleOpen } = useModal();
   const { openModal: deleteOpenModal, handleClose: deleteHandleClose, handleOpen: deleteHandleOpen } = useModal();
 
@@ -40,6 +40,7 @@ const Card = ({ messageId, profileImageURL, sender, relationship, content, creat
           recipientId={id}
           openModal={deleteOpenModal}
           handleClose={deleteHandleClose}
+          triggerUpdate={triggerUpdate}
         >
           정말 메세지를 삭제하시겠어요?
         </DeleteModal>

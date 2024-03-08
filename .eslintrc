@@ -16,6 +16,7 @@
       },
     ],
     "array-callback-return": 0,
+    "react-hooks/exhaustive-deps": 0,
   },
   "env": {
     "browser": true,

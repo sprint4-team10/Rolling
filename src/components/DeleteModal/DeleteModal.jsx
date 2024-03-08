@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useHandleDeleteMessage } from '../../hooks/useHandleDeleteMessage';
 import * as S from './DeleteModalStyled';
 
-const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children }) => {
+const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, children, triggerUpdate }) => {
   const navigate = useNavigate();
   const { changeId } = useHandleDeleteMessage();
 
@@ -21,7 +21,9 @@ const DeleteModal = ({ type, messageId, recipientId, openModal, handleClose, chi
       try {
         await deleteMessage({ id: messageId });
         changeId(messageId);
+        handleClose();
         navigate(`/post/${recipientId}`);
+        triggerUpdate();
       } catch (error) {
         console.error(error);
       }
