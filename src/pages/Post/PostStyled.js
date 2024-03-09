@@ -50,7 +50,10 @@ export const BackgroundImage = styled(BackgroundOptionBox)`
   background-size: cover;
 `;
 
-export const SelectImageCover = styled(BackgroundColor)`
+export const SelectImageCover = styled.div`
+  aspect-ratio: 1;
+  border-radius: 1.6rem;
+  cursor: pointer;
   background-color: white;
-  opacity: 0.2;
+  opacity: 0.13;
 `;
