@@ -9,6 +9,7 @@ import CheckMark from './components/CheckMark';
 import ToggleButton from '../../components/Buttons/ToggleButton/ToggleButton.jsx';
 import PostInput from './components/PostInput/PostInput.jsx';
 import PostDescription from './components/PostDescription/PostDescription.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const Post = () => {
   const [selectBackgroundType, setSelectBackgroundType] = useState({
@@ -80,39 +81,49 @@ const Post = () => {
   }, []);
 
   return (
-    <S.PostLayout onSubmit={handleSubmit}>
-      <PostInput value={inputValue} onChange={handleInputValue} onBlur={handleOnBlur} isEmptyError={isEmptyError} />
-      <PostDescription />
-      <ToggleButton
-        isBgType={backgroundType}
-        leftType="color"
-        rightType="image"
-        leftContent="컬러"
-        rightContent="이미지"
-        onClick={handleBackgroundType}
-      />
-      <S.BoxContainer>
-        {backgroundType === 'color'
-          ? COLOR_OPTION.map((color, index) => (
-              <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
-                {index === selectBackgroundType.color && <CheckMark />}
-              </S.BackgroundColor>
-            ))
-          : backgroundImgData.map((url, index) => (
-              <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
-                {index === selectBackgroundType.image && (
-                  <>
-                    <CheckMark />
-                    <S.SelectImageCover />
-                  </>
-                )}
-              </S.BackgroundImage>
-            ))}
-      </S.BoxContainer>
-      <Buttons buttonType="Primary56" buttonSize="large" isDisabled={isEmptyError || isLoading} onClick={handleSubmit}>
-        생성하기
-      </Buttons>
-    </S.PostLayout>
+    <>
+      <Helmet>
+        <title>Rolling 롤링페이퍼 생성하기</title>
+      </Helmet>
+      <S.PostLayout onSubmit={handleSubmit}>
+        <PostInput value={inputValue} onChange={handleInputValue} onBlur={handleOnBlur} isEmptyError={isEmptyError} />
+        <PostDescription />
+        <ToggleButton
+          isBgType={backgroundType}
+          leftType="color"
+          rightType="image"
+          leftContent="컬러"
+          rightContent="이미지"
+          onClick={handleBackgroundType}
+        />
+        <S.BoxContainer>
+          {backgroundType === 'color'
+            ? COLOR_OPTION.map((color, index) => (
+                <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+                  {index === selectBackgroundType.color && <CheckMark />}
+                </S.BackgroundColor>
+              ))
+            : backgroundImgData.map((url, index) => (
+                <S.BackgroundImage backgroundImageURL={url} key={index} id={index} onClick={handleSelectBackground}>
+                  {index === selectBackgroundType.image && (
+                    <>
+                      <CheckMark />
+                      <S.SelectImageCover />
+                    </>
+                  )}
+                </S.BackgroundImage>
+              ))}
+        </S.BoxContainer>
+        <Buttons
+          buttonType="Primary56"
+          buttonSize="large"
+          isDisabled={isEmptyError || isLoading}
+          onClick={handleSubmit}
+        >
+          생성하기
+        </Buttons>
+      </S.PostLayout>
+    </>
   );
 };
 
