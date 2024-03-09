@@ -43,13 +43,17 @@ export const BackgroundColor = styled(BackgroundOptionBox)`
 `;
 
 export const BackgroundImage = styled(BackgroundOptionBox)`
+  background-color: ${COLORS.gray200};
   background-image: url(${(props) => props.backgroundImageURL});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 `;
 
-export const SelectImageCover = styled(BackgroundColor)`
+export const SelectImageCover = styled.div`
+  aspect-ratio: 1;
+  border-radius: 1.6rem;
+  cursor: pointer;
   background-color: white;
-  opacity: 0.2;
+  opacity: 0.13;
 `;
