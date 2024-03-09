@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import COLORS from '../../../../styles/colors';
 
 export const Check = styled.div`
+  min-width: 4.4rem;
   padding: 1rem;
   background-color: ${COLORS.gray500};
   border-radius: 50%;
