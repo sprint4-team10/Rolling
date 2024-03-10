@@ -26,7 +26,7 @@ const SharePopOver = forwardRef(({ isOpen, style, handleClose }, ref) => {
       content: {
         title: 'Rolling',
         description: '추억의 롤링페이퍼가 웹 속으로!',
-        imageUrl: 'https://github.com/sprint4-team10/Rolling/assets/153581513/27f04c57-df47-4537-81cd-49942e794526',
+        imageUrl: 'https://main--stirring-youtiao-0163ec.netlify.app/mobile_preview.png',
         link: {
           mobileWebUrl: 'https://main--stirring-youtiao-0163ec.netlify.app/',
         },
