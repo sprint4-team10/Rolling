@@ -39,7 +39,7 @@ export const BackgroundOptionBox = styled.button`
 `;
 
 export const BackgroundColor = styled(BackgroundOptionBox)`
-  background-color: ${({ backgroundColor }) => COLORS[BACKGROUND_COLOR[backgroundColor]]};
+  background-color: ${({ $backgroundColor }) => COLORS[BACKGROUND_COLOR[$backgroundColor]]};
 `;
 
 export const BackgroundImage = styled(BackgroundOptionBox)`

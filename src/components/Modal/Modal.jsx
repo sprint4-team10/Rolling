@@ -3,7 +3,7 @@ import Buttons from '../Buttons';
 import * as S from './ModalStyled';
 import Badge from '../Badge';
 
-const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, content, createdAt }) => {
+const Modal = ({ openModal, handleClose, $profileImageURL, sender, relationship, content, createdAt }) => {
   if (!openModal) {
     return <></>;
   }
@@ -17,7 +17,7 @@ const Modal = ({ openModal, handleClose, profileImageURL, sender, relationship, 
       <S.Deem onClick={handleDeemClick} />
       <S.Container>
         <S.CardHeader>
-          <S.CardProfile profileImageURL={profileImageURL} />
+          <S.CardProfile $profileImageURL={$profileImageURL} />
           <div>
             <S.Sender>
               From. <b>{sender}</b>

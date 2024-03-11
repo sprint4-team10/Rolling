@@ -69,7 +69,7 @@ export const CardProfile = styled.div`
   border-radius: 10rem;
   border: 0.1rem solid ${COLORS.gray200};
   background: ${COLORS.white};
-  background-image: url(${(props) => props.profileImageURL});
+  background-image: url(${(props) => props.$profileImageURL});
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
