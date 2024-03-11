@@ -13,17 +13,6 @@
 ✔ 나의 마음을 표현하는 이모지도 꾹~! 나에게 가장 많이 달린 이모지는 무엇일까요? <br />
 <br />
 
-### 주요 기능
-🔹 나의 롤링페이퍼 생성하기 <br />
-<div align="center"> 캡쳐본</div>
-🔹 생성된 롤링페이퍼에 메시지 남기기 <br />
-<div align="center">캡쳐본</div>
-🔹 롤링페이퍼, 메시지 삭제 기능 <br />
-<div align="center"> 캡쳐본</div>
-🔹 인기순, 최신순으로 정렬된 롤링페이퍼 확인하기 <br />
-<div align="center"> 캡쳐본</div>
-<br />
-
 ### 최적 화면크기 및 크로스 브라우징
 ▪ **Rolling은 크롬 브라우저에 최적화되어 있습니다** <br />
 ▪ 최적 화면 사이즈 : 375px ~ 1,440px
@@ -32,6 +21,29 @@
 
 ### 프로젝트 진행 기간
 > 2024.02.24 ~ 2024.03.12
+
+<br />
+
+### 주요 기능
+#### 🔹 나의 롤링페이퍼 생성하기
+<p align="center">
+  <img src="https://github.com/sprint4-team10/Rolling/assets/153581513/f2ddfbcd-289d-491c-a4ea-c72b8b8eafa1" />
+</p>
+
+#### 🔹 생성된 롤링페이퍼에 메시지 남기기
+<p align="center">
+  <img src="https://github.com/sprint4-team10/Rolling/assets/153581513/4cfdef5a-43ce-466b-8943-411d041d38cc" />
+</p>
+
+#### 🔹 롤링페이퍼, 메시지 삭제 기능
+<p align="center">
+  <img src="https://github.com/sprint4-team10/Rolling/assets/153581513/ae5709f3-848b-48df-a6e7-53a93140e7e6" />
+</p>
+
+#### 🔹 인기순, 최신순으로 정렬된 롤링페이퍼 확인하기
+<p align="center">
+  <img src="https://github.com/sprint4-team10/Rolling/assets/153581513/dc2b4258-c2db-47c1-bc71-6dce246141f5"/>
+</p>
 
 <br />
 
@@ -44,7 +56,7 @@
 |:---|:---|:---|:---|
 |![화면 캡처 2024-03-08 152750](https://github.com/sprint4-team10/Rolling/assets/153581513/7d2fa06d-23b0-460e-b4bf-13723fa60962)|![화면 캡처 2024-03-08 152800](https://github.com/sprint4-team10/Rolling/assets/153581513/0905480d-424a-49f8-82d6-e2b29600c1df)|![화면 캡처 2024-03-08 152813](https://github.com/sprint4-team10/Rolling/assets/153581513/4750e49b-64ea-4888-836e-30e67536fe5b)|![화면 캡처 2024-03-08 152822](https://github.com/sprint4-team10/Rolling/assets/153581513/79ad6fda-827c-4d2e-b967-86e7823317b1)|
 |[codingaring](https://github.com/codingaring)|[kimtaejin3](https://github.com/kimtaejin3)|[ysh73900](https://github.com/ysh73900)|[SeungAAA](https://github.com/SeungAAA)|
-|- 팀장<br /> - 롤링페이퍼 생성하기 페이지 구현 <br />- Button Component|- 초기 개발환경 셋팅 <br /> - Toast, Modal Component <br />- 롤링페이퍼 슬라이드 기능 <br />- 롤링페이퍼 목록페이지 <br /> - 롤링페이퍼 편집페이지|- 롤링페이퍼 리스트페이지  <br /> - 메시지 작성 페이지 <br />- TextFields Component |- Badge Component <br /> - 롤링페이퍼 생성하기 페이지 <br />크로스 브라우징|
+|- 팀장<br /> - 롤링페이퍼 생성하기 페이지 구현 <br />- Button, Option Component|- 초기 개발환경 세팅 <br /> - 롤링페이퍼 목록 페이지 <br /> - 롤링페이퍼 편집 페이지 <br /> - Toast, Modal 컴포넌트|- 롤링페이퍼 리스트페이지  <br /> - 메시지 작성 페이지 <br />- TextFields Component |- Badge Component <br /> - 롤링페이퍼 생성하기 페이지 <br />크로스 브라우징|
 
 <br />
 
