@@ -44,9 +44,7 @@ const SharePopOver = forwardRef(({ isOpen, style, handleClose }, ref) => {
 
   useEffect(() => {
     Kakao.cleanup();
-    console.log('key:', process.env.REACT_APP_KAKAO_KEY);
     Kakao.init(process.env.REACT_APP_KAKAO_KEY);
-    console.log('check!!:', Kakao.isInitialized());
   }, []);
 
   return (
