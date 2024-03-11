@@ -34,7 +34,7 @@ const Card = ({ message, messageId, profileImageURL, sender, relationship, conte
           openModal={openModal}
           handleClose={handleClose}
           sender={sender}
-          profileImageURL={profileImageURL}
+          $profileImageURL={profileImageURL}
           relationship={relationship}
           content={content}
           createdAt={createdAt}
@@ -54,7 +54,7 @@ const Card = ({ message, messageId, profileImageURL, sender, relationship, conte
       </ModalPortal>
       <S.MessageCardContainer>
         <S.CardHeader>
-          <S.CardProfile profileImageURL={profileImageURL} />
+          <S.CardProfile $profileImageURL={profileImageURL} />
           <S.SenderInfo>
             <S.Sender>
               From. <b>{sender}</b>

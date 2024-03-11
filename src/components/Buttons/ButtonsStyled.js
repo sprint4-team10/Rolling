@@ -17,7 +17,7 @@ export const Primary56 = styled.button`
   padding: 1.4rem 2.4rem;
   border-radius: 1.2rem;
   background-color: ${COLORS.purple600};
-  width: ${({ buttonSize }) => BUTTON_SIZE[buttonSize]};
+  width: ${({ $buttonSize }) => BUTTON_SIZE[$buttonSize]};
   border: 0.2rem solid ${COLORS.purple600};
   max-width: 72rem;
   width: 100%;
@@ -44,11 +44,11 @@ export const Primary56 = styled.button`
     }
 
     @media (max-width: 1199px) {
-      width: ${({ tabletButtonSize }) => BUTTON_SIZE[tabletButtonSize]};
+      width: ${({ $tabletButtonSize }) => BUTTON_SIZE[$tabletButtonSize]};
     }
 
     @media (max-width: 767px) {
-      width: ${({ mobileButtonSize }) => BUTTON_SIZE[mobileButtonSize]};
+      width: ${({ $mobileButtonSize }) => BUTTON_SIZE[$mobileButtonSize]};
     }
   }
 `;

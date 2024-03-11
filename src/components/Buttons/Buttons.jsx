@@ -6,9 +6,9 @@ const Buttons = ({ onClick, children, buttonType, buttonSize, mobileButtonSize, 
       return (
         <Primary56
           onClick={onClick}
-          buttonSize={buttonSize}
-          mobileButtonSize={mobileButtonSize}
-          tabletButtonSize={tabletButtonSize}
+          $buttonSize={buttonSize}
+          $mobileButtonSize={mobileButtonSize}
+          $tabletButtonSize={tabletButtonSize}
           disabled={isDisabled}
         >
           {children}
@@ -18,9 +18,9 @@ const Buttons = ({ onClick, children, buttonType, buttonSize, mobileButtonSize, 
       return (
         <Primary40
           onClick={onClick}
-          buttonSize={buttonSize}
-          mobileButtonSize={mobileButtonSize}
-          tabletButtonSize={tabletButtonSize}
+          $buttonSize={buttonSize}
+          $mobileButtonSize={mobileButtonSize}
+          $tabletButtonSize={tabletButtonSize}
           disabled={isDisabled}
         >
           {children}
@@ -30,9 +30,9 @@ const Buttons = ({ onClick, children, buttonType, buttonSize, mobileButtonSize, 
       return (
         <Secondary40
           onClick={onClick}
-          buttonSize={buttonSize}
-          mobileButtonSize={mobileButtonSize}
-          tabletButtonSize={tabletButtonSize}
+          $buttonSize={buttonSize}
+          $mobileButtonSize={mobileButtonSize}
+          $tabletButtonSize={tabletButtonSize}
           disabled={isDisabled}
         >
           {children}
@@ -42,9 +42,9 @@ const Buttons = ({ onClick, children, buttonType, buttonSize, mobileButtonSize, 
       return (
         <Outlined56
           onClick={onClick}
-          buttonSize={buttonSize}
-          mobileButtonSize={mobileButtonSize}
-          tabletButtonSize={tabletButtonSize}
+          $buttonSize={buttonSize}
+          $mobileButtonSize={mobileButtonSize}
+          $tabletButtonSize={tabletButtonSize}
           disabled={isDisabled}
         >
           {children}
@@ -54,9 +54,9 @@ const Buttons = ({ onClick, children, buttonType, buttonSize, mobileButtonSize, 
       return (
         <Outlined40
           onClick={onClick}
-          buttonSize={buttonSize}
-          mobileButtonSize={mobileButtonSize}
-          tabletButtonSize={tabletButtonSize}
+          $buttonSize={buttonSize}
+          $mobileButtonSize={mobileButtonSize}
+          $tabletButtonSize={tabletButtonSize}
           isDisabled={isDisabled}
         >
           {children}
@@ -66,9 +66,9 @@ const Buttons = ({ onClick, children, buttonType, buttonSize, mobileButtonSize, 
       return (
         <Outlined36
           onClick={onClick}
-          buttonSize={buttonSize}
-          mobileButtonSize={mobileButtonSize}
-          tabletButtonSize={tabletButtonSize}
+          $buttonSize={buttonSize}
+          $mobileButtonSize={mobileButtonSize}
+          $tabletButtonSize={tabletButtonSize}
           isDisabled={isDisabled}
         >
           {children}

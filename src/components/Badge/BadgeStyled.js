@@ -8,6 +8,6 @@ export const BadgeContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 0.4rem;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ textColor }) => textColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  color: ${({ $textColor }) => $textColor};
 `;

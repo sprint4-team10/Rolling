@@ -25,5 +25,5 @@ export const SendToInputContainer = styled.div`
 export const ErrorMessage = styled.p`
   ${FONTS.font12_Regular}
   color: ${COLORS.error};
-  visibility: ${({ isEmptyError }) => (isEmptyError ? 'visible' : 'hidden')};
+  visibility: ${({ $isError }) => ($isError ? 'visible' : 'hidden')};
 `;

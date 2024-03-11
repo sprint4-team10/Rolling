@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import PaperHeader from './components/PaperHeader';
 import Layout from '../../layout/Layout';
 import { useEffect, useState } from 'react';
@@ -9,8 +8,9 @@ import Buttons from '../../components/Buttons';
 import { useModal } from '../../hooks/useModal';
 import { ModalPortal } from '../../components/Portal';
 import DeleteModal from '../../components/DeleteModal';
-import COLORS from '../../styles/colors';
+
 import { Helmet } from 'react-helmet-async';
+import * as S from './PaperStyled';
 
 const initial_recipient = {
   id: null,
@@ -22,13 +22,6 @@ const initial_recipient = {
   recentMessages: [],
   reactionCount: 0,
   topReactions: [],
-};
-
-const bgColor = {
-  beige: COLORS.orange200,
-  purple: COLORS.purple200,
-  blue: COLORS.blue200,
-  green: COLORS.green200,
 };
 
 const Paper = () => {
@@ -66,10 +59,10 @@ const Paper = () => {
         </DeleteModal>
       </ModalPortal>
       <PaperHeader item={recipientInfo} triggerUpdate={setUpdate} update={update} />
-      <PaperContents recipientinfo={recipientInfo}>
-        <Cover src={recipientInfo.backgroundImageURL} alt="coverImg" />
+      <S.PaperContents recipientinfo={recipientInfo}>
+        <S.Cover src={recipientInfo.backgroundImageURL} alt="coverImg" />
         <Layout>
-          <Container>
+          <S.Container>
             <div style={{ marginBottom: '10px', marginLeft: 'auto', width: 'fit-content' }}>
               {pathname.includes('edit') ? (
                 <Buttons onClick={handleDeleteClick} buttonType="Primary40" buttonSize="xsmall" mobileButtonSize="full">
@@ -84,32 +77,11 @@ const Paper = () => {
               )}
             </div>
             <CardList triggerUpdate={setUpdate} />
-          </Container>
+          </S.Container>
         </Layout>
-      </PaperContents>
+      </S.PaperContents>
     </>
   );
 };
-
-const Cover = styled.img`
-  position: fixed;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  // top: 140px;
-  top: 0;
-`;
-
-const PaperContents = styled.div`
-  background-color: ${(props) => bgColor[props.recipientinfo.backgroundColor]};
-  min-height: 100vh;
-  z-index: 1;
-`;
-
-const Container = styled.div`
-  position: relative;
-  z-index: 1;
-  padding: 80px 0;
-`;
 
 export default Paper;

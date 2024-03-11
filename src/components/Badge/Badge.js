@@ -11,7 +11,7 @@ const Badge = ({ relationship }) => {
 
   const { backgroundColor, textColor, label } = labelColorMap[relationship];
   return (
-    <S.BadgeContainer backgroundColor={backgroundColor} textColor={textColor}>
+    <S.BadgeContainer $backgroundColor={backgroundColor} $textColor={textColor}>
       {label}
     </S.BadgeContainer>
   );

@@ -14,7 +14,6 @@ const cardPattern = {
 };
 
 const Card = ({ id, title, backgroundColor, backgroundImageURL, messageCount, messages, topReactions }) => {
-  console.log('backImgUrl:', backgroundImageURL);
   return (
     <Link to={`/post/${id}`}>
       <S.Wrapper $backgroundImageUrl={backgroundImageURL} $backgroundColor={backgroundColor}>
