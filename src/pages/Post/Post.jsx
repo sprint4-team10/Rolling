@@ -18,9 +18,11 @@ const Post = () => {
   });
   const [backgroundImgData, setBackgroundImgData] = useState();
   const [inputValue, setInputValue] = useState();
-  const [isEmptyError, setIsEmptyError] = useState(false);
+  const [isEmptyError, setIsEmptyError] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [touched, setTouched] = useState(false);
   const [backgroundType, setBackgroundType] = useState('color');
+
   const navigate = useNavigate();
 
   const handleLoadBackgroundImgURL = async () => {
@@ -41,12 +43,16 @@ const Post = () => {
   };
 
   const handleInputValue = (e) => {
-    setInputValue(e.target.value);
+    const value = e.target.value;
+    setInputValue(value);
+    setIsEmptyError(!value.trim());
+    if (!touched) setTouched(true);
   };
 
   const handleOnBlur = (e) => {
     const currentInput = e.target.value;
-    setIsEmptyError(!currentInput ? true : false);
+    setIsEmptyError(!currentInput.trim());
+    if (!touched) setTouched(true);
   };
 
   const handleBackgroundType = (e) => {
@@ -86,7 +92,13 @@ const Post = () => {
         <title>Rolling 롤링페이퍼 생성하기</title>
       </Helmet>
       <S.PostLayout onSubmit={handleSubmit}>
-        <PostInput value={inputValue} onChange={handleInputValue} onBlur={handleOnBlur} isEmptyError={isEmptyError} />
+        <PostInput
+          value={inputValue}
+          onChange={handleInputValue}
+          onBlur={handleOnBlur}
+          isEmptyError={isEmptyError}
+          touched={touched}
+        />
         <PostDescription />
         <ToggleButton
           isBgType={backgroundType}
@@ -99,7 +111,7 @@ const Post = () => {
         <S.BoxContainer>
           {backgroundType === 'color'
             ? COLOR_OPTION.map((color, index) => (
-                <S.BackgroundColor backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
+                <S.BackgroundColor $backgroundColor={color} key={index} id={index} onClick={handleSelectBackground}>
                   {index === selectBackgroundType.color && <CheckMark />}
                 </S.BackgroundColor>
               ))
